@@ -1,38 +1,46 @@
-.App {
-  text-align: center;
+/* src/App.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* 레이아웃 */
+#root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  min-width: 1024px;
+  max-width: 100vw;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-rows: 5rem 1fr;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  /* daisy ui 버튼 클릭 색상 변경
+.btn-active {
+  --fallback-p: #dedad5;
+} */
+
+/* 메인 배너 애니메이션 */
+.color-change-2x {
+	-webkit-animation: color-change-2x 2s linear infinite alternate both;
+	        animation: color-change-2x 2s linear infinite alternate both;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+ @-webkit-keyframes color-change-2x {
+    0% {
+      background: #19dcea;
+    }
+    100% {
+      background: #b22cff;
+    }
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  @keyframes color-change-2x {
+    0% {
+      background: #19dcea;
+    }
+    100% {
+      background: #b22cff;
+    }
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
+  
