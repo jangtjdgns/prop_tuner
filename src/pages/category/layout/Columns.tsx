@@ -1,5 +1,4 @@
-// src/components/Columns.tsx
-// Columns 속성
+// Columns.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -116,7 +115,7 @@ const Columns: React.FC = () => {
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
                         {/* column-width */}
                         <div className='text-center p-0.5 text-xs'>
-                            column-width: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnWidth} readOnly />
+                            column-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnWidth} readOnly />
                             {/* column-width 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                 onClick={() => copyCss('column-width', columnWidth, true)}
@@ -136,7 +135,7 @@ const Columns: React.FC = () => {
 
                         {/* column-count */}
                         <div className='text-center p-0.5 text-xs'>
-                            column-count: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnCount} readOnly />
+                            column-count: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnCount} readOnly />
                             {/* column-count 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                 onClick={() => copyCss('column-count', columnCount, false)}
@@ -156,7 +155,7 @@ const Columns: React.FC = () => {
 
                         {/* column-gap */}
                         <div className='text-center p-0.5 text-xs'>
-                            column-gap: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnGap} readOnly />
+                            column-gap: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnGap} readOnly />
                             {/* column-count 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                 onClick={() => copyCss('column-gap', columnGap, true)}
@@ -185,7 +184,7 @@ const Columns: React.FC = () => {
                         <div id="column-rules-wrap" className='flex flex-col gap-2 hidden'>
                             {/* column-rule-width */}
                             <div className='text-center p-0.5 text-xs'>
-                                column-rule-width: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleWidth} readOnly />
+                                column-rule-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleWidth} readOnly />
                                 {/* column-rule-width 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                     onClick={() => copyCss('column-rule-width', columnRuleWidth, true)}
@@ -201,7 +200,7 @@ const Columns: React.FC = () => {
 
                             {/* column-rule-style */}
                             <div className='text-center p-0.5 text-xs'>
-                                column-rule-style: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleStyle} readOnly />
+                                column-rule-style: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleStyle} readOnly />
                                 {/* column-rule-style 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                     onClick={() => copyCss('column-rule-style', columnRuleStyle, false)}
@@ -222,7 +221,7 @@ const Columns: React.FC = () => {
 
                             {/* column-rule-color */}
                             <div className='text-center p-0.5 text-xs'>
-                                column-rule-color: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleColor} readOnly />
+                                column-rule-color: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleColor} readOnly />
                                 {/* column-rule-style 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                     onClick={() => copyCss('column-rule-color', columnRuleColor, false)}

@@ -1,5 +1,4 @@
-// src/components/AspectRatio.tsx
-// AspectRatio 속성
+// AspectRatio.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -69,7 +68,7 @@ const AspectRatio: React.FC = () => {
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
                         {/* aspect-ratio */}
                         <div className='text-center p-0.5 text-xs'>
-                            aspect-ratio: <input type="text" id="text-value" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={aspectRatio} readOnly />
+                            aspect-ratio: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={aspectRatio} readOnly />
                             {/* 복사 버튼 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                 onClick={() => copyCss('aspect-ratio', aspectRatio, true)}

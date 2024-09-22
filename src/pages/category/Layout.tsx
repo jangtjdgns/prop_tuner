@@ -8,6 +8,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
  * Aspect Ratio             o
  * Container                x
  * Columns
+ * Break - 3개 통합
  * Break After
  * Break Before
  * Break Inside
@@ -68,7 +69,7 @@ const Layout: React.FC = () => {
                 <div id="category-layouts" className='h-full border-b shadow-md flex gap-2 p-3'>
                     <input type="radio" id="layout-aspectRatio" className="btn layout" name='layout' value="AspectRatio" aria-label="Aspect Ratio" checked={selectedLayout === 'AspectRatio'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-columns" className="btn layout" name='layout' value="Columns" aria-label="Columns" checked={selectedLayout === 'Columns'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-breakAfter" className="btn layout" name='layout' value="BreakAfter" aria-label="Break After" checked={selectedLayout === 'BreakAfter'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-break" className="btn layout" name='layout' value="Break" aria-label="Break" checked={selectedLayout === 'Break'} onChange={radioButtonHandler} />
                 </div>
 
                 <div id="category-views" className='relative w-full h-full px-4 py-8 bg-gray-200 overflow-hidden'>

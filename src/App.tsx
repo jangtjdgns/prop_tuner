@@ -7,6 +7,7 @@ import Board from './pages/Board';
 import CtLayout from './pages/category/Layout';
 import AspectRatio from './pages/category/layout/AspectRatio';
 import Columns from './pages/category/layout/Columns';
+import Break from './pages/category/layout/Break';
 import Sizing from './pages/category/Sizing';
 import './App.css';
 
@@ -22,6 +23,7 @@ const App = () => {
                         <Route index element={<AspectRatio />} />
                         <Route path="AspectRatio" element={<AspectRatio />} />
                         <Route path="Columns" element={<Columns />} />
+                        <Route path="Break" element={<Break />} />
                     </Route>
                     <Route path="Sizing" element={<Sizing />} />
                 </Route>
