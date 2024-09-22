@@ -6,7 +6,7 @@ import Home from './pages/Home';
 import Board from './pages/Board';
 import CtLayout from './pages/category/Layout';
 import AspectRatio from './pages/category/layout/AspectRatio';
-import Container from './pages/category/layout/Container';
+import Columns from './pages/category/layout/Columns';
 import Sizing from './pages/category/Sizing';
 import './App.css';
 
@@ -21,7 +21,7 @@ const App = () => {
                     <Route path="Layout" element={<CtLayout />}>
                         <Route index element={<AspectRatio />} />
                         <Route path="AspectRatio" element={<AspectRatio />} />
-                        <Route path="Container" element={<Container />} />
+                        <Route path="Columns" element={<Columns />} />
                     </Route>
                     <Route path="Sizing" element={<Sizing />} />
                 </Route>

@@ -5,7 +5,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
     return (
-        <footer className="footer absolute w-screen min-w-[1024px] h-16 -bottom-16 bg-neutral text-neutral-content items-center p-4">
+        <footer className="footer relative w-screen min-w-[1024px] h-16 bg-neutral text-neutral-content items-center p-4">
             <aside className="grid-flow-col items-center">
                 <svg
                     width="36"
