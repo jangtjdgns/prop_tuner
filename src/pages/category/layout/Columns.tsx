@@ -112,10 +112,10 @@ const Columns: React.FC = () => {
                     </div>
 
                     {/* 옵션 내용 하단 */}
-                    <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
+                    <div className='flex flex-col max-h-[360px] overflow-y-scroll'>
                         {/* column-width */}
-                        <div className='text-center p-0.5 text-xs'>
-                            column-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnWidth} readOnly />
+                        <div className='divider text-center text-xs'>
+                            column-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center' value={columnWidth} readOnly />
                             {/* column-width 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                 onClick={() => copyCss('column-width', columnWidth, true)}
@@ -171,8 +171,8 @@ const Columns: React.FC = () => {
                         />
 
                         {/* column-rule 속성 활성화 버튼 */}
-                        <div className='flex items-center justify-center p-0.5 text-xs'>
-                            <span className='font-bold'>Column Rule</span>&nbsp;
+                        <div className='divider flex items-center justify-center text-xs'>
+                            <span className='font-bold'>Column Rule</span>
                             <input type="checkbox"
                                 id="toggle-column-rule"
                                 className="toggle toggle-info toggle-sm"

@@ -60,7 +60,7 @@ const AspectRatio: React.FC = () => {
                     
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <span className='text-center pt-2 font-bold text-lg'>aspect-ratio</span>
+                        <span className='text-center pt-2 font-bold text-lg'>Aspect Ratio</span>
                         <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Unit: px</div>
                     </div>
 
@@ -93,7 +93,7 @@ const AspectRatio: React.FC = () => {
                             />
                         </button>
 
-                        <span className='text-center p-2 font-bold text-lg'>image</span>
+                        <div className="divider font-bold text-lg">Image</div>
                         <button className="btn p-0">
                             <input type="text"
                                 className='input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center'

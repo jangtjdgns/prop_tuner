@@ -93,7 +93,7 @@ const Break: React.FC = () => {
                         <button className='btn' onClick={handlePrint}>Show Print Preivew</button>
 
                         {/* 속성을 적용할 태그 선택 */}
-                        <div className='text-center pt-2 font-bold text-lg'>Select Tag</div>
+                        <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-4 gap-2">
                             <input type='radio' className="btn" value={1} aria-label='1' checked={activeTag === 1} onClick={() => handleTagSelect(1)} />
                             <input type='radio' className="btn" value={2} aria-label='2' checked={activeTag === 2} onClick={() => handleTagSelect(2)} />
@@ -102,7 +102,7 @@ const Break: React.FC = () => {
                         </div>
 
                         {/* break-타입 지정, break-${breakType} */}
-                        <div className='text-center pt-2 font-bold text-lg'>property type</div>
+                        <div className='divider font-bold text-lg'>Property Type</div>
                         <div className='grid grid-cols-3 gap-2'>
                             <input type='radio' name='breakType' className="btn border-2 focus:border-gray-400" value='after' aria-label='after' onChange={() => updateBreakType('after')} defaultChecked />
                             <input type='radio' name='breakType' className="btn border-2 focus:border-gray-400" value='before' aria-label='before' onChange={() => updateBreakType('before')} />
@@ -110,7 +110,7 @@ const Break: React.FC = () => {
                         </div>
 
                         {/* break values */}
-                        <div className='text-center pt-2 font-bold text-lg'>values</div>
+                        <div className='divider font-bold text-lg'>Values</div>
                         {/* breka 타입(속성)에 맞는 value 생성 */}
                         <div className='grid grid-cols-2 gap-2'>
                             {getBreakValuesByType(breakType).map(value => (
