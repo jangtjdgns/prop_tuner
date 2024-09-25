@@ -1,44 +1,23 @@
-// Display.tsx
+// Float.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../utils/colorUtils';
 
 const Display: React.FC = () => {
-    const [display, setDisplay] = useState('block');
-    const [activeTags, setActiveTags] = useState([1, 1, 1, 1, 1]);                  // 현재 선택된 태그, 1 on, 0 off
-    const childTagsColor: string[] = ['red', 'orange', 'yellow', 'green', 'blue']   // 자식 태그들 색상
-    const displayValues: string[] = [
-        'block'
-        , 'inline-block'
-        , 'inline'
-        , 'flex'
-        , 'inline-flex'
-        , 'table'
-        , 'inline-table'
-        , 'table-caption'
-        , 'table-cell'
-        , 'table-column'
-        , 'table-column-grouop'
-        , 'table-footer-grouop'
-        , 'table-header-grouop'
-        , 'table-row-grouop'
-        , 'table-row'
-        , 'flow-root'
-        , 'grid'
-        , 'inline-grid'
-        , 'content'
-        , 'list-item'
-        , 'none'
-    ];
+    const floatValues: string[] = ['none', 'right', 'left'];
+    type FloatValue = 'none' | 'right' | 'left';
 
-    const updateDisplay = (value: string) => {
-        setDisplay(value);
+    const [float, setFloat] = useState<FloatValue>('none');
+    const [activeTags, setActiveTags] = useState([1, 0, 0, 0, 0]);
+    const childTagsColor: string[] = ['red', 'orange', 'yellow', 'green', 'blue']   // 자식 태그들 색상
+
+    const updateFloat = (value: FloatValue) => {
+        setFloat(value);
     };
 
-    // 자식 태그 선택/해제 함수
     const handleTagToggle = (index: number) => {
         const updatedTags = [...activeTags];
         updatedTags[index] = activeTags[index] === 1 ? 0 : 1;
@@ -59,20 +38,20 @@ const Display: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Display</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Float</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* display */}
+                        {/* float */}
                         <div className='text-center p-0.5 text-xs'>
-                            display: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                            value={display}
+                            float: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                            value={float}
                             readOnly
                         />
                             {/* display 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('display', display, false)}
+                                onClick={() => copyCss('float', float, false)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -82,8 +61,7 @@ const Display: React.FC = () => {
                         <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-5 gap-2">
                             {activeTags.map((tag, index) => (
-                                <input
-                                    type="checkbox"
+                                <input type="checkbox"
                                     key={index}
                                     className='btn'
                                     aria-label={`${index + 1}`}
@@ -93,20 +71,20 @@ const Display: React.FC = () => {
                             ))}
                         </div>
                         
-                        {/* display values */}
+                        {/* float values */}
                         <div className='divider font-bold text-lg'>Values</div>
                         <div className='grid grid-cols-2 gap-2'>
-                            {/* display values 태그 생성 */}
-                            {displayValues.map(value => (
+                            {/* float values 태그 생성 */}
+                            {floatValues.map(value => (
                                 <input
                                     key={value}
                                     type='radio'
-                                    name='breakValue'
+                                    name='float'
                                     className='btn border-2 focus:border-gray-400'
                                     value={value}
                                     aria-label={value}
-                                    checked={display === value}
-                                    onChange={() => updateDisplay(value)}
+                                    checked={float === value}
+                                    onChange={() => updateFloat(value as FloatValue)}
                                 />
                             ))}
                         </div>
@@ -115,30 +93,17 @@ const Display: React.FC = () => {
             </div>
 
             <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div id="parent" className='w-[400px] h-[400px] border-2 border-black bg-white box-border rounded-none table'
-                    style={{
-                        ...(display === 'flex'
-                            || display === 'inline-flex'
-                            || display === 'grid'
-                            || display === 'inline-grid'
-                            || display === 'flow-root'
-                            || display === 'table'
-                            || display === 'inline-table'
-                            ? {'display': display} : {}),
-                        ...(display.startsWith('table-')
-                            ? {'display': 'table'} : {}),
-                        ...(display.endsWith('-table')
-                            ? {'display': 'table'} : {})
-                    }}
+                <div id="parent" className='w-[400px] h-[400px] border-2 border-black bg-white box-border rounded-none'
+                    
                 >
                     {/* 자식 태그 생성 */}
                     {childTagsColor.map((color, index) => (
-                        <div key={index}
-                            className={`children w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold`}
+                        <div className={`children border-2 w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold`}
+                            key={index}
                             style={{
                                 border: `2px solid rgb(${colorsRGB[color.toLowerCase()]})`,
                                 backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.2)`,
-                                display: activeTags[index] === 1 ? display : undefined
+                                float: activeTags[index] === 1 ? float : 'none'
                             }}
                         >
                             Children {index + 1}

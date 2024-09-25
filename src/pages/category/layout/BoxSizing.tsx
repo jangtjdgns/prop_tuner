@@ -6,13 +6,15 @@ import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 
 const BoxSizing: React.FC = () => {
-    const [boxSizing, setBoxSizing] = useState('border');
+    type BoxSizingValues = 'border' | 'content';
+
+    const [boxSizing, setBoxSizing] = useState<BoxSizingValues>('border');
     const [childWidth, setChildWidth] = useState('100%');
     const [childBorderWidth, setChildBorderWidth] = useState('20px');
     const [childPadding, setChildPadding] = useState('20px');
 
     // box-sizing 업데이트 함수
-    const updateBoxSizing = (value: string) => {
+    const updateBoxSizing = (value: BoxSizingValues) => {
         setBoxSizing(value);
     };
 
@@ -101,8 +103,9 @@ const BoxSizing: React.FC = () => {
             <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
                 <div className='w-[400px] h-[400px] border-[20px] border-blue-400 text-center py-10'>
                     <div className='font-bold text-3xl pb-5'>parent</div>
-                    <div className={`h-[50%] border-[20px] border-black box-${boxSizing} font-bold text-2xl transition-all duration-500`}
+                    <div className={`h-[50%] border-[20px] border-black font-bold text-2xl transition-all duration-500`}
                         style={{
+                            boxSizing: `${boxSizing}-box`,
                             width: childWidth,
                             borderWidth: childBorderWidth,
                             padding: childPadding
