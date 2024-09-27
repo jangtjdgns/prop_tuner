@@ -7,6 +7,7 @@ import { copyCss } from '../../../utils/clipboardUtils';
 
 const Break: React.FC = () => {
     const [breakType, setBreakType] = useState('after');    // after, before, inside
+    let breakTypeCap = breakType.charAt(0).toUpperCase() + breakType.slice(1);    // breakType 첫번째 문자만 대문자로 변경, 속성으로 사용하기 위함
     const [breakValue, setBreakValue] = useState('auto');
     const [activeTag, setActiveTag] = useState(2);          // 현재 선택된 태그 번호
 
@@ -15,9 +16,10 @@ const Break: React.FC = () => {
         setActiveTag(tagIndex);
     };
 
-    // break-${type} 업데이트 함수
+    // break${type} 업데이트 함수
     const updateBreakType = (value: string) => {
         setBreakType(value);
+        breakTypeCap = breakType.charAt(0).toUpperCase() + breakType.slice(1);
     };
 
     // break value 업데이트 함수
@@ -46,8 +48,7 @@ const Break: React.FC = () => {
         newWindow?.document.write(`
             <html>
                 <head>
-                    <title>Print</title>
-                    
+                    <title>Show Print View</title>
                     <script src="https://cdn.tailwindcss.com"></script>
                 </head>
                 <body onload="window.print(); window.close();">
@@ -95,10 +96,10 @@ const Break: React.FC = () => {
                         {/* 속성을 적용할 태그 선택 */}
                         <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-4 gap-2">
-                            <input type='radio' className="btn" value={1} aria-label='1' checked={activeTag === 1} onClick={() => handleTagSelect(1)} />
-                            <input type='radio' className="btn" value={2} aria-label='2' checked={activeTag === 2} onClick={() => handleTagSelect(2)} />
-                            <input type='radio' className="btn" value={3} aria-label='3' checked={activeTag === 3} onClick={() => handleTagSelect(3)} />
-                            <input type='radio' className="btn" value={4} aria-label='4' checked={activeTag === 4} onClick={() => handleTagSelect(4)} />
+                            <input type='radio' className="btn" value={1} aria-label='1' checked={activeTag === 1} onChange={() => handleTagSelect(1)} />
+                            <input type='radio' className="btn" value={2} aria-label='2' checked={activeTag === 2} onChange={() => handleTagSelect(2)} />
+                            <input type='radio' className="btn" value={3} aria-label='3' checked={activeTag === 3} onChange={() => handleTagSelect(3)} />
+                            <input type='radio' className="btn" value={4} aria-label='4' checked={activeTag === 4} onChange={() => handleTagSelect(4)} />
                         </div>
 
                         {/* break-타입 지정, break-${breakType} */}
@@ -133,7 +134,7 @@ const Break: React.FC = () => {
                     <div className='flex items-center gap-2'>
                         <span>{activeTag === 1 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
                         <div className=' w-[600px] p-2 border-4 border-red-400' 
-                            style={activeTag === 1 ? { [`break-${breakType}`]: breakValue } : {}}
+                            style={activeTag === 1 ? { [`break${breakTypeCap}`]: breakValue } : {}}
                         >
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quam.
                         </div>
@@ -141,7 +142,7 @@ const Break: React.FC = () => {
                     <div className='flex items-center gap-2'>
                         <span>{activeTag === 2 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
                         <div className='w-[600px] p-2 border-4 border-orange-400' 
-                            style={activeTag === 2 ? { [`break-${breakType}`]: breakValue } : {}}
+                            style={activeTag === 2 ? { [`break${breakTypeCap}`]: breakValue } : {}}
                         >
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis.
                         </div>
@@ -149,7 +150,7 @@ const Break: React.FC = () => {
                     <div className='flex items-center gap-2'>
                         <span>{activeTag === 3 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
                         <div className='w-[600px] p-2 border-4 border-yellow-700' 
-                            style={activeTag === 3 ? { [`break-${breakType}`]: breakValue } : {}}
+                            style={activeTag === 3 ? { [`break${breakTypeCap}`]: breakValue } : {}}
                         >
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu.
                         </div>
@@ -157,7 +158,7 @@ const Break: React.FC = () => {
                     <div className='flex items-center gap-2'>
                         <span>{activeTag === 4 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
                         <div className='w-[600px] p-2 border-4 border-green-700' 
-                            style={activeTag === 4 ? { [`break-${breakType}`]: breakValue } : {}}
+                            style={activeTag === 4 ? { [`break${breakTypeCap}`]: breakValue } : {}}
                         >
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed.
                         </div>

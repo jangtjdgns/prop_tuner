@@ -17,31 +17,33 @@
   grid-template-rows: 5rem 1fr;
 }
 
-  /* daisy ui 버튼 클릭 색상 변경
+/* daisy ui 버튼 클릭 색상 변경
 .btn-active {
   --fallback-p: #dedad5;
 } */
 
 /* 메인 배너 애니메이션 */
 .color-change-2x {
-	-webkit-animation: color-change-2x 2s linear infinite alternate both;
-	        animation: color-change-2x 2s linear infinite alternate both;
+  -webkit-animation: color-change-2x 2s linear infinite alternate both;
+  animation: color-change-2x 2s linear infinite alternate both;
 }
 
- @-webkit-keyframes color-change-2x {
-    0% {
-      background: #19dcea;
-    }
-    100% {
-      background: #b22cff;
-    }
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #19dcea;
   }
-  @keyframes color-change-2x {
-    0% {
-      background: #19dcea;
-    }
-    100% {
-      background: #b22cff;
-    }
+
+  100% {
+    background: #b22cff;
   }
-  
+}
+
+@keyframes color-change-2x {
+  0% {
+    background: #19dcea;
+  }
+
+  100% {
+    background: #b22cff;
+  }
+}

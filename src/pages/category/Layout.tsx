@@ -67,7 +67,7 @@ const Layout: React.FC = () => {
             <div className='h-full grid grid-rows-[8rem_1fr] bg-white'>
                 {/* CSS */}
                 <div id="category-layouts" className='h-full border-b shadow-md flex gap-2 p-3'>
-                    <input type="radio" id="layout-aspectRatio" className="btn layout" name='layout' value="AspectRatio" aria-label="Aspect Ratio" checked={selectedLayout === 'AspectRatio'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-aspectRatio" className="btn layout" name='layout' value="AspectRatio" aria-label="Aspect Ratio" checked={selectedLayout === 'AspectRatio' || selectedLayout === 'Layout'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-columns" className="btn layout" name='layout' value="Columns" aria-label="Columns" checked={selectedLayout === 'Columns'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-break" className="btn layout" name='layout' value="Break" aria-label="Break" checked={selectedLayout === 'Break'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-boxSizing" className="btn layout" name='layout' value="BoxSizing" aria-label="BoxSizing" checked={selectedLayout === 'BoxSizing'} onChange={radioButtonHandler} />
