@@ -70,9 +70,10 @@ const Layout: React.FC = () => {
                     <input type="radio" id="layout-aspectRatio" className="btn layout" name='layout' value="AspectRatio" aria-label="Aspect Ratio" checked={selectedLayout === 'AspectRatio' || selectedLayout === 'Layout'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-columns" className="btn layout" name='layout' value="Columns" aria-label="Columns" checked={selectedLayout === 'Columns'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-break" className="btn layout" name='layout' value="Break" aria-label="Break" checked={selectedLayout === 'Break'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-boxSizing" className="btn layout" name='layout' value="BoxSizing" aria-label="BoxSizing" checked={selectedLayout === 'BoxSizing'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-boxSizing" className="btn layout" name='layout' value="BoxSizing" aria-label="Box Sizing" checked={selectedLayout === 'BoxSizing'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-display" className="btn layout" name='layout' value="Display" aria-label="Display" checked={selectedLayout === 'Display'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-Float" className="btn layout" name='layout' value="Float" aria-label="Float" checked={selectedLayout === 'Float'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-float" className="btn layout" name='layout' value="Float" aria-label="Float" checked={selectedLayout === 'Float'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-objectFit" className="btn layout" name='layout' value="ObjectFit" aria-label="Object Fit" checked={selectedLayout === 'ObjectFit'} onChange={radioButtonHandler} />
                 </div>
 
                 <div id="category-views" className='relative w-full h-full px-4 py-8 bg-gray-200 overflow-scroll'>

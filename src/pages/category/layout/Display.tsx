@@ -115,7 +115,7 @@ const Display: React.FC = () => {
             </div>
 
             <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div id="parent" className='w-[400px] h-[400px] border-2 border-black bg-white box-border rounded-none table'
+                <div id="parent" className='w-[400px] h-[400px] border-2 border-black bg-white box-border rounded-none box-content'
                     style={{
                         ...(display === 'flex'
                             || display === 'inline-flex'
@@ -134,10 +134,10 @@ const Display: React.FC = () => {
                     {/* 자식 태그 생성 */}
                     {childTagsColor.map((color, index) => (
                         <div key={index}
-                            className={`children w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold`}
+                            className='children w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold'
                             style={{
                                 border: `2px solid rgb(${colorsRGB[color.toLowerCase()]})`,
-                                backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.2)`,
+                                backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.1)`,
                                 display: activeTags[index] === 1 ? display : undefined
                             }}
                         >

@@ -11,6 +11,7 @@ import Break from './pages/category/layout/Break';
 import BoxSizing from './pages/category/layout/BoxSizing';
 import Display from './pages/category/layout/Display';
 import Float from './pages/category/layout/Float';
+import ObjectFit from './pages/category/layout/ObjectFit';
 import Sizing from './pages/category/Sizing';
 import './App.css';
 
@@ -30,6 +31,7 @@ const App = () => {
                         <Route path="BoxSizing" element={<BoxSizing />} />
                         <Route path="Display" element={<Display />} />
                         <Route path="Float" element={<Float />} />
+                        <Route path="ObjectFit" element={<ObjectFit />} />
                     </Route>
                     <Route path="Sizing" element={<Sizing />} />
                 </Route>

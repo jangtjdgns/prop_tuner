@@ -7,13 +7,13 @@ import { copyCss } from '../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../utils/colorUtils';
 
 const Float: React.FC = () => {
-    const floatValues: string[] = ['none', 'right', 'left'];;
-    const clearValues: string[] = ['none', 'right', 'left', 'both'];
     type FloatValue = 'none' | 'right' | 'left';
     type ClearValue = 'none' | 'right' | 'left' | 'both';
 
     const [float, setFloat] = useState<FloatValue>('none');
     const [clear, setClear] = useState<ClearValue>('none');
+    const floatValues: string[] = ['none', 'right', 'left'];;
+    const clearValues: string[] = ['none', 'right', 'left', 'both'];
     const [floatTags, setFloatTags] = useState([1, 0, 0, 0, 0]);                        // float 속성
     const [clearTags, setClearTags] = useState([0, 0, 0, 0, 0]);                        // clear 속성
     const childTagsColor: string[] = ['red', 'orange', 'yellow', 'green', 'blue']       // 자식 태그들 색상
@@ -50,14 +50,9 @@ const Float: React.FC = () => {
         
         columnRuleWrap.classList.toggle('hidden')
 
-        if(activateBtn) {
-            // setColumnRuleWidth(5);
-            // setColumnRuleStyle('solid')
-            // setColumnRuleColor('#000000')
-        } else {
-            // setColumnRuleWidth(0);
-            // setColumnRuleStyle('none')
-            // setColumnRuleColor('none')
+        if(!activateBtn) {
+            setClear('none');
+            setClearTags([0, 0, 0, 0, 0]);
         }
     }
 
@@ -196,6 +191,7 @@ const Float: React.FC = () => {
                     {/* 자식 태그 생성 */}
                     {childTagsColor.map((color, index) => (
                         <div className={`children border-2 w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold`}
+                            key={index}
                             style={{
                                 border: `2px solid rgb(${colorsRGB[color.toLowerCase()]})`,
                                 backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.1)`,

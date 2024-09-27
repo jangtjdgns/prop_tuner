@@ -11,12 +11,12 @@ const AspectRatio: React.FC = () => {
     const [image, setImage] = useState('https://cdn.pixabay.com/photo/2023/05/05/11/01/grebe-7972183_1280.jpg');
 
     // 스타일 업데이트 함수
-    const handleAspectRatioChange = (style: string) => {
+    const updateAspectRatio = (style: string) => {
         setAspectRatio(style);
     }
 
     // 커스텀 스타일 업데이트 함수
-    const customAspectRatioChange = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
+    const updateCustomAspectRatio = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
         const style: string = target.value;
 
@@ -26,7 +26,7 @@ const AspectRatio: React.FC = () => {
     };
 
     // 이미지 너비 설정
-    const handleImageWidthChange = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
+    const updateImageWidth = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
         const style: string = target.value;
         
@@ -36,7 +36,7 @@ const AspectRatio: React.FC = () => {
     };
 
     // 이미지 변경
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
+    const changeImage = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
         const imageUrl: string = target.value;
 
@@ -78,17 +78,17 @@ const AspectRatio: React.FC = () => {
                             </button>
                         </div>
                         <div className='grid grid-cols-2 gap-2'>
-                            <button className="btn border-2 focus:border-gray-400" onClick={() => handleAspectRatioChange('auto')}>auto;</button>
-                            <button className="btn border-2 focus:border-gray-400" onClick={() => handleAspectRatioChange('1 / 1')}>1 / 1;</button>
-                            <button className="btn border-2 focus:border-gray-400" onClick={() => handleAspectRatioChange('16 / 9')}>16 / 9;</button>
-                            <button className="btn border-2 focus:border-gray-400" onClick={() => handleAspectRatioChange('0.8')}>0.8;</button>
+                            <button className="btn border-2 focus:border-gray-400" onClick={() => updateAspectRatio('auto')}>auto;</button>
+                            <button className="btn border-2 focus:border-gray-400" onClick={() => updateAspectRatio('1 / 1')}>1 / 1;</button>
+                            <button className="btn border-2 focus:border-gray-400" onClick={() => updateAspectRatio('16 / 9')}>16 / 9;</button>
+                            <button className="btn border-2 focus:border-gray-400" onClick={() => updateAspectRatio('0.8')}>0.8;</button>
                         </div>
 
                         <button className="btn p-0">
                             <input type="text"
                                 className='input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center'
-                                onClick={customAspectRatioChange}
-                                onChange={customAspectRatioChange}
+                                onClick={updateCustomAspectRatio}
+                                onChange={updateCustomAspectRatio}
                                 placeholder='w/h'
                             />
                         </button>
@@ -97,8 +97,8 @@ const AspectRatio: React.FC = () => {
                         <button className="btn p-0">
                             <input type="text"
                                 className='input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center'
-                                onClick={handleImageWidthChange}
-                                onChange={handleImageWidthChange}
+                                onClick={updateImageWidth}
+                                onChange={updateImageWidth}
                                 value={imgWidth}
                                 placeholder='width'
                             />
@@ -106,8 +106,8 @@ const AspectRatio: React.FC = () => {
                         <button className="btn p-0">
                             <input type="text"
                                 className="input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center"
-                                onClick={handleImageChange}
-                                onChange={handleImageChange}
+                                onClick={changeImage}
+                                onChange={changeImage}
                                 value={image}
                                 placeholder='image url'
                             />
