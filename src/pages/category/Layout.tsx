@@ -74,6 +74,7 @@ const Layout: React.FC = () => {
                     <input type="radio" id="layout-display" className="btn layout" name='layout' value="Display" aria-label="Display" checked={selectedLayout === 'Display'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-float" className="btn layout" name='layout' value="Float" aria-label="Float" checked={selectedLayout === 'Float'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-objectFit" className="btn layout" name='layout' value="ObjectFit" aria-label="Object Fit" checked={selectedLayout === 'ObjectFit'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-OojectPosition" className="btn layout" name='layout' value="ObjectPosition" aria-label="Object Position" checked={selectedLayout === 'ObjectPosition'} onChange={radioButtonHandler} />
                 </div>
 
                 <div id="category-views" className='relative w-full h-full px-4 py-8 bg-gray-200 overflow-scroll'>

@@ -39,15 +39,14 @@ const Columns: React.FC = () => {
     }
 
     // column-gap 업데이트 함수
-    const updateColumnGap = (event: string | React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
-        if (typeof event === 'string') {
-            setColumnGap(event);
+    const updateColumnGap = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
+        const target = event.target as HTMLInputElement;
+        const gap: string = target.value;
+
+        if (!isNaN(Number(gap)) && gap.length !== 0) {
+            setColumnGap(gap);
         } else {
-            const target = event.target as HTMLInputElement;
-            const gap: string = target.value;
-            if (gap.length != 0) {
-                setColumnGap(gap);
-            }
+            setColumnGap('auto');
         }
     }
 
@@ -114,7 +113,7 @@ const Columns: React.FC = () => {
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col max-h-[360px] overflow-y-scroll'>
                         {/* column-width */}
-                        <div className='divider text-center text-xs'>
+                        <div className='text-center p-0.5 text-xs'>
                             column-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center' value={columnWidth} readOnly />
                             {/* column-width 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
@@ -126,9 +125,9 @@ const Columns: React.FC = () => {
                         <button className="btn p-0">
                             <input type="text"
                                 className='input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center'
+                                value={columnWidth}
                                 onClick={(event) => updateColumnWidth(event)}
                                 onChange={(event) => updateColumnWidth(event)}
-                                value={columnWidth}
                                 placeholder='width'
                             />
                         </button>

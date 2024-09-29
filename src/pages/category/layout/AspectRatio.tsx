@@ -71,7 +71,7 @@ const AspectRatio: React.FC = () => {
                             aspect-ratio: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={aspectRatio} readOnly />
                             {/* 복사 버튼 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('aspect-ratio', aspectRatio, true)}
+                                onClick={() => copyCss('aspect-ratio', aspectRatio, false)}
                             >
                                 {/* alert 메시지 추가하면 좋을듯 */}
                                 <FontAwesomeIcon icon={faCopy} />

@@ -59,15 +59,17 @@ const ObjectFit: React.FC = () => {
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
+
                         <div className='grid grid-cols-2 gap-2'>
                             {objectFitValues.map((value, index) => (
                                 <input
+                                    key={index}
                                     type='radio'
                                     name='objectFit'
                                     className="btn border-2 focus:border-gray-400"
                                     aria-label={value}
                                     checked= {objectFit === value}
-                                    onClick={() => updateObjectFit(value as ObjectFitValue)}
+                                    onChange={() => updateObjectFit(value as ObjectFitValue)}
                                 />
                             ))}
                         </div>
@@ -88,7 +90,7 @@ const ObjectFit: React.FC = () => {
             </div>
 
             <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='border-2 border-[black] w-[500px] h-[500px] overflow-hidden'>
+                <div className='w-[500px] h-[500px] overflow-hidden'>
                     <img
                         src={image}
                         alt='no image'

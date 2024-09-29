@@ -8,7 +8,7 @@ export async function copyCss(property: string, value: string | number, hasUnit:
     } 
 
     try {
-        await navigator.clipboard.writeText(`${property}: ${value}${unit};`);
+        await navigator.clipboard.writeText(`${property}: ${String(value).trim()}${unit};`);
     } catch (err) {
         console.error('Failed to copy text: ', err);
     }
