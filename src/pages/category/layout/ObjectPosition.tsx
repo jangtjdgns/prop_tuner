@@ -66,7 +66,7 @@ const ObjectPosition: React.FC = () => {
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Object Position</div>
-                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Basis: object-fit: cover;</div>
+                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Basis: object-fit: none;</div>
                     </div>
                     
                     {/* 옵션 내용 하단 */}
