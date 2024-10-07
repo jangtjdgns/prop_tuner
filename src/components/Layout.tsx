@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
             <Header />
-            <main className='w-full min-w-[1024px]'>
+            <main>
                 {children}
             </main>
             <Footer />

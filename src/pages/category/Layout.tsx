@@ -3,29 +3,27 @@ import React, { useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 
 // 페이지 처음 로드시 overflow-scroll이 적용안되는 문제가 있음. 새로고침해야지만 고쳐짐. 수정해야할듯
-
 /**
- * Aspect Ratio             o
- * Container                x
- * Columns                  o
- * Break - 3개 통합         o
- * Break After
- * Break Before
- * Break Inside
- * Box Decoration Break     x
- * Box Sizing               o
- * Display
- * Float
- * Clear
- * Isolation
- * Object Fit
- * Object Position
- * Overflow
- * Overscroll Behavior
- * Position
- * Top / Right / Bottom / Left
- * visibility
- * Z-index
+ * Aspect Ratio                     o
+ * Container                        x
+ * Columns                          o
+ * Break After                      o
+ * Break Before                     o
+ * Break Inside                     o
+ * Box Decoration Break             x
+ * Box Sizing                       o
+ * Display                          o
+ * Float                            o
+ * Clear                            o
+ * Isolation                        x
+ * Object Fit                       o
+ * Object Position                  o
+ * Overflow                         o
+ * Overscroll Behavior              x
+ * Position                         o
+ * Top / Right / Bottom / Left      o
+ * visibility                       o
+ * Z-index                          o
  * 
  */
 
@@ -64,7 +62,7 @@ const Layout: React.FC = () => {
 
     return (
         <>
-            <div className='h-full grid grid-rows-[4rem_1fr] bg-white'>
+            <div className='h-[calc(100vh-9rem)] grid grid-rows-[4rem_1fr] bg-white'>
                 {/* CSS */}
                 <div id="category-layouts" className='h-full border-b shadow-md flex gap-2 items-center px-2'>
                     <input type="radio" id="layout-aspectRatio" className="btn layout" name='layout' value="AspectRatio" aria-label="Aspect Ratio" checked={selectedLayout === 'AspectRatio' || selectedLayout === 'Layout'} onChange={radioButtonHandler} />

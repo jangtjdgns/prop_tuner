@@ -56,7 +56,7 @@ const Header = () => {
 
 
     return (
-        <header className='w-screen min-w-[1024px] h-full border-b flex justify-center items-center'>
+        <header className='w-screen min-w-[1024px] border-b flex justify-center items-center'>
             <div className="navbar bg-base-100">
                 <div className="flex-none">
                     <button className="btn btn-square btn-ghost">
