@@ -123,7 +123,7 @@ const Visibility: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[500px] h-[500px] border-2 border-black box-border overflow-scroll'>
+                <div className='w-[500px] h-[700px] border-2'>
                     <div className='w-full h-[100px] bg-red-500' style={{ visibility: checekdActiveTag(0) }}></div>
                     <div className='w-full h-[100px] bg-orange-500' style={{ visibility: checekdActiveTag(1) }}></div>
                     <div className='w-full h-[100px] bg-yellow-500' style={{ visibility: checekdActiveTag(2) }}></div>

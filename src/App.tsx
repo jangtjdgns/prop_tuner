@@ -16,6 +16,7 @@ import ObjectPosition from './pages/category/layout/ObjectPosition';
 import Overflow from './pages/category/layout/Overflow';
 import Position from './pages/category/layout/Position';
 import Visibility from './pages/category/layout/Visibility';
+import ZIndex from './pages/category/layout/ZIndex';
 import Sizing from './pages/category/Sizing';
 import './App.css';
 
@@ -40,6 +41,7 @@ const App = () => {
                         <Route path="Overflow" element={<Overflow />} />
                         <Route path="Position" element={<Position />} />
                         <Route path="Visibility" element={<Visibility />} />
+                        <Route path="ZIndex" element={<ZIndex />} />
                     </Route>
                     <Route path="Sizing" element={<Sizing />} />
                 </Route>
