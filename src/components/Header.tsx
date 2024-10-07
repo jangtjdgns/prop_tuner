@@ -69,7 +69,7 @@ const Header = () => {
                         Prop_Tuner
                     </button>
                 </div>
-                <div className="flex-none px-2">
+                <div className="flex-none px-2 z-[10000]">
                     <ul className="menu menu-horizontal px-1 gap-1">
                         <li>
                             <details>

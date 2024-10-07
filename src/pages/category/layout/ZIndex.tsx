@@ -7,6 +7,7 @@ import { copyCss } from '../../../utils/clipboardUtils';
 
 const ZIndex: React.FC = () => {
     const [zIndexValues, setZIndexValues] = useState([0, 0, 0, 0, 0, 0, 0]);
+    const [lastZIndexValue, setLastZIndexValue] = useState(0);          // 마지막으로 변경한 box의 z-index 저장용
 
     // z-index 업데이트
     const updateZIndex = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,6 +16,7 @@ const ZIndex: React.FC = () => {
 
         const updateValues = [...zIndexValues];
         updateValues[index] = zIndexValues[index] = value;
+        setLastZIndexValue(value);
         setZIndexValues(updateValues);
     }
 
@@ -33,8 +35,6 @@ const ZIndex: React.FC = () => {
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Z Index</div>
-                        {/* 아래 태그는 표시할 내용이 있는 경우 사용 */}
-                        {/* <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Basis: object-fit: none;</div> */}
                     </div>
 
                     {/* 옵션 내용 하단 */}
@@ -43,12 +43,12 @@ const ZIndex: React.FC = () => {
                         <div className='text-center p-0.5 text-xs'>
                             z-index:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                // value={속성값}
+                                value={lastZIndexValue}
                                 readOnly
                             />
-                            {/* 속성 복사 */}
+                            {/* z-index 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('속성', '값', false)}
+                                onClick={() => copyCss('z-index', lastZIndexValue, false)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
