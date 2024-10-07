@@ -14,6 +14,7 @@ import Float from './pages/category/layout/Float';
 import ObjectFit from './pages/category/layout/ObjectFit';
 import ObjectPosition from './pages/category/layout/ObjectPosition';
 import Overflow from './pages/category/layout/Overflow';
+import Position from './pages/category/layout/Position';
 import Sizing from './pages/category/Sizing';
 import './App.css';
 
@@ -36,6 +37,7 @@ const App = () => {
                         <Route path="ObjectFit" element={<ObjectFit />} />
                         <Route path="ObjectPosition" element={<ObjectPosition />} />
                         <Route path="Overflow" element={<Overflow />} />
+                        <Route path="Position" element={<Position />} />
                     </Route>
                     <Route path="Sizing" element={<Sizing />} />
                 </Route>
