@@ -50,11 +50,11 @@ const test: React.FC = () => {
                                 <input
                                     key={index}
                                     type='radio'
-                                    name='objectPositionX'
+                                    name='aa'
                                     className="btn border-2 focus:border-gray-400"
                                     aria-label={value}
-                                    checked= {objectPositionX === value}
-                                    onChange={(event) => updateObjectPosition('x', false, value, event)}
+                                    checked= {aa === value}
+                                    onChange={() => updateAA()}
                                 />
                             ))} */}
                         </div>

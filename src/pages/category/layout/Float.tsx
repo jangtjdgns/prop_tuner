@@ -93,12 +93,12 @@ const Float: React.FC = () => {
                         {/* float 속성을 적용할 태그 선택 */}
                         <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-5 gap-2">
-                            {floatTags.map((tag, index) => (
+                            {floatTags.map((tagState, index) => (
                                 <input type="checkbox"
                                     key={index}
                                     className='btn'
                                     aria-label={`${index + 1}`}
-                                    checked={tag === 1}
+                                    checked={tagState === 1}
                                     onChange={() => updateProperty(index, 'float')}
                                 />
                             ))}
@@ -151,12 +151,12 @@ const Float: React.FC = () => {
                             {/* clear 속성을 적용할 태그 선택 */}
                             <div className='divider font-bold text-lg'>Select Tag</div>
                             <div className="flex grid grid-cols-5 gap-2">
-                                {clearTags.map((tag, index) => (
+                                {clearTags.map((tagState, index) => (
                                     <input type="checkbox"
                                         key={index}
                                         className='btn'
                                         aria-label={`${index + 1}`}
-                                        checked={tag === 1}
+                                        checked={tagState === 1}
                                         onChange={() => updateProperty(index, 'clear')}
                                     />
                                 ))}

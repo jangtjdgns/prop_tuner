@@ -21,10 +21,6 @@ const Display: React.FC = () => {
         , 'table-caption'
         , 'table-cell'
         , 'table-column'
-        , 'table-column-grouop'
-        , 'table-footer-grouop'
-        , 'table-header-grouop'
-        , 'table-row-grouop'
         , 'table-row'
         , 'flow-root'
         , 'grid'
@@ -39,7 +35,7 @@ const Display: React.FC = () => {
     };
 
     // 자식 태그 선택/해제 함수
-    const handleTagToggle = (index: number) => {
+    const updateActiveTags = (index: number) => {
         const updatedTags = [...activeTags];
         updatedTags[index] = activeTags[index] === 1 ? 0 : 1;
         setActiveTags(updatedTags);
@@ -81,14 +77,14 @@ const Display: React.FC = () => {
                         {/* 속성을 적용할 태그 선택 */}
                         <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-5 gap-2">
-                            {activeTags.map((tag, index) => (
+                            {activeTags.map((tagState, index) => (
                                 <input
                                     type="checkbox"
                                     key={index}
                                     className='btn'
                                     aria-label={`${index + 1}`}
-                                    checked={tag === 1}
-                                    onChange={() => handleTagToggle(index)}
+                                    checked={tagState === 1}
+                                    onChange={() => updateActiveTags(index)}
                                 />
                             ))}
                         </div>

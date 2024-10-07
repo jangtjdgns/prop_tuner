@@ -15,6 +15,7 @@ import ObjectFit from './pages/category/layout/ObjectFit';
 import ObjectPosition from './pages/category/layout/ObjectPosition';
 import Overflow from './pages/category/layout/Overflow';
 import Position from './pages/category/layout/Position';
+import Visibility from './pages/category/layout/Visibility';
 import Sizing from './pages/category/Sizing';
 import './App.css';
 
@@ -38,6 +39,7 @@ const App = () => {
                         <Route path="ObjectPosition" element={<ObjectPosition />} />
                         <Route path="Overflow" element={<Overflow />} />
                         <Route path="Position" element={<Position />} />
+                        <Route path="Visibility" element={<Visibility />} />
                     </Route>
                     <Route path="Sizing" element={<Sizing />} />
                 </Route>

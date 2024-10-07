@@ -77,6 +77,7 @@ const Layout: React.FC = () => {
                     <input type="radio" id="layout-objectPosition" className="btn layout" name='layout' value="ObjectPosition" aria-label="Object Position" checked={selectedLayout === 'ObjectPosition'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-overflow" className="btn layout" name='layout' value="Overflow" aria-label="Overflow" checked={selectedLayout === 'Overflow'} onChange={radioButtonHandler} />
                     <input type="radio" id="layout-position" className="btn layout" name='layout' value="Position" aria-label="Position" checked={selectedLayout === 'Position'} onChange={radioButtonHandler} />
+                    <input type="radio" id="layout-visibility" className="btn layout" name='layout' value="Visibility" aria-label="Visibility" checked={selectedLayout === 'Visibility'} onChange={radioButtonHandler} />
                 </div>
 
                 <div id="category-views" className='relative w-full h-full px-4 py-8 bg-gray-200 overflow-scroll'>
