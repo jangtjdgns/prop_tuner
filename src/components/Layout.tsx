@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
             <Header />
-            <main>
+            <main className='h-full'>
                 {children}
             </main>
             <Footer />

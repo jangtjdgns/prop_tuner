@@ -16,18 +16,21 @@
 
 /* 헤더 */
 header {
+  position: absolute;
+  top: 0;
   min-width: 1024px;
-  height: 5rem;
+  height: 80px;
 }
 /* 메인 */
 main {
   min-width: 1024px;
-  min-height: calc(100vh - 9rem);
+  min-height: calc(100% - 64px);
+  padding-top: 80px;
 }
 /* 푸터 */
 footer {
   min-width: 1024px;
-  height: 4rem;
+  height: 64px;
 }
 
 /* daisy ui 버튼 클릭 색상 변경
@@ -35,28 +38,7 @@ footer {
   --fallback-p: #dedad5;
 } */
 
-/* 메인 배너 애니메이션 */
-.color-change-2x {
-  -webkit-animation: color-change-2x 2s linear infinite alternate both;
-  animation: color-change-2x 2s linear infinite alternate both;
-}
-
-@-webkit-keyframes color-change-2x {
-  0% {
-    background: #19dcea;
-  }
-
-  100% {
-    background: #b22cff;
-  }
-}
-
-@keyframes color-change-2x {
-  0% {
-    background: #19dcea;
-  }
-
-  100% {
-    background: #b22cff;
-  }
+/* 메인 페이지 배너 */
+#banner {
+  height: calc(100vh-80px);
 }

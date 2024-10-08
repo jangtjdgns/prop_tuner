@@ -5,14 +5,14 @@ import { faBars, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    interface CssCategory {
+    type CssCategory = {
         title: string,
         pagePath: string,
     }
 
     const [cssCategory] = useState<CssCategory[]>([
         { title: "select", pagePath: `/` },
-        { title: "Layout", pagePath: `/category/Layout` },
+        { title: "Layout", pagePath: `/category/Layout/AspectRatio` },
         { title: "Sizing", pagePath: `/category/Sizing` },
         // { title: "Typography" },
         // { title: "Interactivity" },

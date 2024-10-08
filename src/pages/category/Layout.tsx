@@ -1,6 +1,6 @@
 // src/pages/category/Layout.tsx
-import React, { useState } from 'react';
-import { Outlet, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 
 // 페이지 처음 로드시 overflow-scroll이 적용안되는 문제가 있음. 새로고침해야지만 고쳐짐. 수정해야할듯
 /**
@@ -30,13 +30,36 @@ import { Outlet, useNavigate } from 'react-router-dom';
 const Layout: React.FC = () => {
     const [selectedLayout, setSelectedLayout] = useState('AspectRatio');
     const navigate = useNavigate();
+    const layoutOptions = [
+        { id: 'aspectRatio', value: 'AspectRatio', label: 'Aspect Ratio' },
+        { id: 'columns', value: 'Columns', label: 'Columns' },
+        { id: 'break', value: 'Break', label: 'Break' },
+        { id: 'boxSizing', value: 'BoxSizing', label: 'Box Sizing' },
+        { id: 'display', value: 'Display', label: 'Display' },
+        { id: 'float', value: 'Float', label: 'Float' },
+        { id: 'objectFit', value: 'ObjectFit', label: 'Object Fit' },
+        { id: 'objectPosition', value: 'ObjectPosition', label: 'Object Position' },
+        { id: 'overflow', value: 'Overflow', label: 'Overflow' },
+        { id: 'position', value: 'Position', label: 'Position' },
+        { id: 'visibility', value: 'Visibility', label: 'Visibility' },
+        { id: 'zIndex', value: 'ZIndex', label: 'Z Index' },
+    ];
 
     // 레이아웃 버튼 클릭 핸들러
     const radioButtonHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const value:string = event.target.value;
+        const value: string = event.target.value;
         setSelectedLayout(value);
         navigate(`/category/Layout/${value}`); // 라우트 업데이트
     }
+
+    const location = useLocation();
+    useEffect(() => {
+        // URL의 property를 기반으로 selectedLayout을 설정
+        const pathSegments = location.pathname.split('/');
+        const layoutValue = pathSegments[pathSegments.length - 1]; // 마지막 세그먼트를 가져옴
+
+        setSelectedLayout(layoutValue);
+    }, [location.pathname]);
 
     // view maxHeight 지정
     // const setViewMaxHeight = () => {
@@ -55,7 +78,7 @@ const Layout: React.FC = () => {
     }
 
     // 페이지 로드 후
-    window.onload = function() {
+    window.onload = function () {
         // setViewMaxHeight();
         checkCurPage();
     }
@@ -65,18 +88,19 @@ const Layout: React.FC = () => {
             <div className='h-[calc(100vh-9rem)] grid grid-rows-[4rem_1fr] bg-white'>
                 {/* CSS */}
                 <div id="category-layouts" className='h-full border-b shadow-md flex gap-2 items-center px-2'>
-                    <input type="radio" id="layout-aspectRatio" className="btn layout" name='layout' value="AspectRatio" aria-label="Aspect Ratio" checked={selectedLayout === 'AspectRatio' || selectedLayout === 'Layout'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-columns" className="btn layout" name='layout' value="Columns" aria-label="Columns" checked={selectedLayout === 'Columns'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-break" className="btn layout" name='layout' value="Break" aria-label="Break" checked={selectedLayout === 'Break'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-boxSizing" className="btn layout" name='layout' value="BoxSizing" aria-label="Box Sizing" checked={selectedLayout === 'BoxSizing'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-display" className="btn layout" name='layout' value="Display" aria-label="Display" checked={selectedLayout === 'Display'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-float" className="btn layout" name='layout' value="Float" aria-label="Float" checked={selectedLayout === 'Float'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-objectFit" className="btn layout" name='layout' value="ObjectFit" aria-label="Object Fit" checked={selectedLayout === 'ObjectFit'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-objectPosition" className="btn layout" name='layout' value="ObjectPosition" aria-label="Object Position" checked={selectedLayout === 'ObjectPosition'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-overflow" className="btn layout" name='layout' value="Overflow" aria-label="Overflow" checked={selectedLayout === 'Overflow'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-position" className="btn layout" name='layout' value="Position" aria-label="Position" checked={selectedLayout === 'Position'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-visibility" className="btn layout" name='layout' value="Visibility" aria-label="Visibility" checked={selectedLayout === 'Visibility'} onChange={radioButtonHandler} />
-                    <input type="radio" id="layout-zIndex" className="btn layout" name='layout' value="ZIndex" aria-label="Z Index" checked={selectedLayout === 'ZIndex'} onChange={radioButtonHandler} />
+                    {layoutOptions.map(option => (
+                        <input
+                            key={option.id}
+                            type="radio"
+                            id={`layout-${option.id}`}
+                            className="btn layout"
+                            name="layout"
+                            value={option.value}
+                            aria-label={option.label}
+                            checked={selectedLayout === option.value}
+                            onChange={radioButtonHandler}
+                        />
+                    ))}
                 </div>
 
                 <div id="category-views" className='relative w-full h-full px-4 py-8 bg-gray-200 overflow-scroll'>
