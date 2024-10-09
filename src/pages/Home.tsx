@@ -1,6 +1,7 @@
 // src/pages/Home.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { layoutCategories, sizingCategories } from '../utils/categories';
 
 const Home = () => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 함수 가져오기
@@ -15,15 +16,11 @@ const Home = () => {
     const categories: Category[] = [
         {
             category: 'Layout',
-            property: [
-                'Aspect Ratio', 'Columns', 'Break', 'Box Sizing', 'Display', 'Float', 'Clear', 'Object Fit', 'Object Position', 'Overflow', 'Position', 'Visibility', 'Z Index'
-            ] //'Top / Right / Bottom / Left' 보류
+            property: layoutCategories.map(item => item.label) //'Top / Right / Bottom / Left' 보류
         },
         {
             category: 'Sizing',
-            property: [
-                'Width', 'Min Width', 'Max Width', 'Height', 'Min Height', 'Max Height'
-            ]
+            property: sizingCategories.map(item => item.label)
         },
     ]
 

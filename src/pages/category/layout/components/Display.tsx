@@ -2,9 +2,9 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
-import { handleOptionToggle } from '../../../utils/handleOptionToggle';
-import { copyCss } from '../../../utils/clipboardUtils';
-import { colorsRGB } from '../../../utils/colorUtils';
+import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
+import { copyCss } from '../../../../utils/clipboardUtils';
+import { colorsRGB } from '../../../../utils/colorUtils';
 
 const Display: React.FC = () => {
     const [display, setDisplay] = useState('block');

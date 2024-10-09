@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { handleOptionToggle } from '../../../utils/handleOptionToggle';
-import { copyCss } from '../../../utils/clipboardUtils';
+import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
+import { copyCss } from '../../../../utils/clipboardUtils';
 
 const ZIndex: React.FC = () => {
     const [zIndexValues, setZIndexValues] = useState([0, 0, 0, 0, 0, 0, 0]);
