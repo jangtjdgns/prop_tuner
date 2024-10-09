@@ -17,22 +17,12 @@ const Layout: React.FC = () => {
 
     const location = useLocation();
     useEffect(() => {
-        // URL의 property를 기반으로 selectedLayout을 설정
-        const pathSegments = location.pathname.split('/');
-        const layoutValue = pathSegments[pathSegments.length - 1]; // 마지막 세그먼트를 가져옴
-
-        setSelectedLayout(layoutValue);
+        const pathSegments = location.pathname.split('/category/Layout/');
+        if(pathSegments[1]) {       // layout 카테고리 내 속성 체크
+            return setSelectedLayout(pathSegments[1]);
+        }
+        setSelectedLayout('AspectRatio');
     }, [location.pathname]);
-
-    // view maxHeight 지정
-    // const setViewMaxHeight = () => {
-    //     const view = document.getElementById('view');
-    //     if (view) {
-    //         const maxHeight = view.clientHeight;
-    //         view.style.maxHeight = `${maxHeight}px`;
-    //         console.log('as')
-    //     }
-    // };
 
     // 현재 페이지 확인 및 로드
     const checkCurPage = () => {
@@ -42,7 +32,6 @@ const Layout: React.FC = () => {
 
     // 페이지 로드 후
     window.onload = function () {
-        // setViewMaxHeight();
         checkCurPage();
     }
 

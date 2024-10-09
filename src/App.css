@@ -6,31 +6,29 @@
 
 /* 레이아웃 */
 #root {
-  position: relative;
+  display: flex;                 /* flexbox 사용 */
+  flex-direction: column;        /* 세로 방향으로 배치 */
+  min-height: 100vh;            /* 전체 화면 높이 사용 */
   width: 100vw;
-  min-width: 1024px;
-  max-width: 100vw;
-  min-height: 100vh;
   box-sizing: border-box;
 }
 
 /* 헤더 */
 header {
-  position: absolute;
-  top: 0;
-  min-width: 1024px;
   height: 80px;
+  min-width: 1024px;
 }
+
 /* 메인 */
 main {
+  flex: 1;                       /* 남은 공간을 모두 차지하도록 설정 */
   min-width: 1024px;
-  min-height: calc(100% - 64px);
-  padding-top: 80px;
 }
+
 /* 푸터 */
 footer {
-  min-width: 1024px;
   height: 64px;
+  min-width: 1024px;
 }
 
 /* daisy ui 버튼 클릭 색상 변경

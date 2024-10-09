@@ -1,6 +1,6 @@
-// 카테고리 정보 객체를 담은 배열
+// 카테고리 데이터
 
-// Layout
+// Layout 하위 컴포넌트 정보
 /**
  * Aspect Ratio                     o
  * Container                        x
@@ -48,4 +48,41 @@ export const sizingCategories = [
     { id: 'minHeight', value: 'MinHeight', label: 'Min Height' },
     { id: 'maxWidth', value: 'MaxWidth', label: 'Max Width' },
     { id: 'maxHeight', value: 'MaxHeight', label: 'Max Height' },
+];
+
+
+// ============================================= //
+// 상위 카테고리 데이터
+export type Category = {
+    title: string,
+    pagePath: string,
+    property: string[]
+
+}
+export const categories: Category[] = [
+    {   
+        title: "select",
+        pagePath: "/",
+        property: [],
+    },
+    {
+        title: "Layout",
+        pagePath: "/category/Layout",
+        property: layoutCategories.map(item => item.label),
+    },
+    {
+        title: "Sizing",
+        pagePath: "/category/Sizing/",
+        property: sizingCategories.map(item => item.label),
+    },
+    // 추가 카테고리들 필요 시 주석 해제
+    // { title: "Typography", pagePath: `/category/Typography` },
+    // { title: "Interactivity", pagePath: `/category/Interactivity` },
+    // { title: "Filters", pagePath: `/category/Filters` },
+    // { title: "Backgrounds", pagePath: `/category/Backgrounds` },
+    // { title: "SVG", pagePath: `/category/SVG` },
+    // { title: "Accessibility", pagePath: `/category/Accessibility` },
+    // { title: "Transitions", pagePath: `/category/Transitions` },
+    // { title: "Animation", pagePath: `/category/Animation` },
+    // { title: "Tables", pagePath: `/category/Tables` },
 ];
