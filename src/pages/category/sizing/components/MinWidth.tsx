@@ -108,10 +108,10 @@ const Width: React.FC = () => {
                 >
                     <span className='w-full h-full border-black border-l-2 border-r-2'></span>
                     <span className='absolute w-full h-0.5 bg-black'></span>
-                    <div className='absolute bottom-8 w-12 text-center text-black'>{minWidth}px</div>
+                    <div className='absolute bottom-8 w-12 text-center text-black select-none'>{minWidth}px</div>
                 </div>
 
-                <div className='box-width h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap'
+                <div className='box-width h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         width: boxWidth,
                         minWidth,

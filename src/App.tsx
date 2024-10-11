@@ -29,6 +29,7 @@ import MinWidth from './pages/category/sizing/components/MinWidth'
 import MinHeight from './pages/category/sizing/components/MinHeight'
 import MaxWidth from './pages/category/sizing/components/MaxWidth'
 import MaxHeight from './pages/category/sizing/components/MaxHeight'
+import Margin from './pages/category/sizing/components/Margin'
 
 
 
@@ -63,6 +64,7 @@ const App = () => {
                             <Route path="MinHeight" element={<MinHeight />} />
                             <Route path="MaxWidth" element={<MaxWidth />} />
                             <Route path="MaxHeight" element={<MaxHeight />} />
+                            <Route path="Margin" element={<Margin />} />
                         </Route>
                     </Route>
                 </Routes>

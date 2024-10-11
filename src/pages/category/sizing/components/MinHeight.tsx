@@ -46,7 +46,7 @@ const MinHeight: React.FC = () => {
 
     return (
         <>
-            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500'>
+            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
                 <div className='w-72 flex flex-col gap-2 shadow rounded-xl p-2 bg-white border border-gray-200 hover:shadow-2xl hover:border-gray-300 transition-all duration-500'>
                     <label id="option-toggle-btn"
                         className="swap absolute top-2 right-2 btn btn-xs btn-circle"
@@ -59,6 +59,7 @@ const MinHeight: React.FC = () => {
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Min Height</div>
+                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Unit: px</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
@@ -108,9 +109,9 @@ const MinHeight: React.FC = () => {
                 >
                     <span className='w-full h-full border-black border-t-2 border-b-2'></span>
                     <span className='absolute w-0.5 h-full bg-black'></span>
-                    <div className='absolute -left-12 w-12 text-center text-black'>{minHeight}px</div>
+                    <div className='absolute -left-12 w-12 text-center text-black select-none'>{minHeight}px</div>
                 </div>
-                <div className='box-height w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap'
+                <div className='box-height w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         height: boxHeight,
                         minHeight,

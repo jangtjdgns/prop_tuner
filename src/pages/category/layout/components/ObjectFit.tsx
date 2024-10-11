@@ -29,7 +29,7 @@ const ObjectFit: React.FC = () => {
 
     return (
         <>
-            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500'>
+            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
                 <div className='w-72 flex flex-col gap-2 shadow rounded-xl p-2 bg-white border border-gray-200 hover:shadow-2xl hover:border-gray-300 transition-all duration-500'>
                     <label id="option-toggle-btn"
                         className="swap absolute top-2 right-2 btn btn-xs btn-circle"
