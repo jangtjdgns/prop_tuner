@@ -1,37 +1,37 @@
-// Height.tsx
+// MaxHeight.tsx
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 
-const Height: React.FC = () => {
-    type Units = 'px' | '%' | 'vw' | 'rem';
-    const [height, setHeight] = useState(200);
-    const [unit, setUnit] = useState<Units>('px');
-    const unitValues = ['px', '%', 'vw', 'rem']
+const MaxHeight: React.FC = () => {
+    const [maxHeight, setMaxHeight] = useState(400);
+    const [boxHeight, setBoxheight] = useState(400);
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // update 높이
     const updateHeight = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
-        const value = inputValue === '' || isNaN(Number(inputValue)) ? 200 : Number(inputValue);
-        setHeight(value);
+        const value = inputValue === '' || isNaN(Number(inputValue)) ? 400 : Number(inputValue);
+        setMaxHeight(value);
     }
 
-    // unit 업데이트 (단위 변경)
-    const updateUnit = (value: Units) => {
-        setUnit(value);
+    // update 상자 높이
+    const updateBoxHeight = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.target.value;
+        const value = inputValue === '' || isNaN(Number(inputValue)) ? 400 : Number(inputValue);
+        setBoxheight(value);
     }
 
     // height가 #view태그의 높이를 벗어나는지 확인, 이후 잘린 부분 처리
     const adjustOverflowHeight = () => {
         const viewTag = document.querySelector('#view') as Element;
-        const heightTag = document.querySelector('#view>.height') as Element;
+        const boxHeightTag = document.querySelector('#view>.max-height') as Element;
 
-        if (heightTag) {
-            if (heightTag.clientHeight > viewTag.clientHeight) {
-                return setBoxTranslateY((heightTag.clientHeight - viewTag.clientHeight) / 2);
+        if (boxHeightTag) {
+            if (boxHeightTag.clientHeight > viewTag.clientHeight) {
+                return setBoxTranslateY((boxHeightTag.clientHeight - viewTag.clientHeight) / 2);
             }
             setBoxTranslateY(0);
         }
@@ -41,7 +41,7 @@ const Height: React.FC = () => {
         setTimeout(() => {
             adjustOverflowHeight();
         }, 500);
-    }, [height, unit]);
+    }, [maxHeight]);
 
 
     return (
@@ -58,63 +58,69 @@ const Height: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Height</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Max Height</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/*height */}
+                        {/* max-height */}
                         <div className='text-center p-0.5 text-xs'>
-                            height:
+                            max-height:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={height}
+                                value={maxHeight}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('height', `${height}${unit}`, false)}
+                                onClick={() => copyCss('max-height', maxHeight, true)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        {/* height 값 */}
+                        {/* max-height 값 */}
                         <div className='grid'>
                             <input type="text" className="btn border-2 focus:border-gray-400"
-                                value={height}
+                                value={maxHeight}
                                 onChange={updateHeight}
                             />
                         </div>
 
-                        {/* unit */}
-                        <div className="divider font-bold text-base">Unit</div>
-                        <div className='grid grid-cols-4 gap-2'>
-                            {unitValues.map((value, index) => (
-                                <input key={index} type="radio" name='unit'
-                                    className='btn border-2'
-                                    aria-label={value}
-                                    value={value}
-                                    checked={unit === value}
-                                    onChange={() => updateUnit(value as Units)}
-                                />
-                            ))}
+                        {/* 상자 height 값 */}
+                        <div className="divider font-bold text-lg">Box Height</div>
+                        <div className='grid'>
+                            <input type="text" className="btn border-2 focus:border-gray-400"
+                                value={boxHeight}
+                                onChange={updateBoxHeight}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex items-center justify-center'>
-                <div className='height w-[200px] transition-height duration-300'
+            <div id="view" className='w-full h-full flex items-center justify-center gap-2 font-mono'>
+                <div className='max-height relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
-                        height: `${height}${unit}`,
-                        backgroundImage: 'linear-gradient(to bottom, #00dbde 0%, #fc00ff 100%)',
-                        transform: `translateY(${boxTranslateY}px)`
+                        height: maxHeight,
+                        transform: `translateY(${boxTranslateY}px)`,
                     }}
-                ></div>
+                >
+                    <span className='w-full h-full border-black border-t-2 border-b-2'></span>
+                    <span className='absolute w-0.5 h-full bg-black'></span>
+                    <div className='absolute -left-12 w-12 text-center text-black'>{maxHeight}px</div>
+                </div>
+                <div className='box-height w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap'
+                    style={{
+                        height: boxHeight,
+                        maxHeight,
+                        backgroundImage: 'linear-gradient(to bottom, #00dbde 0%, #fc00ff 100%)',
+                        transform: `translateY(${boxTranslateY}px)`,
+                    }}
+                >{boxHeight}px</div>
             </div>
         </>
     );
 }
 
-export default Height;
+export default MaxHeight;

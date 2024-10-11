@@ -24,7 +24,7 @@ const Width: React.FC = () => {
         setUnit(value);
     }
 
-    // width가 브라우저의 너비를 벗어나는지 확인 후 왼쪽 부분이 잘리는 부분 처리
+    // width가 브라우저의 너비를 벗어나는지 확인, 이후 잘린 부분 처리
     const adjustOverflowWidth = () => {
         const widthTag = document.querySelector('#view>.width') as Element;
 
@@ -78,6 +78,7 @@ const Width: React.FC = () => {
                             </button>
                         </div>
 
+                        {/* width 값 */}
                         <div className='grid'>
                             <input type="text" className="btn border-2 focus:border-gray-400"
                                 value={width}

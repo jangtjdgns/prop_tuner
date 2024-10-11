@@ -24,10 +24,10 @@ const Width: React.FC = () => {
         setBoxWidth(value);
     }
 
-    // width가 브라우저의 너비를 벗어나는지 확인 후 왼쪽 부분이 잘리는 부분 처리
+    // width가 브라우저의 너비를 벗어나는지 확인, 이후 잘린 부분 처리
     const adjustOverflowWidth = () => {
         const maxWidthTag = document.querySelector('#view>.max-width') as Element;
-        
+
         if (maxWidthTag) {
             if (maxWidthTag.clientWidth > window.innerWidth) {
                 return setBoxTranslateX((maxWidthTag.clientWidth - window.innerWidth) / 2);
@@ -99,13 +99,17 @@ const Width: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-center font-mono'>
-                <div className='max-width h-8 transition-width duration-300 bg-black text-white font-bold flex items-center justify-center whitespace-nowrap'
+            <div id="view" className='w-full h-full flex flex-col items-center justify-center gap-2 font-mono'>
+                <div className='max-width relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         width: maxWidth,
                         transform: `translateX(${boxTranslateX}px)`,
                     }}
-                >max-width: {maxWidth}px</div>
+                >
+                    <span className='w-full h-full border-black border-l-2 border-r-2'></span>
+                    <span className='absolute w-full h-0.5 bg-black'></span>
+                    <div className='absolute bottom-8 w-12 text-center text-black'>{maxWidth}px</div>
+                </div>
                 <div className='box-width h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap'
                     style={{
                         width: boxWidth,

@@ -80,6 +80,9 @@ export const categories: Category[] = [
     },
     // 추가 카테고리들 필요 시 주석 해제
     // { title: "Typography", pagePath: `/category/Typography` },
+    // Typography, writing-mode, text-orientation
+
+
     // { title: "Interactivity", pagePath: `/category/Interactivity` },
     // { title: "Filters", pagePath: `/category/Filters` },
     // { title: "Backgrounds", pagePath: `/category/Backgrounds` },

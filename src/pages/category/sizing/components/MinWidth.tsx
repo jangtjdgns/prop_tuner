@@ -24,7 +24,7 @@ const Width: React.FC = () => {
         setBoxWidth(value);
     }
 
-    // width가 브라우저의 너비를 벗어나는지 확인 후 왼쪽 부분이 잘리는 부분 처리
+    // width가 브라우저의 너비를 벗어나는지 확인, 이후 잘린 부분 처리
     const adjustOverflowWidth = () => {
         const boxWidthTag = document.querySelector('#view>.box-width') as Element;
 
@@ -99,13 +99,18 @@ const Width: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-center font-mono'>
-                <div className='min-width h-8 transition-width duration-300 bg-black text-white font-bold flex items-center justify-center whitespace-nowrap'
+            <div id="view" className='w-full h-full flex flex-col items-center justify-center gap-2 font-mono'>
+                <div className='min-width relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         width: minWidth,
                         transform: `translateX(${boxTranslateX}px)`,
                     }}
-                >min-width: {minWidth}px</div>
+                >
+                    <span className='w-full h-full border-black border-l-2 border-r-2'></span>
+                    <span className='absolute w-full h-0.5 bg-black'></span>
+                    <div className='absolute bottom-8 w-12 text-center text-black'>{minWidth}px</div>
+                </div>
+
                 <div className='box-width h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap'
                     style={{
                         width: boxWidth,
