@@ -5,18 +5,18 @@ import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 
-const Width: React.FC = () => {
+const Height: React.FC = () => {
     type Units = 'px' | '%' | 'vw' | 'rem';
-    const [width, setWidth] = useState(200);
+    const [height, setHeight] = useState(200);
     const [unit, setUnit] = useState<Units>('px');
     const unitValues = ['px', '%', 'vw', 'rem']
-    const [boxTranslateX, setBoxTranslateX] = useState(0);
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // update 너비
-    const updateWidth = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const updateHeight = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         const value = inputValue === '' || isNaN(Number(inputValue)) ? 200 : Number(inputValue);
-        setWidth(value);
+        setHeight(value);
     }
 
     // unit 업데이트 (단위 변경)
@@ -24,29 +24,29 @@ const Width: React.FC = () => {
         setUnit(value);
     }
 
-    // width가 브라우저의 너비를 벗어나는지 확인 후 왼쪽 부분이 잘리는 부분 처리
-    const adjustOverflowWidth = () => {
-        const widthTag = document.querySelector('#view>div') as Element;
+    // height가 #view태그의 높이를 벗어나는지 확인 후 윗 부분이 잘리는 부분 처리
+    const adjustOverflowHeight = () => {
+        const viewTag = document.querySelector('#view') as Element;
+        const heightTag = document.querySelector('#view>div') as Element;
 
-        if (widthTag) {
-            if (widthTag.clientWidth > window.innerWidth) {
-                console.log((widthTag.clientWidth - window.innerWidth) / 2)
-                return setBoxTranslateX((widthTag.clientWidth - window.innerWidth) / 2);
+        if (heightTag) {
+            if (heightTag.clientHeight > viewTag.clientHeight) {
+                return setBoxTranslateY((heightTag.clientHeight - viewTag.clientHeight) / 2);
             }
-            setBoxTranslateX(0);
+            setBoxTranslateY(0);
         }
     }
 
     useEffect(() => {
         setTimeout(() => {
-            adjustOverflowWidth();
-        }, 500); // 상태 업데이트 이후에 실행
-    }, [width, unit]); // width 또는 unit이 변경될 때마다 호출
+            adjustOverflowHeight();
+        }, 500);
+    }, [height, unit]);
 
     
     return (
         <>
-            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
+            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500'>
                 <div className='w-72 flex flex-col gap-2 shadow rounded-xl p-2 bg-white border border-gray-200 hover:shadow-2xl hover:border-gray-300 transition-all duration-500'>
                     <label id="option-toggle-btn"
                         className="swap absolute top-2 right-2 btn btn-xs btn-circle"
@@ -58,21 +58,21 @@ const Width: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Width</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Height</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* width */}
+                        {/*height */}
                         <div className='text-center p-0.5 text-xs'>
-                            width:
+                            height:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={width}
+                                value={height}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('width', `${width}${unit}`, false)}
+                                onClick={() => copyCss('height', `${height}${unit}`, false)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -81,8 +81,8 @@ const Width: React.FC = () => {
                         <div className="divider font-bold text-lg">Values</div>
                         <div className='grid'>
                             <input type="text" className="btn border-2 focus:border-gray-400"
-                                value={width}
-                                onChange={updateWidth}
+                                value={height}
+                                onChange={updateHeight}
                             />
                         </div>
 
@@ -104,12 +104,12 @@ const Width: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-center'>
-                <div className='h-[200px] transition-width duration-300'
+            <div id="view" className='w-full h-full flex items-center justify-center'>
+                <div className='w-[200px] transition-height duration-300'
                     style={{
-                        width: `${width}${unit}`,
-                        backgroundImage: 'linear-gradient(to right, #00dbde 0%, #fc00ff 100%)',
-                        transform: `translateX(${boxTranslateX}px)`
+                        height: `${height}${unit}`,
+                        backgroundImage: 'linear-gradient(to bottom, #00dbde 0%, #fc00ff 100%)',
+                        transform: `translateY(${boxTranslateY}px)`
                     }}
                 ></div>
             </div>
@@ -117,4 +117,4 @@ const Width: React.FC = () => {
     );
 }
 
-export default Width;
+export default Height;

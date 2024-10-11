@@ -50,6 +50,7 @@ export const sizingCategories = [
     { id: 'maxHeight', value: 'MaxHeight', label: 'Max Height' },
     { id: 'margin', value: 'Margin', label: 'Margin' },
     { id: 'padding', value: 'Padding', label: 'Padding' },
+    { id: 'border', value: 'Border', label: 'Border' },
 ];
 
 

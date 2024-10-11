@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import './App.css';
+
 import Layout from './components/Layout';
 import Category from './components/Category';
 import Home from './pages/Home';
@@ -22,39 +24,42 @@ import ZIndex from './pages/category/layout/components/ZIndex';
 // category-sizing
 import Sizing from './pages/category/sizing/Sizing';
 import Width from './pages/category/sizing/components/Width'
-import './App.css';
+import Height from './pages/category/sizing/components/Height'
+
+
 
 const App = () => {
     return (
-      <Router>
-        <Layout>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/board" element={<Board />} />
-                <Route path="/category" element={<Category />}>
-                    <Route path="Layout" element={<CtLayout />}>
-                        <Route index element={<AspectRatio />} />
-                        <Route path="AspectRatio" element={<AspectRatio />} />
-                        <Route path="Columns" element={<Columns />} />
-                        <Route path="Break" element={<Break />} />
-                        <Route path="BoxSizing" element={<BoxSizing />} />
-                        <Route path="Display" element={<Display />} />
-                        <Route path="Float" element={<Float />} />
-                        <Route path="ObjectFit" element={<ObjectFit />} />
-                        <Route path="ObjectPosition" element={<ObjectPosition />} />
-                        <Route path="Overflow" element={<Overflow />} />
-                        <Route path="Position" element={<Position />} />
-                        <Route path="Visibility" element={<Visibility />} />
-                        <Route path="ZIndex" element={<ZIndex />} />
+        <Router>
+            <Layout>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/board" element={<Board />} />
+                    <Route path="/category" element={<Category />}>
+                        <Route path="Layout" element={<CtLayout />}>
+                            <Route index element={<AspectRatio />} />
+                            <Route path="AspectRatio" element={<AspectRatio />} />
+                            <Route path="Columns" element={<Columns />} />
+                            <Route path="Break" element={<Break />} />
+                            <Route path="BoxSizing" element={<BoxSizing />} />
+                            <Route path="Display" element={<Display />} />
+                            <Route path="Float" element={<Float />} />
+                            <Route path="ObjectFit" element={<ObjectFit />} />
+                            <Route path="ObjectPosition" element={<ObjectPosition />} />
+                            <Route path="Overflow" element={<Overflow />} />
+                            <Route path="Position" element={<Position />} />
+                            <Route path="Visibility" element={<Visibility />} />
+                            <Route path="ZIndex" element={<ZIndex />} />
+                        </Route>
+                        <Route path="Sizing" element={<Sizing />}>
+                            <Route index element={<Width />} />
+                            <Route path="Width" element={<Width />} />
+                            <Route path="Height" element={<Height />} />
+                        </Route>
                     </Route>
-                    <Route path="Sizing" element={<Sizing />}>
-                        <Route index element={<Width />} />
-                        <Route path="Width" element={<Width />} />
-                    </Route>
-                </Route>
-            </Routes>
-        </Layout>
-    </Router>
+                </Routes>
+            </Layout>
+        </Router>
     );
 }
 
