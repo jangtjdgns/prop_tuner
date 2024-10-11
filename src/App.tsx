@@ -25,6 +25,8 @@ import ZIndex from './pages/category/layout/components/ZIndex';
 import Sizing from './pages/category/sizing/Sizing';
 import Width from './pages/category/sizing/components/Width'
 import Height from './pages/category/sizing/components/Height'
+import MinWidth from './pages/category/sizing/components/MinWidth'
+import MaxWidth from './pages/category/sizing/components/MaxWidth'
 
 
 
@@ -55,6 +57,8 @@ const App = () => {
                             <Route index element={<Width />} />
                             <Route path="Width" element={<Width />} />
                             <Route path="Height" element={<Height />} />
+                            <Route path="MinWidth" element={<MinWidth />} />
+                            <Route path="MaxWidth" element={<MaxWidth />} />
                         </Route>
                     </Route>
                 </Routes>

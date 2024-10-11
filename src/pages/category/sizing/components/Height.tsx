@@ -1,4 +1,4 @@
-// 기본 레이아웃 형식(복사용 tsx 파일).tsx
+// Height.tsx
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -27,7 +27,7 @@ const Height: React.FC = () => {
     // height가 #view태그의 높이를 벗어나는지 확인 후 윗 부분이 잘리는 부분 처리
     const adjustOverflowHeight = () => {
         const viewTag = document.querySelector('#view') as Element;
-        const heightTag = document.querySelector('#view>div') as Element;
+        const heightTag = document.querySelector('#view>.height') as Element;
 
         if (heightTag) {
             if (heightTag.clientHeight > viewTag.clientHeight) {
@@ -43,7 +43,7 @@ const Height: React.FC = () => {
         }, 500);
     }, [height, unit]);
 
-    
+
     return (
         <>
             <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500'>
@@ -78,7 +78,6 @@ const Height: React.FC = () => {
                             </button>
                         </div>
 
-                        <div className="divider font-bold text-lg">Values</div>
                         <div className='grid'>
                             <input type="text" className="btn border-2 focus:border-gray-400"
                                 value={height}
@@ -105,7 +104,7 @@ const Height: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center'>
-                <div className='w-[200px] transition-height duration-300'
+                <div className='height w-[200px] transition-height duration-300'
                     style={{
                         height: `${height}${unit}`,
                         backgroundImage: 'linear-gradient(to bottom, #00dbde 0%, #fc00ff 100%)',

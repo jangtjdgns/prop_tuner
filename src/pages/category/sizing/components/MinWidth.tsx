@@ -1,4 +1,4 @@
-// Width.tsx
+// MinWidth.tsx
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,32 +6,31 @@ import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 
 const Width: React.FC = () => {
-    type Units = 'px' | '%' | 'vw' | 'rem';
-    const [width, setWidth] = useState(200);
-    const [unit, setUnit] = useState<Units>('px');
-    const unitValues = ['px', '%', 'vw', 'rem']
+    const [minWidth, setMinWidth] = useState(800);
+    const [boxWidth, setBoxWidth] = useState(800);
     const [boxTranslateX, setBoxTranslateX] = useState(0);
 
-    // update 너비
-    const updateWidth = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // update MinWidth
+    const updateMinWidth = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
-        const value = inputValue === '' || isNaN(Number(inputValue)) ? 200 : Number(inputValue);
-        setWidth(value);
+        const value = inputValue === '' || isNaN(Number(inputValue)) ? 800 : Number(inputValue);
+        setMinWidth(value);
     }
 
-    // unit 업데이트 (단위 변경)
-    const updateUnit = (value: Units) => {
-        setUnit(value);
+    // update 상자 너비
+    const updateBoxWidth = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.target.value;
+        const value = inputValue === '' || isNaN(Number(inputValue)) ? 800 : Number(inputValue);
+        setBoxWidth(value);
     }
 
     // width가 브라우저의 너비를 벗어나는지 확인 후 왼쪽 부분이 잘리는 부분 처리
     const adjustOverflowWidth = () => {
-        const widthTag = document.querySelector('#view>.width') as Element;
+        const boxWidthTag = document.querySelector('#view>.box-width') as Element;
 
-        if (widthTag) {
-            if (widthTag.clientWidth > window.innerWidth) {
-                console.log((widthTag.clientWidth - window.innerWidth) / 2)
-                return setBoxTranslateX((widthTag.clientWidth - window.innerWidth) / 2);
+        if (boxWidthTag) {
+            if (boxWidthTag.clientWidth > window.innerWidth) {
+                return setBoxTranslateX((boxWidthTag.clientWidth - window.innerWidth) / 2);
             }
             setBoxTranslateX(0);
         }
@@ -40,8 +39,8 @@ const Width: React.FC = () => {
     useEffect(() => {
         setTimeout(() => {
             adjustOverflowWidth();
-        }, 500); // 상태 업데이트 이후에 실행
-    }, [width, unit]); // width 또는 unit이 변경될 때마다 호출
+        }, 500);
+    }, [boxWidth]);
 
 
     return (
@@ -58,59 +57,63 @@ const Width: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Width</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Min Width</div>
+                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Unit: px</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* width */}
+                        {/* min-width */}
                         <div className='text-center p-0.5 text-xs'>
-                            width:
+                            min-width:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={width}
+                                value={minWidth}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('width', `${width}${unit}`, false)}
+                                onClick={() => copyCss('min-width', minWidth, true)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
+                        {/* min-width 값 */}
                         <div className='grid'>
                             <input type="text" className="btn border-2 focus:border-gray-400"
-                                value={width}
-                                onChange={updateWidth}
+                                value={minWidth}
+                                onChange={updateMinWidth}
                             />
                         </div>
 
-                        {/* unit */}
-                        <div className="divider font-bold text-base">Unit</div>
-                        <div className='grid grid-cols-4 gap-2'>
-                            {unitValues.map((value, index) => (
-                                <input key={index} type="radio" name='unit'
-                                    className='btn border-2'
-                                    aria-label={value}
-                                    value={value}
-                                    checked={unit === value}
-                                    onChange={() => updateUnit(value as Units)}
-                                />
-                            ))}
+                        {/* 상자 width 값 */}
+                        <div className="divider font-bold text-lg">Box Width</div>
+                        <div className='grid'>
+                            <input type="text" className="btn border-2 focus:border-gray-400"
+                                value={boxWidth}
+                                onChange={updateBoxWidth}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-center'>
-                <div className='width h-[200px] transition-width duration-300'
+            <div id="view" className='w-full h-full flex flex-col items-center justify-center font-mono'>
+                <div className='min-width h-8 transition-width duration-300 bg-black text-white font-bold flex items-center justify-center whitespace-nowrap'
                     style={{
-                        width: `${width}${unit}`,
-                        backgroundImage: 'linear-gradient(to right, #00dbde 0%, #fc00ff 100%)',
-                        transform: `translateX(${boxTranslateX}px)`
+                        width: minWidth,
+                        transform: `translateX(${boxTranslateX}px)`,
                     }}
-                ></div>
+                >min-width: {minWidth}px</div>
+                <div className='box-width h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap'
+                    style={{
+                        width: boxWidth,
+                        minWidth,
+                        backgroundImage: 'linear-gradient(to right, #00dbde 0%, #fc00ff 100%)',
+                        transform: `translateX(${boxTranslateX}px)`,
+                    }}
+                >{boxWidth}px</div>
             </div>
         </>
     );
