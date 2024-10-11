@@ -4,6 +4,8 @@ import Layout from './components/Layout';
 import Category from './components/Category';
 import Home from './pages/Home';
 import Board from './pages/Board';
+
+// category-layout
 import CtLayout from './pages/category/layout/Layout';
 import AspectRatio from './pages/category/layout/components/AspectRatio';
 import Columns from './pages/category/layout/components/Columns';
@@ -17,7 +19,9 @@ import Overflow from './pages/category/layout/components/Overflow';
 import Position from './pages/category/layout/components/Position';
 import Visibility from './pages/category/layout/components/Visibility';
 import ZIndex from './pages/category/layout/components/ZIndex';
+// category-sizing
 import Sizing from './pages/category/sizing/Sizing';
+import Width from './pages/category/sizing/components/Width'
 import './App.css';
 
 const App = () => {
@@ -43,7 +47,10 @@ const App = () => {
                         <Route path="Visibility" element={<Visibility />} />
                         <Route path="ZIndex" element={<ZIndex />} />
                     </Route>
-                    <Route path="Sizing" element={<Sizing />} />
+                    <Route path="Sizing" element={<Sizing />}>
+                        <Route index element={<Width />} />
+                        <Route path="Width" element={<Width />} />
+                    </Route>
                 </Route>
             </Routes>
         </Layout>

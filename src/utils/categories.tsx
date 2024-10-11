@@ -48,6 +48,8 @@ export const sizingCategories = [
     { id: 'minHeight', value: 'MinHeight', label: 'Min Height' },
     { id: 'maxWidth', value: 'MaxWidth', label: 'Max Width' },
     { id: 'maxHeight', value: 'MaxHeight', label: 'Max Height' },
+    { id: 'margin', value: 'Margin', label: 'Margin' },
+    { id: 'padding', value: 'Padding', label: 'Padding' },
 ];
 
 
@@ -72,7 +74,7 @@ export const categories: Category[] = [
     },
     {
         title: "Sizing",
-        pagePath: "/category/Sizing/",
+        pagePath: "/category/Sizing",
         property: sizingCategories.map(item => item.label),
     },
     // 추가 카테고리들 필요 시 주석 해제

@@ -24,32 +24,21 @@ const Layout: React.FC = () => {
         setSelectedLayout('AspectRatio');
     }, [location.pathname]);
 
-    // 현재 페이지 확인 및 로드
-    const checkCurPage = () => {
-        const lastPart = window.location.pathname.split('/').pop() as string;
-        setSelectedLayout(lastPart);
-    }
-
-    // 페이지 로드 후
-    window.onload = function () {
-        checkCurPage();
-    }
-
     return (
         <>
             <div className='h-[calc(100vh-9rem)] grid grid-rows-[4rem_1fr] bg-white'>
                 {/* CSS */}
                 <div id="category-layouts" className='h-full border-b shadow-md flex gap-2 items-center px-2'>
-                    {layoutCategories.map(option => (
+                    {layoutCategories.map(item => (
                         <input
-                            key={option.id}
+                            key={item.id}
                             type="radio"
-                            id={`layout-${option.id}`}
+                            id={`layout-${item.id}`}
                             className="btn layout"
                             name="layout"
-                            value={option.value}
-                            aria-label={option.label}
-                            checked={selectedLayout === option.value}
+                            value={item.value}
+                            aria-label={item.label}
+                            checked={selectedLayout === item.value}
                             onChange={radioButtonHandler}
                         />
                     ))}
