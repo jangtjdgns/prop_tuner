@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const MaxHeight: React.FC = () => {
     const [maxHeight, setMaxHeight] = useState(400);
@@ -24,25 +25,7 @@ const MaxHeight: React.FC = () => {
         setBoxheight(value);
     }
 
-    // height가 #view태그의 높이를 벗어나는지 확인, 이후 잘린 부분 처리
-    const adjustOverflowHeight = () => {
-        const viewTag = document.querySelector('#view') as Element;
-        const boxHeightTag = document.querySelector('#view>.max-height') as Element;
-
-        if (boxHeightTag) {
-            if (boxHeightTag.clientHeight > viewTag.clientHeight) {
-                return setBoxTranslateY((boxHeightTag.clientHeight - viewTag.clientHeight) / 2);
-            }
-            setBoxTranslateY(0);
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            adjustOverflowHeight();
-        }, 500);
-    }, [maxHeight]);
-
+    useElementOverflowAdjustment(['#max-height'], () => 0, setBoxTranslateY, [maxHeight]);
 
     return (
         <>
@@ -101,7 +84,7 @@ const MaxHeight: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center gap-2 font-mono'>
-                <div className='max-height relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                <div id='max-height' className='relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         height: maxHeight,
                         transform: `translateY(${boxTranslateY}px)`,
@@ -111,7 +94,7 @@ const MaxHeight: React.FC = () => {
                     <span className='absolute w-0.5 h-full bg-black'></span>
                     <div className='absolute -left-12 w-12 text-center text-black select-none'>{maxHeight}px</div>
                 </div>
-                <div className='box-height w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
+                <div id='box-height' className='w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         height: boxHeight,
                         maxHeight,

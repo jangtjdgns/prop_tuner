@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Width: React.FC = () => {
     const [minWidth, setMinWidth] = useState(800);
@@ -24,23 +25,7 @@ const Width: React.FC = () => {
         setBoxWidth(value);
     }
 
-    // width가 브라우저의 너비를 벗어나는지 확인, 이후 잘린 부분 처리
-    const adjustOverflowWidth = () => {
-        const boxWidthTag = document.querySelector('#view>.box-width') as Element;
-
-        if (boxWidthTag) {
-            if (boxWidthTag.clientWidth > window.innerWidth) {
-                return setBoxTranslateX((boxWidthTag.clientWidth - window.innerWidth) / 2);
-            }
-            setBoxTranslateX(0);
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            adjustOverflowWidth();
-        }, 500);
-    }, [boxWidth]);
+    useElementOverflowAdjustment(['#min-width', '#box-width'], setBoxTranslateX, () => 0, [minWidth, boxWidth]);
 
 
     return (
@@ -100,7 +85,7 @@ const Width: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex flex-col items-center justify-center gap-2 font-mono'>
-                <div className='min-width relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                <div id='min-width' className='relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         width: minWidth,
                         transform: `translateX(${boxTranslateX}px)`,
@@ -111,7 +96,7 @@ const Width: React.FC = () => {
                     <div className='absolute bottom-8 w-12 text-center text-black select-none'>{minWidth}px</div>
                 </div>
 
-                <div className='box-width h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
+                <div id='box-width' className='h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         width: boxWidth,
                         minWidth,

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Width: React.FC = () => {
     type Units = 'px' | '%' | 'vw' | 'rem';
@@ -24,24 +25,7 @@ const Width: React.FC = () => {
         setUnit(value);
     }
 
-    // width가 브라우저의 너비를 벗어나는지 확인, 이후 잘린 부분 처리
-    const adjustOverflowWidth = () => {
-        const widthTag = document.querySelector('#view>.width') as Element;
-
-        if (widthTag) {
-            if (widthTag.clientWidth > window.innerWidth) {
-                console.log((widthTag.clientWidth - window.innerWidth) / 2)
-                return setBoxTranslateX((widthTag.clientWidth - window.innerWidth) / 2);
-            }
-            setBoxTranslateX(0);
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            adjustOverflowWidth();
-        }, 500); // 상태 업데이트 이후에 실행
-    }, [width, unit]); // width 또는 unit이 변경될 때마다 호출
+    useElementOverflowAdjustment(['#width'], setBoxTranslateX, () => 0, [width, unit]);
 
 
     return (
@@ -105,7 +89,7 @@ const Width: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex flex-col items-center justify-center'>
-                <div className='width h-[200px] transition-width duration-300'
+                <div id='width' className='h-[200px] transition-width duration-300'
                     style={{
                         width: `${width}${unit}`,
                         backgroundImage: 'linear-gradient(to right, #00dbde 0%, #fc00ff 100%)',

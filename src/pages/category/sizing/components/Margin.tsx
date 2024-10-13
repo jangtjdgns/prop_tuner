@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Margin: React.FC = () => {
     const [marginType, setMarginType] = useState(0);                // margin 타입, 0: all, 1: V&H, 2:Individual
@@ -14,11 +15,6 @@ const Margin: React.FC = () => {
     const [marginRight, setMarginRight] = useState(20);             // 우측 여백
     const [marginBottom, setMarginBottom] = useState(20);           // 하단 여백
     const [marginLeft, setMarginLeft] = useState(20);               // 좌측 여백
-
-    const [top, setTop] = useState(marginTop);
-    const [right, setRight] = useState(marginRight);
-    const [bottom, setBottom] = useState(marginBottom);
-    const [left, setLeft] = useState(marginLeft);
 
     const [boxTranslateX, setBoxTranslateX] = useState(0);
     const [boxTranslateY, setBoxTranslateY] = useState(0);
@@ -49,10 +45,6 @@ const Margin: React.FC = () => {
         const inputValue = event.target.value;
         const value = inputValue === '' || isNaN(Number(inputValue)) ? 20 : Number(inputValue);
         setMargin(value);
-        setTop(value);
-        setBottom(value);
-        setRight(value);
-        setLeft(value);
     }
 
     // update V & H 마진
@@ -61,12 +53,8 @@ const Margin: React.FC = () => {
         const value = inputValue === '' || isNaN(Number(inputValue)) ? 20 : Number(inputValue);
         if (dir === 'V') {
             setMarginVertical(value);
-            setTop(value);
-            setBottom(value);
         } else {
             setMarginHorizontal(value);
-            setRight(value);
-            setLeft(value);
         }
     }
 
@@ -78,47 +66,20 @@ const Margin: React.FC = () => {
         switch (dir) {
             case 'top':
                 setMarginTop(value);
-                setTop(value);
                 break;
             case 'right':
                 setMarginRight(value);
-                setRight(value);
                 break;
             case 'bottom':
                 setMarginBottom(value);
-                setBottom(value);
                 break;
             case 'left':
                 setMarginLeft(value);
-                setLeft(value);
                 break;
         }
     }
 
-    const adjustOverflow = () => {
-        const viewTag = document.querySelector('#view') as Element;
-        const borderLineTag = document.querySelector('#view>#border-line') as Element;
-        if (borderLineTag) {
-            if (borderLineTag.clientWidth > window.innerWidth) {
-                setBoxTranslateX((borderLineTag.clientWidth - window.innerWidth + 100) / 2);    // 100 -> 글씨 표시를 위한 간격 지정
-            } else {
-                setBoxTranslateX(0);
-            }
-            if (borderLineTag.clientHeight > viewTag.clientHeight) {
-                setBoxTranslateY((borderLineTag.clientHeight - viewTag.clientHeight) / 2);
-            } else {
-                setBoxTranslateY(0);
-            }
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            adjustOverflow();
-        }, 500);
-    }, [marginType, margin, marginVertical, marginHorizontal, marginTop, marginRight, marginBottom, marginLeft]);
-
-
+    useElementOverflowAdjustment(['#border-line'], setBoxTranslateX, setBoxTranslateY, [marginType, margin, marginVertical, marginHorizontal, marginTop, marginRight, marginBottom, marginLeft]);
 
     return (
         <>
@@ -198,12 +159,12 @@ const Margin: React.FC = () => {
                             {/* vertical & horizontal */}
                             <div className='margin-value grid grid-cols-2 gap-2 items-center text-center hidden'>
                                 <div className='font-bold text-sm'>vertical</div>
-                                <input type='text' className="btn border-2 focus:border-gray-400 focus:outline-none"
+                                <input type='text' className="btn btn-sm border-2 focus:border-gray-400 focus:outline-none"
                                     value={marginVertical}
                                     onChange={(event) => updateVHMargin('V', event)}
                                 />
                                 <div className='font-bold text-sm'>horizontal</div>
-                                <input type='text' className="btn border-2 focus:border-gray-400 focus:outline-none"
+                                <input type='text' className="btn btn-sm border-2 focus:border-gray-400 focus:outline-none"
                                     value={marginHorizontal}
                                     onChange={(event) => updateVHMargin('H', event)}
                                 />
@@ -240,9 +201,9 @@ const Margin: React.FC = () => {
 
                         <div className="divider font-bold text-lg">Direction</div>
                         <div className='grid grid-cols-3 gap-2'>
-                            <input type='radio' name='margin' className="btn btn-sm" value='0' aria-label='All' onClick={handleMarginType} defaultChecked />
-                            <input type='radio' name='margin' className="btn btn-sm" value='1' aria-label='V & H' onClick={handleMarginType} />
-                            <input type='radio' name='margin' className="btn btn-sm" value='2' aria-label='Individual' onClick={handleMarginType} />
+                            <input type='radio' name='margin' className="btn" value='0' aria-label='All' onClick={handleMarginType} defaultChecked />
+                            <input type='radio' name='margin' className="btn" value='1' aria-label='V & H' onClick={handleMarginType} />
+                            <input type='radio' name='margin' className="btn" value='2' aria-label='Individual' onClick={handleMarginType} />
                         </div>
                     </div>
                 </div>

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const MinHeight: React.FC = () => {
     const [minHeight, setMinHeight] = useState(400);
@@ -24,24 +25,8 @@ const MinHeight: React.FC = () => {
         setBoxheight(value);
     }
 
-    // height가 #view태그의 높이를 벗어나는지 확인, 이후 잘린 부분 처리
-    const adjustOverflowHeight = () => {
-        const viewTag = document.querySelector('#view') as Element;
-        const boxHeightTag = document.querySelector('#view>.box-height') as Element;
+    useElementOverflowAdjustment(['min-height', '#box-height'], () => 0, setBoxTranslateY, [minHeight, boxHeight]);
 
-        if (boxHeightTag) {
-            if (boxHeightTag.clientHeight > viewTag.clientHeight) {
-                return setBoxTranslateY((boxHeightTag.clientHeight - viewTag.clientHeight) / 2);
-            }
-            setBoxTranslateY(0);
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            adjustOverflowHeight();
-        }, 500);
-    }, [boxHeight]);
 
 
     return (
@@ -101,7 +86,7 @@ const MinHeight: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center gap-2 font-mono'>
-                <div className='min-height relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                <div id='min-height' className='relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         height: minHeight,
                         transform: `translateY(${boxTranslateY}px)`,
@@ -111,7 +96,7 @@ const MinHeight: React.FC = () => {
                     <span className='absolute w-0.5 h-full bg-black'></span>
                     <div className='absolute -left-12 w-12 text-center text-black select-none'>{minHeight}px</div>
                 </div>
-                <div className='box-height w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
+                <div id='box-height' className='w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         height: boxHeight,
                         minHeight,

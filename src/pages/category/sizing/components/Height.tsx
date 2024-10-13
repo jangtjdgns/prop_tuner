@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 import { copyCss } from '../../../../utils/clipboardUtils';
 
 const Height: React.FC = () => {
@@ -24,24 +25,7 @@ const Height: React.FC = () => {
         setUnit(value);
     }
 
-    // height가 #view태그의 높이를 벗어나는지 확인, 이후 잘린 부분 처리
-    const adjustOverflowHeight = () => {
-        const viewTag = document.querySelector('#view') as Element;
-        const heightTag = document.querySelector('#view>.height') as Element;
-
-        if (heightTag) {
-            if (heightTag.clientHeight > viewTag.clientHeight) {
-                return setBoxTranslateY((heightTag.clientHeight - viewTag.clientHeight) / 2);
-            }
-            setBoxTranslateY(0);
-        }
-    }
-
-    useEffect(() => {
-        setTimeout(() => {
-            adjustOverflowHeight();
-        }, 500);
-    }, [height, unit]);
+    useElementOverflowAdjustment(['#height'], () => 0, setBoxTranslateY, [height, unit]);
 
 
     return (
@@ -105,7 +89,7 @@ const Height: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center'>
-                <div className='height w-[200px] transition-height duration-300'
+                <div id='height' className='w-[200px] transition-height duration-300'
                     style={{
                         height: `${height}${unit}`,
                         backgroundImage: 'linear-gradient(to bottom, #00dbde 0%, #fc00ff 100%)',
