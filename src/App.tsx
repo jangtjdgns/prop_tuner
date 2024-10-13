@@ -32,6 +32,7 @@ import MaxHeight from './pages/category/sizing/components/MaxHeight'
 import Margin from './pages/category/sizing/components/Margin'
 import Padding from './pages/category/sizing/components/Padding'
 import Border from './pages/category/sizing/components/Border'
+import Outline from './pages/category/sizing/components/Outline'
 
 
 
@@ -69,6 +70,7 @@ const App = () => {
                             <Route path="Margin" element={<Margin />} />
                             <Route path="Padding" element={<Padding />} />
                             <Route path="Border" element={<Border />} />
+                            <Route path="Outline" element={<Outline />} />
                         </Route>
                     </Route>
                 </Routes>
