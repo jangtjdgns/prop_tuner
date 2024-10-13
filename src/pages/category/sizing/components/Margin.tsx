@@ -79,8 +79,66 @@ const Margin: React.FC = () => {
         }
     }
 
+    // addBorderLine, 테두리 생성 함수
+    const addBorderLine = () => {
+        let dir: number[] = new Array(4);
+
+        switch (marginType) {
+            case 0:
+                dir.fill(margin);
+                break;
+            case 1:
+                dir.fill(marginHorizontal, 0, 2);
+                dir.fill(marginVertical, 2, 4);
+                break;
+            case 2:
+                dir.fill(marginLeft, 0, 1);
+                dir.fill(marginRight, 1, 2);
+                dir.fill(marginTop, 2, 3);
+                dir.fill(marginBottom, 3, 4);
+                break;
+        }
+
+        return (
+            <div className=''>
+                <div className='absolute h-full text-white font-bold flex items-center'>
+                    <div className='relative h-6 flex items-center transition-width duration-500'
+                        style={{ width: `${dir[0]}px` }}
+                    >
+                        <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
+                        <div className='absolute -left-12 w-12 text-center text-black select-none'>{dir[0]}</div>
+                    </div>
+                </div>
+                <div className='absolute right-0 h-full text-white font-bold flex items-center'>
+                    <div className='relative h-6 flex items-center transition-width duration-500'
+                        style={{ width: `${dir[1]}px` }}
+                    >
+                        <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
+                        <div className='absolute -right-12 w-12 text-center text-black select-none'>{dir[1]}</div>
+                    </div>
+                </div>
+                <div className='absolute w-full text-white font-bold flex justify-center'>
+                    <div className='relative w-6 flex justify-center transition-height duration-500'
+                        style={{ height: `${dir[2]}px` }}
+                    >
+                        <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
+                        <div className='absolute -top-8 text-center text-black select-none'>{dir[2]}</div>
+                    </div>
+                </div>
+                <div className='absolute bottom-0 w-full text-white font-bold flex justify-center'>
+                    <div className='relative w-6 flex justify-center transition-height duration-500'
+                        style={{ height: `${dir[3]}px` }}
+                    >
+                        <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
+                        <div className='absolute -bottom-8 text-center text-black select-none'>{dir[3]}</div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+
     const dependencies = [marginType, margin, marginVertical, marginHorizontal, marginTop, marginRight, marginBottom, marginLeft];
-    useElementOverflowAdjustment(['#border-line'], setBoxTranslateX, setBoxTranslateY, dependencies, {widthPadding: 100, heightPadding: 70});
+    useElementOverflowAdjustment(['#border-line'], setBoxTranslateX, setBoxTranslateY, dependencies, { widthPadding: 100, heightPadding: 60 });
 
     return (
         <>
@@ -216,114 +274,9 @@ const Margin: React.FC = () => {
                     style={{
                         transform: `translate(${boxTranslateX}px, ${boxTranslateY}px)`
                     }}
-                >
-                    {marginType === 0 ? (
-                        <>
-                            <div className='absolute h-full text-white font-bold flex items-center'>
-                                <div className='relative h-6 flex items-center transition-width duration-500'
-                                    style={{ width: margin }}
-                                >
-                                    <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
-                                    <div className='absolute -left-12 w-12 text-center text-black select-none'>{margin}</div>
-                                </div>
-                            </div>
-                            <div className='absolute right-0 h-full text-white font-bold flex items-center'>
-                                <div className='relative h-6 flex items-center transition-width duration-500'
-                                    style={{ width: margin }}
-                                >
-                                    <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
-                                    <div className='absolute -right-12 w-12 text-center text-black select-none'>{margin}</div>
-                                </div>
-                            </div>
-                            <div className='absolute w-full text-white font-bold flex justify-center'>
-                                <div className='relative w-6 flex justify-center transition-height duration-500'
-                                    style={{ height: margin }}
-                                >
-                                    <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
-                                    <div className='absolute -top-8 text-center text-black select-none'>{margin}</div>
-                                </div>
-                            </div>
-                            <div className='absolute bottom-0 w-full text-white font-bold flex justify-center'>
-                                <div className='relative w-6 flex justify-center transition-height duration-500'
-                                    style={{ height: margin }}
-                                >
-                                    <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
-                                    <div className='absolute -bottom-8 text-center text-black select-none'>{margin}</div>
-                                </div>
-                            </div>
-                        </>
-                    ) : (
-                        marginType === 1 ? (
-                            <>
-                                <div className='absolute h-full text-white font-bold flex items-center'>
-                                    <div className='relative h-6 flex items-center transition-width duration-500'
-                                        style={{ width: marginHorizontal }}
-                                    >
-                                        <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
-                                        <div className='absolute -left-12 w-12 text-center text-black select-none'>{marginHorizontal}</div>
-                                    </div>
-                                </div>
-                                <div className='absolute right-0 h-full text-white font-bold flex items-center'>
-                                    <div className='relative h-6 flex items-center transition-width duration-500'
-                                        style={{ width: marginHorizontal }}
-                                    >
-                                        <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
-                                        <div className='absolute -right-12 w-12 text-center text-black select-none'>{marginHorizontal}</div>
-                                    </div>
-                                </div>
-                                <div className='absolute w-full text-white font-bold flex justify-center'>
-                                    <div className='relative w-6 flex justify-center transition-height duration-500'
-                                        style={{ height: marginVertical }}
-                                    >
-                                        <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
-                                        <div className='absolute -top-8 text-center text-black select-none'>{marginVertical}</div>
-                                    </div>
-                                </div>
-                                <div className='absolute bottom-0 w-full text-white font-bold flex justify-center'>
-                                    <div className='relative w-6 flex justify-center transition-height duration-500'
-                                        style={{ height: marginVertical }}
-                                    >
-                                        <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
-                                        <div className='absolute -bottom-8 text-center text-black select-none'>{marginVertical}</div>
-                                    </div>
-                                </div>
-                            </>
-                        )
-                            : <>
-                                <div className='absolute h-full text-white font-bold flex items-center'>
-                                    <div className='relative h-6 flex items-center transition-width duration-500'
-                                        style={{ width: marginLeft }}
-                                    >
-                                        <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
-                                        <div className='absolute -left-12 w-12 text-center text-black select-none'>{marginLeft}</div>
-                                    </div>
-                                </div>
-                                <div className='absolute right-0 h-full text-white font-bold flex items-center'>
-                                    <div className='relative h-6 flex items-center transition-width duration-500'
-                                        style={{ width: marginRight }}
-                                    >
-                                        <span className='absolute w-full h-0.5 border-indigo-600 border-t-4 border-dashed'></span>
-                                        <div className='absolute -right-12 w-12 text-center text-black select-none'>{marginRight}</div>
-                                    </div>
-                                </div>
-                                <div className='absolute w-full text-white font-bold flex justify-center'>
-                                    <div className='relative w-6 flex justify-center transition-height duration-500'
-                                        style={{ height: marginTop }}
-                                    >
-                                        <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
-                                        <div className='absolute -top-8 text-center text-black select-none'>{marginTop}</div>
-                                    </div>
-                                </div>
-                                <div className='absolute bottom-0 w-full text-white font-bold flex justify-center'>
-                                    <div className='relative w-6 flex justify-center transition-height duration-500'
-                                        style={{ height: marginBottom }}
-                                    >
-                                        <span className='absolute w-0.5 h-full border-indigo-600 border-r-4 border-dashed'></span>
-                                        <div className='absolute -bottom-8 text-center text-black select-none'>{marginBottom}</div>
-                                    </div>
-                                </div>
-                            </>
-                    )}
+                >   
+                    {/* 테두리 생성 */}
+                    {addBorderLine()}
 
                     <div id='margin' className='w-[500px] h-[500px] bg-indigo-400 transition-margin duration-500'
                         style={{

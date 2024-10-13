@@ -43,7 +43,7 @@ const Sizing: React.FC = () => {
                     ))}
                 </div>
 
-                <div id="category-views" className='relative min-w-[1024px] w-full h-[calc(100vh-80px-64px)] h-full py-2 bg-gray-200 overflow-hidden box-border'>
+                <div id="category-views" className='relative min-w-[1024px] w-full h-[calc(100vh-80px-64px)] py-2 bg-gray-200 overflow-hidden box-border'>
                     <Outlet />
                 </div>
             </div>
