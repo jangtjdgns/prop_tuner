@@ -4,12 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { colorsRGB } from '../../../../utils/colorUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Break: React.FC = () => {
     const [breakType, setBreakType] = useState('after');    // after, before, inside
     let breakTypeCap = breakType.charAt(0).toUpperCase() + breakType.slice(1);    // breakType 첫번째 문자만 대문자로 변경, 속성으로 사용하기 위함
     const [breakValue, setBreakValue] = useState('auto');
     const [activeTag, setActiveTag] = useState(2);          // 현재 선택된 태그 번호
+    const colors: string[] = ['red', 'orange', 'yellow', 'green'];
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // 현재 활성화된 태그를 변경하는 함수, 스타일을 지정할 태그 선택
     const handleTagSelect = (tagIndex: number) => {
@@ -61,6 +65,8 @@ const Break: React.FC = () => {
         newWindow?.document.close();
     };
 
+    useElementOverflowAdjustment(['#break'], () => 0, setBoxTranslateY, [breakType, breakValue, activeTag]);
+
     return (
         <>
             <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
@@ -96,10 +102,9 @@ const Break: React.FC = () => {
                         {/* 속성을 적용할 태그 선택 */}
                         <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-4 gap-2">
-                            <input type='radio' className="btn" value={1} aria-label='1' checked={activeTag === 1} onChange={() => handleTagSelect(1)} />
-                            <input type='radio' className="btn" value={2} aria-label='2' checked={activeTag === 2} onChange={() => handleTagSelect(2)} />
-                            <input type='radio' className="btn" value={3} aria-label='3' checked={activeTag === 3} onChange={() => handleTagSelect(3)} />
-                            <input type='radio' className="btn" value={4} aria-label='4' checked={activeTag === 4} onChange={() => handleTagSelect(4)} />
+                            {colors.map((color, index) => (
+                                <input type='radio' className="btn" value={index} aria-label={`${index + 1}`} checked={activeTag === index} onChange={() => handleTagSelect(index)} />
+                            ))}
                         </div>
 
                         {/* break-타입 지정, break-${breakType} */}
@@ -128,40 +133,25 @@ const Break: React.FC = () => {
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='text-xl font-bold pb-4'>This property can be recognized when printing a document or displaying the print preview.</div>
-                <div className='flex flex-col gap-4 font-bold'>
-                    <div className='flex items-center gap-2'>
-                        <span>{activeTag === 1 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
-                        <div className=' w-[600px] p-2 border-4 border-red-400' 
-                            style={activeTag === 1 ? { [`break${breakTypeCap}`]: breakValue } : {}}
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed quam.
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                        <span>{activeTag === 2 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
-                        <div className='w-[600px] p-2 border-4 border-orange-400' 
-                            style={activeTag === 2 ? { [`break${breakTypeCap}`]: breakValue } : {}}
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur facilisis.
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                        <span>{activeTag === 3 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
-                        <div className='w-[600px] p-2 border-4 border-yellow-700' 
-                            style={activeTag === 3 ? { [`break${breakTypeCap}`]: breakValue } : {}}
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu.
-                        </div>
-                    </div>
-                    <div className='flex items-center gap-2'>
-                        <span>{activeTag === 4 ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
-                        <div className='w-[600px] p-2 border-4 border-green-700' 
-                            style={activeTag === 4 ? { [`break${breakTypeCap}`]: breakValue } : {}}
-                        >
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sed.
-                        </div>
+            <div id="view" className='w-full h-full flex flex-col flex items-center justify-center overflow-scroll font-mono'>
+                <div id='break' className='w-full flex flex-col flex items-center justify-center transition-transform duration-300'
+                    style={{transform: `translateY(${boxTranslateY}px)`}}
+                >
+                    <div className='text-xl font-bold pb-4'>This property can be recognized when printing a document or displaying the print preview.</div>
+                    <div className='flex flex-col gap-4 font-bold'>
+                        {colors.map((color, index) => (
+                            <div className='flex items-center gap-2'>
+                                <span>{activeTag === index ? <FontAwesomeIcon icon={faCheck} /> : ''}</span>
+                                <div className=' w-[600px] p-2'
+                                    style={{
+                                        ...activeTag === index ? { [`break${breakTypeCap}`]: breakValue } : {},
+                                        border: `4px solid rgb(${colorsRGB[color.toLowerCase()]})`,
+                                    }}
+                                >
+                                    {color} Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

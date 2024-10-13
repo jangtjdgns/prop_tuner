@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
-import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Height: React.FC = () => {
     type Units = 'px' | '%' | 'vw' | 'rem';
@@ -88,7 +88,18 @@ const Height: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex items-center justify-center'>
+            <div id="view" className='w-full h-full flex items-center justify-center gap-2 overflow-scroll font-mono'>
+                <div className='relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                    style={{
+                        height: `${height}${unit}`,
+                        transform: `translateY(${boxTranslateY}px)`,
+                    }}
+                >
+                    <span className='w-full h-full border-black border-t-2 border-b-2'></span>
+                    <span className='absolute w-0.5 h-full bg-black'></span>
+                    <div className='absolute -left-12 w-12 text-center text-black select-none'>{height}{unit}</div>
+                </div>
+
                 <div id='height' className='w-[200px] transition-height duration-300'
                     style={{
                         height: `${height}${unit}`,

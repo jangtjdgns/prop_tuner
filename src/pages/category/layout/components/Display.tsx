@@ -5,11 +5,13 @@ import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-ic
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../../utils/colorUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Display: React.FC = () => {
     const [display, setDisplay] = useState('block');
     const [activeTags, setActiveTags] = useState([1, 1, 1, 1, 1]);                  // 현재 선택된 태그, 1 on, 0 off
     const childTagsColor: string[] = ['red', 'orange', 'yellow', 'green', 'blue']   // 자식 태그들 색상
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
     const displayValues: string[] = [
         'block'
         , 'inline-block'
@@ -41,6 +43,8 @@ const Display: React.FC = () => {
         setActiveTags(updatedTags);
     };
 
+    useElementOverflowAdjustment(['#display'], () => 0, setBoxTranslateY, [display, activeTags]);
+
     return (
         <>
             <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
@@ -63,9 +67,9 @@ const Display: React.FC = () => {
                         {/* display */}
                         <div className='text-center p-0.5 text-xs'>
                             display: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                            value={display}
-                            readOnly
-                        />
+                                value={display}
+                                readOnly
+                            />
                             {/* display 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
                                 onClick={() => copyCss('display', display, false)}
@@ -88,7 +92,7 @@ const Display: React.FC = () => {
                                 />
                             ))}
                         </div>
-                        
+
                         {/* display values */}
                         <div className='divider font-bold text-lg'>Values</div>
                         <div className='grid grid-cols-2 gap-2'>
@@ -110,36 +114,39 @@ const Display: React.FC = () => {
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div id="parent" className='w-[400px] h-[400px] border-2 border-black bg-white box-border rounded-none box-content'
-                    style={{
-                        ...(display === 'flex'
-                            || display === 'inline-flex'
-                            || display === 'grid'
-                            || display === 'inline-grid'
-                            || display === 'flow-root'
-                            || display === 'table'
-                            || display === 'inline-table'
-                            ? {'display': display} : {}),
-                        ...(display.startsWith('table-')
-                            ? {'display': 'table'} : {}),
-                        ...(display.endsWith('-table')
-                            ? {'display': 'table'} : {})
-                    }}
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll font-mono'>
+                <div id='display' className='transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    {/* 자식 태그 생성 */}
-                    {childTagsColor.map((color, index) => (
-                        <div key={index}
-                            className='children w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold'
-                            style={{
-                                border: `2px solid rgb(${colorsRGB[color.toLowerCase()]})`,
-                                backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.1)`,
-                                display: activeTags[index] === 1 ? display : undefined
-                            }}
-                        >
-                            Children {index + 1}
-                        </div>
-                    ))}
+                    <div id="parent" className='w-[500px] h-[500px] bg-blue-50 shadow box-border rounded-none box-content'
+                        style={{
+                            ...(display === 'flex'
+                                || display === 'inline-flex'
+                                || display === 'grid'
+                                || display === 'inline-grid'
+                                || display === 'flow-root'
+                                || display === 'table'
+                                || display === 'inline-table'
+                                ? { 'display': display } : {}),
+                            ...(display.startsWith('table-')
+                                ? { 'display': 'table' } : {}),
+                            ...(display.endsWith('-table')
+                                ? { 'display': 'table' } : {})
+                        }}
+                    >
+                        {/* 자식 태그 생성 */}
+                        {childTagsColor.map((color, index) => (
+                            <div key={index}
+                                className='children w-[100px] h-[100px] text-center text-xs font-bold'
+                                style={{
+                                    backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.6)`,
+                                    display: activeTags[index] === 1 ? display : undefined
+                                }}
+                            >
+                                CHILDREN {index + 1}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

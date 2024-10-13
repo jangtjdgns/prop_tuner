@@ -2,9 +2,10 @@
 // Css Props 페이지 전용
 
 export const adjustElementOverflow = (
-    viewChildElements: string[],  // 배열로 변경
+    viewChildElements: string[],
     setTranslateX: (x: number) => void = (x) => {},
-    setTranslateY: (y: number) => void = (y) => {}
+    setTranslateY: (y: number) => void = (y) => {},
+    padding: { widthPadding: number; heightPadding: number } = { widthPadding: 0, heightPadding: 0 } // 여백 설정
 ) => {
     const viewTag = document.querySelector('#view') as Element;
 
@@ -14,14 +15,14 @@ export const adjustElementOverflow = (
         if (viewChildTag) {
             // X축 조정
             if (viewChildTag.clientWidth > window.innerWidth) {
-                setTranslateX((viewChildTag.clientWidth - window.innerWidth + 100) / 2);
+                setTranslateX((viewChildTag.clientWidth - window.innerWidth + padding.widthPadding) / 2);
             } else {
                 setTranslateX(0);
             }
 
             // Y축 조정
             if (viewChildTag.clientHeight > viewTag.clientHeight) {
-                setTranslateY((viewChildTag.clientHeight - viewTag.clientHeight) / 2);
+                setTranslateY((viewChildTag.clientHeight - viewTag.clientHeight + padding.heightPadding) / 2);
             } else {
                 setTranslateY(0);
             }

@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Visibility: React.FC = () => {
     const [visibility, setVisibility] = useState<'visible' | 'hidden'>('visible');
     const [activeTags, setActiveTags] = useState([0, 0, 0, 1, 0, 0, 0]);
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // visibility 업데이트
     const updateVisibility = (value: 'visible' | 'hidden') => {
@@ -27,6 +29,8 @@ const Visibility: React.FC = () => {
         activeTags[index] === 1 ?  value = visibility: value = 'visible'
         return value;
     }
+
+    useElementOverflowAdjustment(['#visibility'], () => 0, setBoxTranslateY, [visibility, activeTags]);
 
     return (
         <>
@@ -122,8 +126,10 @@ const Visibility: React.FC = () => {
             </div>
             
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[500px] h-[500px] overflow-scroll'>
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
+                <div id='visibility' className='w-[500px] h-[700px] transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                >
                     <div className='w-full h-[100px] bg-red-500' style={{ visibility: checekdActiveTag(0) }}></div>
                     <div className='w-full h-[100px] bg-orange-500' style={{ visibility: checekdActiveTag(1) }}></div>
                     <div className='w-full h-[100px] bg-yellow-500' style={{ visibility: checekdActiveTag(2) }}></div>

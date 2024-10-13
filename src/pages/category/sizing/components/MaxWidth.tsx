@@ -84,7 +84,7 @@ const Width: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-center gap-2 font-mono'>
+            <div id="view" className='w-full h-full flex flex-col items-center justify-center gap-2 overflow-scroll font-mono'>
                 <div id='max-width' className='relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         width: maxWidth,
@@ -95,6 +95,7 @@ const Width: React.FC = () => {
                     <span className='absolute w-full h-0.5 bg-black'></span>
                     <div className='absolute bottom-8 w-12 text-center text-black select-none'>{maxWidth}px</div>
                 </div>
+
                 <div id='box-width' className='h-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         width: boxWidth,
@@ -103,6 +104,18 @@ const Width: React.FC = () => {
                         transform: `translateX(${boxTranslateX}px)`,
                     }}
                 >{boxWidth}px</div>
+
+                <div id='max-width' className='relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                    style={{
+                        width: boxWidth,
+                        maxWidth,
+                        transform: `translateX(${boxTranslateX}px)`,
+                    }}
+                >
+                    <span className='w-full h-full border-black border-l-2 border-r-2'></span>
+                    <span className='absolute w-full h-0.5 bg-black'></span>
+                    <div className='absolute top-8 w-12 text-center text-black select-none'>{boxWidth}px</div>
+                </div>
             </div>
         </>
     );

@@ -85,7 +85,7 @@ const MinHeight: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex items-center justify-center gap-2 font-mono'>
+            <div id="view" className='w-full h-full flex items-center justify-center gap-2 overflow-scroll font-mono'>
                 <div id='min-height' className='relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
                     style={{
                         height: minHeight,
@@ -96,6 +96,7 @@ const MinHeight: React.FC = () => {
                     <span className='absolute w-0.5 h-full bg-black'></span>
                     <div className='absolute -left-12 w-12 text-center text-black select-none'>{minHeight}px</div>
                 </div>
+
                 <div id='box-height' className='w-[200px] trnasition-width duration-300 text-4xl text-white font-bold font-bold flex items-center justify-center whitespace-nowrap select-none'
                     style={{
                         height: boxHeight,
@@ -104,6 +105,18 @@ const MinHeight: React.FC = () => {
                         transform: `translateY(${boxTranslateY}px)`,
                     }}
                 >{boxHeight}px</div>
+
+                <div className='relative w-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                    style={{
+                        height: boxHeight,
+                        minHeight,
+                        transform: `translateY(${boxTranslateY}px)`,
+                    }}
+                >
+                    <span className='w-full h-full border-black border-t-2 border-b-2'></span>
+                    <span className='absolute w-0.5 h-full bg-black'></span>
+                    <div className='absolute -right-12 w-12 text-center text-black select-none'>{boxHeight}px</div>
+                </div>
             </div>
         </>
     );

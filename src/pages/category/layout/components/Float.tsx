@@ -5,6 +5,7 @@ import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../../utils/colorUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Float: React.FC = () => {
     type FloatValue = 'none' | 'right' | 'left';
@@ -17,6 +18,7 @@ const Float: React.FC = () => {
     const [floatTags, setFloatTags] = useState([1, 0, 0, 0, 0]);                        // float 속성
     const [clearTags, setClearTags] = useState([0, 0, 0, 0, 0]);                        // clear 속성
     const childTagsColor: string[] = ['red', 'orange', 'yellow', 'green', 'blue']       // 자식 태그들 색상
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // float 업데이트
     const updateFloat = (value: FloatValue) => {
@@ -30,7 +32,7 @@ const Float: React.FC = () => {
 
     // 속성 적용
     const updateProperty = (index: number, prop: string) => {
-        if(prop === 'float') {
+        if (prop === 'float') {
             const updatedTags = [...floatTags];
             updatedTags[index] = floatTags[index] === 1 ? 0 : 1;
             setFloatTags(updatedTags);
@@ -39,7 +41,7 @@ const Float: React.FC = () => {
             updatedTags[index] = clearTags[index] === 1 ? 0 : 1;
             setClearTags(updatedTags);
         }
-        
+
     };
 
     // clear 속성 활성화 버튼, 토글
@@ -47,15 +49,16 @@ const Float: React.FC = () => {
         const target = event.target as HTMLInputElement;
         const activateBtn = target.checked;     // clear 속성 버튼 활성화 유무
         const columnRuleWrap = document.getElementById('clear-wrap') as HTMLElement;
-        
+
         columnRuleWrap.classList.toggle('hidden')
 
-        if(!activateBtn) {
+        if (!activateBtn) {
             setClear('none');
             setClearTags([0, 0, 0, 0, 0]);
         }
     }
 
+    useElementOverflowAdjustment(['#float'], () => 0, setBoxTranslateY, [float, clear, floatTags, clearTags]);
 
     return (
         <>
@@ -79,9 +82,9 @@ const Float: React.FC = () => {
                         {/* float */}
                         <div className='text-center p-0.5 text-xs'>
                             float: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                            value={float}
-                            readOnly
-                        />
+                                value={float}
+                                readOnly
+                            />
                             {/* float 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
                                 onClick={() => copyCss('float', float, false)}
@@ -103,7 +106,7 @@ const Float: React.FC = () => {
                                 />
                             ))}
                         </div>
-                        
+
                         {/* float values */}
                         <div className='divider font-bold text-lg'>Values</div>
                         <div className='grid grid-cols-2 gap-2'>
@@ -137,9 +140,9 @@ const Float: React.FC = () => {
                             {/* clear */}
                             <div className='text-center p-0.5 text-xs'>
                                 clear: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={clear}
-                                readOnly
-                            />
+                                    value={clear}
+                                    readOnly
+                                />
                                 {/* clear 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
                                     onClick={() => copyCss('clear', clear, false)}
@@ -184,24 +187,25 @@ const Float: React.FC = () => {
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div id="parent" className='w-[400px] h-[400px] border-2 border-black bg-white box-border rounded-none box-content'
-                    
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll font-mono'>
+                <div id='float' className='transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    {/* 자식 태그 생성 */}
-                    {childTagsColor.map((color, index) => (
-                        <div className={`children border-2 w-[calc(400px/5)] h-[calc(400px/5)] text-center text-xs font-bold`}
-                            key={index}
-                            style={{
-                                border: `2px solid rgb(${colorsRGB[color.toLowerCase()]})`,
-                                backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.1)`,
-                                float: floatTags[index] === 1 ? float : 'none',
-                                clear: clearTags[index] === 1 ? clear : 'none'
-                            }}
-                        >
-                            Children {index + 1}
-                        </div>
-                    ))}
+                    <div id="parent" className='w-[500px] h-[500px] bg-blue-50 shadow box-border rounded-none box-content'>
+                        {/* 자식 태그 생성 */}
+                        {childTagsColor.map((color, index) => (
+                            <div className={`children w-[100px] h-[100px] text-center text-xs font-bold`}
+                                key={index}
+                                style={{
+                                    backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.6)`,
+                                    float: floatTags[index] === 1 ? float : 'none',
+                                    clear: clearTags[index] === 1 ? clear : 'none'
+                                }}
+                            >
+                                CHILDREN {index + 1}
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </>

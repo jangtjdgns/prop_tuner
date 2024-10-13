@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const ObjectPosition: React.FC = () => {
     const [objectPositionX, setObjectPositionX] = useState('center');      // 포지션 수평 값
@@ -12,6 +13,8 @@ const ObjectPosition: React.FC = () => {
     const [customValueY, setCustomValueY] = useState('50%');            // 포지션 수직 커스텀 값
     const objectPositionValues: string[] = ['center', 'left', 'right', 'top', 'bottom'];
     const [image, setImage] = useState('/images/모찌.jpg');
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
+
 
     // object-position 스타일 업데이트
     const updateObjectPosition = (
@@ -50,6 +53,9 @@ const ObjectPosition: React.FC = () => {
             setImage(imageUrl);
         }
     }
+
+    const dependencies = [objectPositionX, objectPositionY, customValueX, customValueY, image];
+    useElementOverflowAdjustment(['#object-position'], () => 0, setBoxTranslateY, dependencies);
 
     return (
         <>
@@ -155,8 +161,10 @@ const ObjectPosition: React.FC = () => {
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[500px] h-[500px] overflow-hidden border-2 border-black'>
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
+                <div id='object-position' className='w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                >
                     <img
                         src={image}
                         alt='no image'

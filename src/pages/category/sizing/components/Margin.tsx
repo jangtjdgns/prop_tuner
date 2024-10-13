@@ -79,7 +79,8 @@ const Margin: React.FC = () => {
         }
     }
 
-    useElementOverflowAdjustment(['#border-line'], setBoxTranslateX, setBoxTranslateY, [marginType, margin, marginVertical, marginHorizontal, marginTop, marginRight, marginBottom, marginLeft]);
+    const dependencies = [marginType, margin, marginVertical, marginHorizontal, marginTop, marginRight, marginBottom, marginLeft];
+    useElementOverflowAdjustment(['#border-line'], setBoxTranslateX, setBoxTranslateY, dependencies, {widthPadding: 100, heightPadding: 70});
 
     return (
         <>
@@ -210,8 +211,8 @@ const Margin: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex items-center justify-center'>
-                <div id='border-line' className='relative bg-indigo-300 border-2 border-indigo-600 trnasition-transform duration-500'
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll font-mono'>
+                <div id='border-line' className='relative bg-indigo-50 border-2 border-indigo-400 trnasition-transform duration-500'
                     style={{
                         transform: `translate(${boxTranslateX}px, ${boxTranslateY}px)`
                     }}
@@ -324,7 +325,7 @@ const Margin: React.FC = () => {
                             </>
                     )}
 
-                    <div className='margin w-[400px] h-[400px] bg-indigo-200 transition-margin duration-500'
+                    <div id='margin' className='w-[500px] h-[500px] bg-indigo-400 transition-margin duration-500'
                         style={{
                             margin: marginType === 0 ?
                                 margin : (

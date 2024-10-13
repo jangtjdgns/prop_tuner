@@ -6,13 +6,14 @@ import { adjustElementOverflow } from '../utils/adjustElementOverflow';
 
 export const useElementOverflowAdjustment = (
     viewChildElements: string[],
-    setTranslateX: (x: number) => void = (x) => {},
-    setTranslateY: (y: number) => void = (y) => {},
-    dependencies: any[]
+    setTranslateX: (x: number) => void = (x) => { },
+    setTranslateY: (y: number) => void = (y) => { },
+    dependencies: any[],
+    padding: { widthPadding: number; heightPadding: number } = { widthPadding: 0, heightPadding: 0 }
 ) => {
     useEffect(() => {
         const handleResize = () => {
-            adjustElementOverflow(viewChildElements, setTranslateX, setTranslateY);
+            adjustElementOverflow(viewChildElements, setTranslateX, setTranslateY, padding);
         };
 
         window.addEventListener('resize', handleResize);

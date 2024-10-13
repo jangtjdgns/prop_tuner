@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Position: React.FC = () => {
     type PositionValue = 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
@@ -12,8 +13,9 @@ const Position: React.FC = () => {
     const [left, setLeft] = useState<number | string>('0');
     const [right, setRight] = useState<number | string>('auto');
     const [bottom, setBottom] = useState<number | string>('auto');
-    const [unit, setUnit] = useState<'px' | '%'>('px')
-    const positionValues: string[] = ['static', 'relative', 'absolute', 'sticky', 'fixed']
+    const [unit, setUnit] = useState<'px' | '%'>('px');
+    const positionValues: string[] = ['static', 'relative', 'absolute', 'sticky', 'fixed'];
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // position 업데이트
     const updatePosition = (value: PositionValue) => {
@@ -62,6 +64,10 @@ const Position: React.FC = () => {
         }
     }
 
+    const dependencies = [position, top, right, bottom, left, unit];
+    useElementOverflowAdjustment(['#position'], () => 0, setBoxTranslateY, dependencies);
+
+
     return (
         <>
             <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
@@ -96,6 +102,20 @@ const Position: React.FC = () => {
                             </button>
                         </div>
 
+                        {/* unit */}
+                        <div className="divider font-bold text-base">Unit</div>
+                        <div className='grid grid-cols-2 gap-2'>
+                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='px' value='px'
+                                checked={unit === 'px'}
+                                onChange={() => updateUnit('px')}
+                            />
+                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='%' value='%'
+                                checked={unit === '%'}
+                                onChange={() => updateUnit('%')}
+                            />
+                        </div>
+
+                        {/* position 값 */}
                         <div className="divider font-bold text-lg">Values</div>
                         <div className='grid grid-cols-2 gap-2'>
                             {positionValues.map((value, index) => (
@@ -109,19 +129,6 @@ const Position: React.FC = () => {
                                     onChange={() => updatePosition(value as PositionValue)}
                                 />
                             ))}
-                        </div>
-
-                        {/* unit */}
-                        <div className="divider font-bold text-base">Unit</div>
-                        <div className='grid grid-cols-2 gap-2'>
-                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='px' value='px'
-                                checked={unit === 'px'}
-                                onChange={() => updateUnit('px')}
-                            />
-                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='%' value='%'
-                                checked={unit === '%'}
-                                onChange={() => updateUnit('%')}
-                            />
                         </div>
 
                         {/* top, right, bottom, left */}
@@ -157,9 +164,11 @@ const Position: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[500px] h-[500px] border-2 border-black relative overflow-auto'>
-                    <div className='w-[100px] h-[100px] bg-green-500 transition-all duration-500'
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
+                <div id='position' className='w-[500px] h-[500px] bg-blue-50 shadow relative overflow-scroll transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                >
+                    <div className='w-[100px] h-[100px] bg-green-500 transition-all duration-300'
                         style={{
                             position,
                             top: top === 'auto' ? undefined : top + unit,

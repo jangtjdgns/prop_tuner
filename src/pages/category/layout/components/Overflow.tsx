@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Overflow: React.FC = () => {
     const [overflow, setOverflow] = useState('visible'); // 기본값 visible
     const oveflowValues: string[] = ['visible', 'hidden', 'clip', 'scroll', 'auto'];
     const [whiteSpace, setWhiteSpace] = useState<'normal' | 'nowrap'>('normal');    // "normal" - "nowrap" 값 사용
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // overflow 업데이트
     const updateOverflow = (value: string) => {
@@ -16,9 +18,11 @@ const Overflow: React.FC = () => {
     }
 
     // whitespace 업데이트
-    const updateWhiteSpace = ( event: React.ChangeEvent<HTMLInputElement>) => {
+    const updateWhiteSpace = (event: React.ChangeEvent<HTMLInputElement>) => {
         event.target.checked ? setWhiteSpace('nowrap') : setWhiteSpace('normal');
     }
+
+    useElementOverflowAdjustment(['#overflow'], () => 0, setBoxTranslateY, [overflow, whiteSpace], {widthPadding: 0, heightPadding: 20});
 
     return (
         <>
@@ -68,7 +72,7 @@ const Overflow: React.FC = () => {
                                 />
                             ))}
                         </div>
-                        
+
                         {/* white-space: nowrap; 속성 활성화 버튼 */}
                         <div className='divider flex items-center justify-center text-xs'>
                             <span className='font-bold'>nowrap</span>
@@ -83,18 +87,25 @@ const Overflow: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[400px] h-[400px] border-2 border-black'
-                    style={{ overflow }}
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
+                <div id='overflow' className='w-[500px] h-[500px] bg-blue-50 shadow py-2 px-6 transition-transform duration-300'
+                    style={{
+                        overflow,
+                        transform: `translateY(${boxTranslateY}px)`
+                    }}
                 >
-                    <div className='text-lg'>
-                        <p style={{whiteSpace}}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a leo eget mauris consectetur porttitor.</p>
-                        <p style={{whiteSpace}}> Sed vitae volutpat leo. Ut dolor mi, suscipit quis tellus et, congue fermentum nunc.</p>
-                        <p style={{whiteSpace}}> Fusce venenatis arcu magna, in facilisis tellus aliquet vitae. Nulla lacinia metus eu ex tincidunt viverra eu eget elit.</p>
-                        <p style={{whiteSpace}}> Etiam dictum sem sed suscipit pellentesque. Phasellus vitae leo eu sem blandit rhoncus.</p>
-                        <p style={{whiteSpace}}> Donec congue nunc in purus ultricies egestas. Quisque sit amet euismod ex, sed luctus purus.</p>
-                        <p style={{whiteSpace}}> Phasellus pretium eget nulla eget eleifend.</p>
-                        <p style={{whiteSpace}}> Ut volutpat justo ex, id iaculis est lobortis sit amet. Donec bibendum mollis dolor, in eleifend metus sagittis id.</p>
+                    <div className='underline'>
+                        <p style={{ whiteSpace }}> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum a leo eget mauris consectetur porttitor.</p>
+                        <p style={{ whiteSpace }}> Sed vitae volutpat leo. Ut dolor mi, suscipit quis tellus et, congue fermentum nunc.</p>
+                        <p style={{ whiteSpace }}> Fusce venenatis arcu magna, in facilisis tellus aliquet vitae. Nulla lacinia metus eu ex tincidunt viverra eu eget elit.</p>
+                        <p style={{ whiteSpace }}> Etiam dictum sem sed suscipit pellentesque. Phasellus vitae leo eu sem blandit rhoncus.</p>
+                        <p style={{ whiteSpace }}> Donec congue nunc in purus ultricies egestas. Quisque sit amet euismod ex, sed luctus purus.</p>
+                        <p style={{ whiteSpace }}> Phasellus pretium eget nulla eget eleifend.</p>
+                        <p style={{ whiteSpace }}> Ut volutpat justo ex, id iaculis est lobortis sit amet. Donec bibendum mollis dolor, in eleifend metus sagittis id.</p>
+                        <p style={{ whiteSpace }}> Maecenas id venenatis odio, ac pulvinar risus. Vestibulum a massa ut nulla sodales fringilla. Integer vestibulum ullamcorper massa nec pulvinar.</p>
+                        <p style={{ whiteSpace }}> Phasellus et nibh ultrices, mattis velit nec, scelerisque neque. Nam placerat venenatis lorem sit amet sagittis.</p>
+                        <p style={{ whiteSpace }}> Vestibulum condimentum quam dignissim metus pellentesque, sed ornare lacus fringilla. Nullam sit amet lacinia diam.</p>
+                        <p style={{ whiteSpace }}> Donec in consequat sem. Integer eget eleifend tellus. Cras eu tempor lectus. Maecenas feugiat sem ac nulla elementum, in rhoncus quam sollicitudin.</p>
                     </div>
                 </div>
             </div>

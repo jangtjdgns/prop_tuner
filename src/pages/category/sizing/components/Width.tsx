@@ -88,7 +88,18 @@ const Width: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-center'>
+            <div id="view" className='w-full h-full flex flex-col items-center justify-center gap-2 overflow-scroll font-mono'>
+                <div className='relative h-8 transition-width duration-300 text-white font-bold flex items-center justify-center'
+                    style={{
+                        width: `${width}${unit}`,
+                        transform: `translateX(${boxTranslateX}px)`,
+                    }}
+                >
+                    <span className='w-full h-full border-black border-l-2 border-r-2'></span>
+                    <span className='absolute w-full h-0.5 bg-black'></span>
+                    <div className='absolute bottom-8 w-12 text-center text-black select-none'>{width}{unit}</div>
+                </div>
+
                 <div id='width' className='h-[200px] transition-width duration-300'
                     style={{
                         width: `${width}${unit}`,

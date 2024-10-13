@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const Columns: React.FC = () => {
     const [columnWidth, setColumnWidth] = useState('auto');
@@ -13,6 +14,7 @@ const Columns: React.FC = () => {
     const [columnRuleWidth, setColumnRuleWidth] = useState(0);
     const [columnRuleStyle, setColumnRuleStyle] = useState('none');
     const [columnRuleColor, setColumnRuleColor] = useState('none');
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
 
     // column-width 업데이트 함수
@@ -55,10 +57,10 @@ const Columns: React.FC = () => {
         const target = event.target as HTMLInputElement;
         const activateBtn = target.checked;     // column-rule 속성 버튼 활성화 유무
         const columnRuleWrap = document.getElementById('column-rules-wrap') as HTMLElement;
-        
+
         columnRuleWrap.classList.toggle('hidden')
 
-        if(activateBtn) {
+        if (activateBtn) {
             setColumnRuleWidth(5);
             setColumnRuleStyle('solid')
             setColumnRuleColor('#000000')
@@ -82,7 +84,7 @@ const Columns: React.FC = () => {
     }
 
     // column-rule-style 업데이트 함수
-    const updateColumnRuleStyle = (value:string) => {
+    const updateColumnRuleStyle = (value: string) => {
         setColumnRuleStyle(value);
     }
 
@@ -91,6 +93,8 @@ const Columns: React.FC = () => {
         const color = event.target.value;
         setColumnRuleColor(color);
     }
+
+    useElementOverflowAdjustment(['#column'], () => 0, setBoxTranslateY, [columnWidth, columnCount, columnGap, columnRuleColor, columnRuleStyle, columnRuleWidth]);
 
     return (
         <>
@@ -103,7 +107,7 @@ const Columns: React.FC = () => {
                         <div className="swap-on"><FontAwesomeIcon icon={faPlus} /></div>
                         <div className="swap-off"><FontAwesomeIcon icon={faMinus} /></div>
                     </label>
-                    
+
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Columns</div>
@@ -211,7 +215,7 @@ const Columns: React.FC = () => {
                                 <input type='radio' name='columnRuleStyle' className="btn border-2 focus:border-gray-400" value='solid' aria-label='solid'
                                     checked={columnRuleStyle === 'solid'}
                                     onChange={() => updateColumnRuleStyle('solid')}
-                                 />
+                                />
                                 <input type='radio' name='columnRuleStyle' className="btn border-2 focus:border-gray-400" value='dotted' aria-label='dotted'
                                     checked={columnRuleStyle === 'dotted'}
                                     onChange={() => updateColumnRuleStyle('dotted')}
@@ -244,16 +248,18 @@ const Columns: React.FC = () => {
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex items-start justify-center'>
-                <div className='overflow-x-scroll'>
-                    <p className='w-full' style={{
-                        columnCount: columnCount
-                        , columnWidth: displayColumnWidth
-                        , columnGap: `${columnGap}px`
-                        , columnRuleWidth: `${columnRuleWidth}px`
-                        , columnRuleStyle: columnRuleStyle
-                        , columnRuleColor: columnRuleColor
-                    }}>
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll font-mono'>
+                <div className='w-full'>
+                    <p id='column' className='w-full translate-transform duration-300'
+                        style={{
+                            columnCount: columnCount
+                            , columnWidth: displayColumnWidth
+                            , columnGap: `${columnGap}px`
+                            , columnRuleWidth: `${columnRuleWidth}px`
+                            , columnRuleStyle: columnRuleStyle
+                            , columnRuleColor: columnRuleColor
+                            , transform: `translateY(${boxTranslateY}px)`
+                        }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque quis nisl dolor. Curabitur rutrum eros justo, tincidunt porttitor urna aliquam vel. Mauris bibendum arcu massa, nec iaculis libero dictum vitae. Vestibulum sollicitudin congue diam ac feugiat. Proin vitae ante efficitur, finibus dolor eu, sagittis ipsum. Curabitur sodales pharetra enim, vitae gravida dolor gravida porta. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla varius ornare lacus. Quisque sed lectus a metus blandit pulvinar semper sagittis nunc. Etiam vel lobortis nibh. Morbi id orci sit amet purus porta mollis at eu sapien. Nulla facilisi.
                         Ut vehicula sed ligula sed fermentum. Duis id orci id augue dapibus molestie id sit amet mauris. Mauris at diam pretium ante vulputate euismod ultricies eget quam. Sed erat metus, tristique at urna ut, vulputate vehicula massa. Phasellus a magna tincidunt nisi condimentum efficitur. Phasellus fermentum volutpat ligula. Fusce vitae arcu eget orci facilisis posuere ac sed nulla. Maecenas vel arcu ultrices metus commodo egestas eu et velit. Aliquam ac elit vestibulum dui ornare commodo sit amet a nisi. Suspendisse ac mauris volutpat, semper ipsum sed, fringilla eros. Nulla eu aliquet turpis, quis bibendum leo.
                         Curabitur nulla risus, sagittis a eleifend porttitor, congue at ligula. Quisque tincidunt velit magna, vitae suscipit est condimentum in. Sed pellentesque, ante nec tempor tincidunt, quam mi cursus nisl, in semper mi enim id lorem. Etiam interdum neque id ligula convallis dictum. Maecenas consectetur quis dui non placerat. Ut cursus tellus quis placerat hendrerit. Vivamus condimentum orci ut ultricies lobortis. Vestibulum in mauris vulputate libero viverra pretium id a justo. Donec ultricies venenatis nisi, sit amet accumsan urna gravida quis. Aliquam iaculis cursus sem vitae tincidunt. In mauris purus, viverra id eleifend id, congue molestie diam. Morbi leo turpis, posuere viverra consequat vitae, pharetra et odio. In volutpat tristique sem. Vestibulum posuere turpis vel sapien finibus facilisis a nec sem. Integer suscipit, risus ac laoreet volutpat, lacus lectus iaculis metus, at viverra dolor neque ac felis. Duis blandit leo at elit scelerisque lacinia.

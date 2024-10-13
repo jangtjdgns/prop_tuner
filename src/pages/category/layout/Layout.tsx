@@ -26,9 +26,9 @@ const Layout: React.FC = () => {
 
     return (
         <>
-            <div className='h-[calc(100vh-9rem)] grid grid-rows-[4rem_1fr] bg-white'>
+            <div className='min-h-[calc(100vh-80px)] grid grid-rows-[4rem_1fr] bg-white'>
                 {/* CSS */}
-                <div id="category-layouts" className='h-full border-b shadow-md flex gap-2 items-center px-2'>
+                <div id="category-layouts" className='w-full h-full border-b shadow-md flex gap-2 items-center px-2 overflow-x-scroll'>
                     {layoutCategories.map(item => (
                         <input
                             key={item.id}
@@ -44,7 +44,7 @@ const Layout: React.FC = () => {
                     ))}
                 </div>
 
-                <div id="category-views" className='relative w-full h-full px-4 py-8 bg-gray-200 overflow-scroll'>
+                <div id="category-views" className='relative min-w-[1024px] w-full h-[calc(100vh-80px-64px)] h-full py-2 bg-gray-200 overflow-hidden box-border'>
                     <Outlet />
                 </div>
             </div>

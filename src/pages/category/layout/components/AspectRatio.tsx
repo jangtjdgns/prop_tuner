@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const AspectRatio: React.FC = () => {
     const [aspectRatio, setAspectRatio] = useState('auto');
     const [imgWidth, setImgWidth] = useState('500');
     const [image, setImage] = useState('https://cdn.pixabay.com/photo/2023/05/05/11/01/grebe-7972183_1280.jpg');
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // 스타일 업데이트 함수
     const updateAspectRatio = (style: string) => {
@@ -29,7 +31,7 @@ const AspectRatio: React.FC = () => {
     const updateImageWidth = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
         const style: string = target.value;
-        
+
         if (style.length != 0) {
             setImgWidth(style);
         }
@@ -40,10 +42,12 @@ const AspectRatio: React.FC = () => {
         const target = event.target as HTMLInputElement;
         const imageUrl: string = target.value;
 
-        if(imageUrl.length != 0) {
+        if (imageUrl.length != 0) {
             setImage(imageUrl);
         }
     }
+
+    useElementOverflowAdjustment(['#image'], () => 0, setBoxTranslateY, [aspectRatio, imgWidth, image]);
 
     return (
         <>
@@ -57,7 +61,7 @@ const AspectRatio: React.FC = () => {
                         <div className="swap-on"><FontAwesomeIcon icon={faPlus} /></div>
                         <div className="swap-off"><FontAwesomeIcon icon={faMinus} /></div>
                     </label>
-                    
+
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <span className='text-center pt-2 font-bold text-lg'>Aspect Ratio</span>
@@ -115,15 +119,18 @@ const AspectRatio: React.FC = () => {
                     </div>
                 </div>
             </div>
-            <div id="view" className='w-full h-full flex items-start justify-center'>
-                <div className=''>
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
+                <div id='image' className='shadow'>
                     <img
                         src={image}
                         alt='no image'
                         width={imgWidth}
-                        style={{ aspectRatio }}
-                        id = 'view-image'
-                        className='transition-all duration-200 bg-black flex justify-center items-center text-xl text-white overflow-hidden'
+                        style={{
+                            aspectRatio,
+                            transform: `translateY(${boxTranslateY}px)`
+                        }}
+                        id='view-image'
+                        className='transition-all duration-300 bg-black flex justify-center items-center text-xl text-white overflow-hidden'
                     />
                 </div>
             </div>

@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const BoxSizing: React.FC = () => {
     type BoxSizingValues = 'border' | 'content';
@@ -11,7 +12,7 @@ const BoxSizing: React.FC = () => {
     const [boxSizing, setBoxSizing] = useState<BoxSizingValues>('border');
     const [childWidth, setChildWidth] = useState('100%');
     const [childBorderWidth, setChildBorderWidth] = useState('20px');
-    const [childPadding, setChildPadding] = useState('20px');
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // box-sizing 업데이트 함수
     const updateBoxSizing = (value: BoxSizingValues) => {
@@ -21,17 +22,15 @@ const BoxSizing: React.FC = () => {
     // child width 업데이트 함수
     const updateChildDetail = (detail: string, event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>) => {
         const target = event.target as HTMLInputElement;
-        let value:string = target.value;
+        let value: string = target.value;
 
-        if(!(value.length > 0)) value = '0';
+        if (!(value.length > 0)) value = '0';
 
-        switch(detail) {
-            case 'width': setChildWidth(value); break;
-            case 'border': setChildBorderWidth(value); break;
-            case 'padding': setChildPadding(value); break;
-        }
-        
+        detail === 'width' ? setChildWidth(value) : setChildBorderWidth(value);
     }
+
+    const dependencies = [boxSizing, childWidth, childBorderWidth];
+    useElementOverflowAdjustment(['#box-sizing'], () => 0, setBoxTranslateY, dependencies);
 
     return (
         <>
@@ -87,31 +86,25 @@ const BoxSizing: React.FC = () => {
                                 onChange={(event) => updateChildDetail('border', event)}
                             />
                         </div>
-                        {/* padding */}
-                        <div className='grid grid-cols-3 gap-2 items-center text-center'>
-                            <div className='font-bold text-xs'>padding</div>
-                            <input type='text' className="col-start-2 col-end-4 btn btn-sm border-2 focus:border-gray-400 focus:outline-none"
-                                value={childPadding}
-                                onClick={(event) => updateChildDetail('padding', event)}
-                                onChange={(event) => updateChildDetail('padding', event)}
-                            />
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[400px] h-[400px] border-[20px] border-blue-400 text-center py-10'>
-                    <div className='font-bold text-3xl pb-5'>parent</div>
-                    <div className={`h-[50%] border-[20px] border-black font-bold text-2xl transition-all duration-500`}
-                        style={{
-                            boxSizing: `${boxSizing}-box`,
-                            width: childWidth,
-                            borderWidth: childBorderWidth,
-                            padding: childPadding
-                        }}
-                    >
-                        Child
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll font-mono'>
+                <div id='box-sizing' className='transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                >
+                    <div className='w-[500px] h-[500px] bg-blue-50 border-[20px] border-blue-600 text-center shadow'>
+                        <div className='font-bold text-3xl pb-5 text-blue-600'>PARENT</div>
+                        <div className='h-[50%] border-[20px] border-blue-400 text-blue-400 font-bold text-2xl transition-all duration-500 overflow-hidden'
+                            style={{
+                                boxSizing: `${boxSizing}-box`,
+                                width: childWidth,
+                                borderWidth: childBorderWidth,
+                            }}
+                        >
+                            CHILD
+                        </div>
                     </div>
                 </div>
             </div>

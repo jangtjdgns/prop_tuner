@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const ZIndex: React.FC = () => {
     const [zIndexValues, setZIndexValues] = useState([0, 0, 0, 0, 0, 0, 0]);
     const [lastZIndexValue, setLastZIndexValue] = useState(0);          // 마지막으로 변경한 box의 z-index 저장용
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // z-index 업데이트
     const updateZIndex = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -19,6 +21,9 @@ const ZIndex: React.FC = () => {
         setLastZIndexValue(value);
         setZIndexValues(updateValues);
     }
+
+    
+    useElementOverflowAdjustment(['#z-index'], () => 0, setBoxTranslateY, [zIndexValues, lastZIndexValue]);
 
     return (
         <>
@@ -74,45 +79,47 @@ const ZIndex: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-full h-[500px] flex items-center justify-center relative'>
-                    <div className='w-[180px] h-[180px] bg-red-500 absolute left-1/2 -translate-x-[260%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+            <div id="view" className='w-full h-full flex items-center justify-center'>
+                <div id='z-index' className='w-full h-full flex items-center justify-center relative transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                >
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-red-500 absolute left-1/2 -translate-x-[260%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[0] }}
                     >
                         <div className='bg-red-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[0]}</div>
                     </div>
 
-                    <div className='w-[180px] h-[180px] bg-orange-500 absolute left-1/2 -translate-x-[190%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-orange-500 absolute left-1/2 -translate-x-[190%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[1] }}
                     >
                         <div className='bg-orange-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[1]}</div>
                     </div>
 
-                    <div className='w-[180px] h-[180px] bg-yellow-500 absolute left-1/2 -translate-x-[120%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-yellow-500 absolute left-1/2 -translate-x-[120%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[2] }}
                     >
                         <div className='bg-yellow-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[2]}</div>
                     </div>
 
-                    <div className='w-[180px] h-[180px] bg-green-500 absolute left-1/2 -translate-x-1/2 hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-green-500 absolute left-1/2 -translate-x-1/2 hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[3] }}
                     >
                         <div className='bg-green-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[3]}</div>
                     </div>
 
-                    <div className='w-[180px] h-[180px] bg-blue-500 absolute left-1/2 translate-x-[20%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-blue-500 absolute left-1/2 translate-x-[20%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[4] }}
                     >
                         <div className='bg-blue-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[4]}</div>
                     </div>
 
-                    <div className='w-[180px] h-[180px] bg-indigo-500 absolute left-1/2 translate-x-[90%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-indigo-500 absolute left-1/2 translate-x-[90%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[5] }}
                     >
                         <div className='bg-indigo-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[5]}</div>
                     </div>
 
-                    <div className='w-[180px] h-[180px] bg-purple-500 absolute left-1/2 translate-x-[160%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
+                    <div className='w-[180px] h-[180px] overflow-hidden rounded-2xl bg-purple-500 absolute left-1/2 translate-x-[160%] hover:-translate-y-6 hover:bg-opacity-80 translate-transform translate-bg-opacity duration-200'
                         style={{ zIndex: zIndexValues[6] }}
                     >
                         <div className='bg-purple-400 relative top-0 left-0 w-[35px] h-[35px] flex items-center justify-center text-sm font-bold'>{zIndexValues[6]}</div>

@@ -4,13 +4,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
+import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
 const ObjectFit: React.FC = () => {
-    type ObjectFitValue =  'fill' | 'contain' | 'cover' | 'none' | 'scale-down'; 
+    type ObjectFitValue = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
 
     const [objectFit, setObjectFit] = useState<ObjectFitValue>('fill');
     const objectFitValues: string[] = ['fill', 'contain', 'cover', 'none', 'scale-down'];
     const [image, setImage] = useState('https://cdn.pixabay.com/photo/2023/05/05/11/01/grebe-7972183_1280.jpg');
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // object-fit 스타일 업데이트
     const updateObjectFit = (style: ObjectFitValue) => {
@@ -22,10 +24,12 @@ const ObjectFit: React.FC = () => {
         const target = event.target as HTMLInputElement;
         const imageUrl: string = target.value;
 
-        if(imageUrl.length != 0) {
+        if (imageUrl.length != 0) {
             setImage(imageUrl);
         }
     }
+
+    useElementOverflowAdjustment(['#object-fit'], () => 0, setBoxTranslateY, [objectFit, image]);
 
     return (
         <>
@@ -43,15 +47,15 @@ const ObjectFit: React.FC = () => {
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Object Fit</div>
                     </div>
-                    
+
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
                         {/* objectFit */}
                         <div className='text-center p-0.5 text-xs'>
                             object-fit: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                            value={objectFit}
-                            readOnly
-                        />
+                                value={objectFit}
+                                readOnly
+                            />
                             {/* object-fit 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
                                 onClick={() => copyCss('object-fit', objectFit, false)}
@@ -68,12 +72,12 @@ const ObjectFit: React.FC = () => {
                                     name='objectFit'
                                     className="btn border-2 focus:border-gray-400"
                                     aria-label={value}
-                                    checked= {objectFit === value}
+                                    checked={objectFit === value}
                                     onChange={() => updateObjectFit(value as ObjectFitValue)}
                                 />
                             ))}
                         </div>
-                        
+
                         {/* 이미지 */}
                         <div className="divider font-bold text-lg">Image</div>
                         <button className="btn p-0">
@@ -89,14 +93,16 @@ const ObjectFit: React.FC = () => {
                 </div>
             </div>
 
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                <div className='w-[500px] h-[500px] overflow-hidden'>
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
+                <div id='object-fit' className='w-[500px] h-[500px] bg-indigo-50 shadow transition-transform duration-300'
+                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                >
                     <img
                         src={image}
                         alt='no image'
                         style={{ objectFit }}
-                        id = 'view-image'
-                        className='w-full h-full transition-all duration-200 bg-black flex justify-center items-center text-xl text-white'
+                        id='view-image'
+                        className='w-full h-full transition-all duration-200 flex justify-center items-center text-xl text-white'
                     />
                 </div>
             </div>
