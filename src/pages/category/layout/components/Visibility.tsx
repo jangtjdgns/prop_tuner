@@ -26,7 +26,7 @@ const Visibility: React.FC = () => {
     // activeTags 활성화 체크
     const checekdActiveTag = (index: number) => {
         let value = visibility
-        activeTags[index] === 1 ?  value = visibility: value = 'visible'
+        activeTags[index] === 1 ? value = visibility : value = 'visible'
         return value;
     }
 
@@ -45,8 +45,9 @@ const Visibility: React.FC = () => {
                     </label>
 
                     {/* 옵션 내용 상단 */}
-                    <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Visibility
+                    <div className='relative flex flex-col gap-2'>
+                        <div className='text-center pt-2 font-bold text-lg'>Visibility</div>
+                        <div className='absolute top-0 left-0'>
                             <div className="dropdown">
                                 <div tabIndex={0} role="button" className="btn btn-circle btn-ghost btn-xs text-info">
                                     <svg
@@ -65,7 +66,7 @@ const Visibility: React.FC = () => {
                                 <div
                                     tabIndex={0}
                                     className="card compact dropdown-content bg-base-100 rounded-box z-[1] w-64 shadow">
-                                    <div tabIndex={0} className="card-body">
+                                    <div tabIndex={0} className="card-body font-bold">
                                         <p>The element is hidden but still occupies space. It affects the layout, and other elements do not take its place.</p>
                                     </div>
                                 </div>
@@ -124,7 +125,7 @@ const Visibility: React.FC = () => {
                     </div>
                 </div>
             </div>
-            
+
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
                 <div id='visibility' className='w-[500px] h-[700px] transition-transform duration-300'

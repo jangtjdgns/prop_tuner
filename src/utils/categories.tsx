@@ -51,7 +51,23 @@ export const sizingCategories = [
     { id: 'margin', value: 'Margin', label: 'Margin' },
     { id: 'padding', value: 'Padding', label: 'Padding' },
     { id: 'border', value: 'Border', label: 'Border' },
+    { id: 'outline', value: 'Outline', label: 'Outline' },
 ];
+
+// Typography 카테고리 데이터
+// export const typographyCategories = [
+//     { id: 'fontSize', value: 'FontSize', label: 'Font Size' },
+//     { id: 'fontWeight', value: 'FontWeight', label: 'Font Weight' },
+//     { id: 'lineHeight', value: 'LineHeight', label: 'Line Height' },
+//     { id: 'letterSpacing', value: 'LetterSpacing', label: 'Letter Spacing' },
+//     { id: 'textAlign', value: 'TextAlign', label: 'Text Align' },
+// ];
+
+// export const designCategories = [
+//     { id: 'background', value: 'Background', label: 'Background' },
+//     { id: 'color', value: 'Color', label: 'Color' },
+//     { id: 'clipPath', value: 'ClipPath', label: 'Clip Path' },
+// ];
 
 
 // ============================================= //
@@ -80,6 +96,7 @@ export const categories: Category[] = [
     },
     // 추가 카테고리들 필요 시 주석 해제
     // { title: "Typography", pagePath: `/category/Typography` },
+    // { title: "Design", pagePath: `/category/Design` },
     // Typography, writing-mode, text-orientation
 
 

@@ -270,7 +270,7 @@ const Padding: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='relative w-full h-full flex items-center justify-center overflow-scroll font-mono'>
-                <div id='padding' className='relative bg-indigo-300 trnasition-transform duration-500'
+                <div id='padding' className='relative bg-indigo-400 trnasition-transform duration-500'
                     style={{
                         transform: `translate(${boxTranslateX}px, ${boxTranslateY}px)`,
                         padding: paddingType === 0 ?
@@ -314,7 +314,7 @@ const Padding: React.FC = () => {
                     </div>
 
                     {/* 테두리 생성 */}
-                    <div id='border-line' className='relative w-[500px] h-[500px] border-2 border-indigo-400 bg-indigo-300 transition-padding duration-500'>
+                    <div id='border-line' className='relative w-[500px] h-[500px] border-2 border-indigo-500 bg-indigo-400 transition-padding duration-500'>
                         {addBorderLine()}
                     </div>
                 </div>
