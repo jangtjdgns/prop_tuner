@@ -230,7 +230,7 @@ const Border: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('border-radius', borderRadius, false)}
+                                    onClick={() => copyCss('border-radius', borderRadius, true)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

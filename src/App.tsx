@@ -36,6 +36,7 @@ import Outline from './pages/category/sizing/components/Outline';
 // category-typography
 import Typography from './pages/category/typography/Typography';
 import BasicFont from './pages/category/typography/components/BasicFont';
+import AdvancedFont from './pages/category/typography/components/AdvancedFont';
 
 
 const App = () => {
@@ -77,6 +78,7 @@ const App = () => {
                         <Route path="Typography" element={<Typography />}>
                             <Route index element={<BasicFont />} />
                             <Route path="BasicFont" element={<BasicFont />} />
+                            <Route path="AdvancedFont" element={<AdvancedFont />} />
                         </Route>
                     </Route>
                 </Routes>

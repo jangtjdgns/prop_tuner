@@ -57,6 +57,7 @@ export const sizingCategories = [
 // Typography
 export const typographyCategories = [
     { id: 'basicFont', value: 'BasicFont', label: 'Basic Font' },
+    { id: 'advancedFont', value: 'AdvancedFont', label: 'Advanced Font' },
     { id: 'textAlignment&Direction', value: 'TextAlignmenet&Direction', label: 'Text Alignment & Direction' },
     { id: 'textDecoration&Transformation', value: 'textDecoration&Transformation', label: 'Text Decoration & Transformation' },
     { id: 'spacing&LineHeight', value: 'Spacing&LineHeight', label: 'Spacing & Line Height' },

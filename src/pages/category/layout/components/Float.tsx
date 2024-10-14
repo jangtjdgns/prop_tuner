@@ -50,7 +50,7 @@ const Float: React.FC = () => {
         const activateBtn = target.checked;     // clear 속성 버튼 활성화 유무
         const columnRuleWrap = document.getElementById('clear-wrap') as HTMLElement;
 
-        columnRuleWrap.classList.toggle('hidden')
+        columnRuleWrap.classList.toggle('hidden');
 
         if (!activateBtn) {
             setClear('none');

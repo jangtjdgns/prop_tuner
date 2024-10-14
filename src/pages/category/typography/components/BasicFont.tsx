@@ -1,7 +1,7 @@
 // BasicFont.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faMinus, faPlus, faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
@@ -20,9 +20,18 @@ const BasicFont: React.FC = () => {
     const [customFontSize, setCustomFontSize] = useState('');
     const fontSizevalues: string[] = ['xx-small', 'x-small', 'small', 'smaller', 'medium', 'large', 'larger', 'x-large', 'xx-large', 'xxx-large'];
 
-    // 6. font-family
+    // 4. font-family
     const [fontFamily, setFontFamily] = useState('system-ui');
     const fontFamilyValues: string[] = ['system-ui', 'serif', 'sans-serif', 'monospace', 'cursive', 'fantasy'];
+
+    // 웹 폰트, 프리텐다드 기본 적용, pre 태그에 적용하기 때문에 탭 금지
+    const [webFontFamily, setWebFontFamily] = useState('Pretendard-Regular');
+    const [webFontCode, setWebFontCode] = useState(`@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}`);
 
     // 기타
     const [boxTranslateY, setBoxTranslateY] = useState(0);
@@ -69,9 +78,56 @@ const BasicFont: React.FC = () => {
         setFontFamily(inputValue);
     }
 
+    // toggleWepFontWrap
+    const toggleWepFontWrap = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const target = event.target as HTMLInputElement;
+        const isActive = target.checked;
+        const webFontWrap = document.getElementById('webFont-wrap') as HTMLElement;
+        webFontWrap.classList.toggle('hidden');
+        if (!isActive) {
+            setFontFamily('system-ui')
+        } else {
+            applyFont();
+            setFontFamily(webFontFamily);
+        }
+    }
+
+    // 폰트 적용을 위한 textarea 열기, show <-> textarea 토글
+    const toggleTextarea = () => {
+        const fontApplyTags = document.querySelectorAll('.font-apply');
+        const fontApplyBtnTags = document.querySelectorAll('.font-apply-btn');
+
+        for (let i = 0; i < fontApplyTags.length; i++) {
+            fontApplyTags[i].classList.toggle('hidden');
+            fontApplyBtnTags[i].classList.toggle('hidden');
+        }
+    }
+
+    // webFont code 업데이트
+    const updateWebFontCode = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const inputValue = event.target.value;
+        setWebFontCode(inputValue);
+    }
+
+    // font 적용
+    const applyFont = () => {
+        const styleElement = document.createElement('style');
+        styleElement.innerHTML = webFontCode;
+        document.head.appendChild(styleElement);
+        const fontFamily = regexWebFontCode();
+        setFontFamily(fontFamily);
+        setWebFontFamily(fontFamily);
+    }
+
+    // webFontCode에서 font-family 추출
+    const regexWebFontCode = () => {
+        const regex = /font-family:\s*['"]?([^'";]+)['"]?/;
+        const match = webFontCode.match(regex);
+        return match ? match[1] : 'system-ui'
+    }
 
     const dependencies = [fontStyle, fontWeight, fontSize, fontFamily];
-    useElementOverflowAdjustment(['#BasicFont'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 50 });
+    useElementOverflowAdjustment(['#basic-font'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 50 });
 
     return (
         <>
@@ -107,7 +163,7 @@ const BasicFont: React.FC = () => {
                             </button>
                         </div>
                         {/* font-style 값 */}
-                        <div className='grid grid-cols-2 gap-2'>
+                        <div className='grid grid-cols-3 gap-2'>
                             {fontStyleValues.map((value, index) => (
                                 <input
                                     key={index}
@@ -120,8 +176,9 @@ const BasicFont: React.FC = () => {
                                     onChange={updateFontStyle}
                                 />
                             ))}
+
                             {/* obliqueDeg 값 */}
-                            <div id='obliqueDeg-wrap' className='hidden'>
+                            <div id='obliqueDeg-wrap' className='hidden col-start-1 col-end-4'>
                                 <input type="range" min={-90} max="90" value={obliqueDeg} className="range range-xs"
                                     onChange={updateObliqueDeg}
                                 />
@@ -136,7 +193,7 @@ const BasicFont: React.FC = () => {
                         </div>
 
                         {/* 2. font-weight */}
-                        <div className="divider font-bold text-lg">Font weight</div>
+                        <div className="divider font-bold text-lg">Font Weight</div>
                         <div className='text-center pb-0.5 text-xs'>
                             font-weight:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2'
@@ -230,7 +287,7 @@ const BasicFont: React.FC = () => {
                             </button>
                         </div>
 
-                        {/* 6. font-family */}
+                        {/* 4. font-family */}
                         <div className="divider font-bold text-lg">Font Family</div>
                         <div className='text-center pb-0.5 text-xs'>
                             font-family:
@@ -259,13 +316,55 @@ const BasicFont: React.FC = () => {
                                 />
                             ))}
                         </div>
+
+                        {/* 웹 폰트 활성화 버튼 */}
+                        <div className='divider flex items-center justify-center text-xs'>
+                            <span className='font-bold'>Web Font</span>
+                            <input type="checkbox"
+                                id="toggle-webFont"
+                                className="toggle toggle-info toggle-sm"
+                                onChange={toggleWepFontWrap}
+                            />
+                        </div>
+                        {/* 웹 폰트 적용 wrap */}
+                        <div id="webFont-wrap" className='flex flex-col gap-2 hidden'>
+                            <div className='relative h-full px-2'>
+                                <div className='w-full flex items-center justify-end'>
+                                    <button className='font-apply-btn btn btn-sm btn-square mb-2'
+                                        onClick={toggleTextarea}
+                                    >
+                                        <FontAwesomeIcon icon={faPen} size="sm" />
+                                    </button>
+                                    {/* 폰트 적용 */}
+                                    <button className='hidden font-apply-btn btn btn-sm btn-square mb-2'
+                                        onClick={() => {
+                                            applyFont();
+                                            toggleTextarea();
+                                        }}>
+                                        <FontAwesomeIcon icon={faCheck} size="sm" />
+                                    </button>
+                                </div>
+
+                                {/* show font */}
+                                <pre className='h-[152px] font-apply italic pb-2 overflow-scroll'>
+                                    {webFontCode.trim()}
+                                </pre>
+
+                                {/* apply font */}
+                                <textarea className='hidden h-[152px] font-apply textarea w-full h-full resize-none'
+                                    placeholder='Please apply the web font.'
+                                    value={webFontCode}
+                                    onChange={updateWebFontCode}
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='BasicFont' className='w-[700px] transition-transform duration-300 text-center'
+                <div id='basic-font' className='w-[700px] transition-transform duration-300 text-center'
                     style={{
                         fontWeight,
                         fontSize,

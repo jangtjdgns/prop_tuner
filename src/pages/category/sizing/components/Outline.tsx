@@ -231,7 +231,7 @@ const Outline: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('outline-offset', outlineOffset, false)}
+                                    onClick={() => copyCss('outline-offset', outlineOffset, true)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
