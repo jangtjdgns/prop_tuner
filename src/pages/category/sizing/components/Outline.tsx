@@ -10,23 +10,24 @@ import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverfl
 const Outline: React.FC = () => {
     const [outlineWidth, setOutlineWidth] = useState(50);
     const [outlineStyle, setOutlineStyle] = useState('solid');
-    const outlineStyleValues: string[] = ['none', 'hidden', 'solid', ' dotted', 'dashed', 'double', 'groove', 'ridge', 'inset', 'outset']
+    const outlineStyleValues: string[] = ['none', 'solid', ' dotted', 'dashed', 'double', 'groove', 'ridge', 'inset', 'outset']
     const [outlineOffset, setOutlineOffset] = useState(0);
     const [outlineColor, setOutlineColor] = useState('#818CF8');
     const [outlineOpacity, setOutlineOpacity] = useState(1);
+    const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const updateoutlineWidth = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const updateOutlineWidth = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         const value = inputValue === '' || isNaN(Number(inputValue)) ? 50 : Number(inputValue);
         setOutlineWidth(value);
     }
 
-    const updateoutlineStyle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const updateOutlineStyle = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
         setOutlineStyle(inputValue);
     }
 
-    const updateoutlineColor = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const updateOutlineColor = (event: React.ChangeEvent<HTMLInputElement>) => {
         const color = event.target.value;
         setOutlineColor(color);
     }
@@ -54,16 +55,20 @@ const Outline: React.FC = () => {
     // offset 업데이트
     const updateOutlineOffset = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
-        const value = inputValue === '' || isNaN(Number(inputValue)) ? 10 : Number(inputValue);
+        const value = inputValue === '' || isNaN(Number(inputValue)) ? 0 : Number(inputValue);
         setOutlineOffset(value);
     }
+
+    const dependencies = [outlineWidth, outlineStyle, outlineColor, outlineOpacity, outlineOffset];
+    useElementOverflowAdjustment(['#outline'], () => 0, setBoxTranslateY, dependencies);
+
 
     return (
         <>
             <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
                 <div className='w-72 flex flex-col gap-2 shadow rounded-xl p-2 bg-white outline outline-gray-200 hover:shadow-2xl hover:outline-gray-300 transition-all duration-500'>
                     <label id="option-toggle-btn"
-                        className="swap absolute top-2 right-2 btn btn-xs btn-circle"
+                        className="swap absolute top-2 right-2 btn btn-xs btn-circle z-10"
                     >
                         <input type="checkbox" onClick={(event) => handleOptionToggle(event)} />
                         <div className="swap-on"><FontAwesomeIcon icon={faPlus} /></div>
@@ -120,7 +125,7 @@ const Outline: React.FC = () => {
                             <button className="btn p-0">
                                 <input type="text"
                                     className="input input-xs w-full h-full bg-transparent focus:outline-none outline-2 focus:outline-gray-400 text-center"
-                                    onChange={updateoutlineWidth}
+                                    onChange={updateOutlineWidth}
                                     value={outlineWidth}
                                 />
                             </button>
@@ -146,7 +151,7 @@ const Outline: React.FC = () => {
                                     className="btn w-full h-full text-center"
                                     aria-label={value}
                                     value={value}
-                                    onChange={updateoutlineStyle}
+                                    onChange={updateOutlineStyle}
                                     checked={outlineStyle === value}
                                 />
                             ))}
@@ -168,11 +173,11 @@ const Outline: React.FC = () => {
                         <div className='grid grid-cols-3 gap-2'>
                             <input type="color" className="col-start-1 col-end-2 btn p-0 w-full"
                                 value={outlineColor}
-                                onChange={updateoutlineColor}
+                                onChange={updateOutlineColor}
                             />
                             <input type="text" className="col-start-2 col-end-4 btn focus:outline-none outline-2 focus:outline-gray-400"
                                 value={outlineColor}
-                                onChange={updateoutlineColor}
+                                onChange={updateOutlineColor}
                                 placeholder='outline-color'
                             />
                         </div>
@@ -247,12 +252,13 @@ const Outline: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex flex-col items-center justify-center'>
-                <div id='outline' className='w-[500px] h-[500px] bg-indigo-50 shadow transition-outline duration-500'
+                <div id='outline' className='min-w-[500px] min-h-[500px] bg-indigo-50 shadow transition-all duration-500'
                     style={{
                         outlineWidth,
                         outlineStyle,
                         outlineColor: `${hexToRgba(outlineColor, outlineOpacity)}`,
-                        outlineOffset
+                        outlineOffset,
+                        transform: `translateY(${boxTranslateY}px)`
                     }}
                 ></div>
             </div>

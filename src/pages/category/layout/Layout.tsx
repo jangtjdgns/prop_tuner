@@ -1,4 +1,4 @@
-// src/pages/category/Layout.tsx
+// src/pages/category/layout/Layout.tsx
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate, useLocation } from 'react-router-dom';
 import { layoutCategories } from '../../../utils/categories';

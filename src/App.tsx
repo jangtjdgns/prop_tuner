@@ -23,17 +23,19 @@ import Visibility from './pages/category/layout/components/Visibility';
 import ZIndex from './pages/category/layout/components/ZIndex';
 // category-sizing
 import Sizing from './pages/category/sizing/Sizing';
-import Width from './pages/category/sizing/components/Width'
-import Height from './pages/category/sizing/components/Height'
-import MinWidth from './pages/category/sizing/components/MinWidth'
-import MinHeight from './pages/category/sizing/components/MinHeight'
-import MaxWidth from './pages/category/sizing/components/MaxWidth'
-import MaxHeight from './pages/category/sizing/components/MaxHeight'
-import Margin from './pages/category/sizing/components/Margin'
-import Padding from './pages/category/sizing/components/Padding'
-import Border from './pages/category/sizing/components/Border'
-import Outline from './pages/category/sizing/components/Outline'
-
+import Width from './pages/category/sizing/components/Width';
+import Height from './pages/category/sizing/components/Height';
+import MinWidth from './pages/category/sizing/components/MinWidth';
+import MinHeight from './pages/category/sizing/components/MinHeight';
+import MaxWidth from './pages/category/sizing/components/MaxWidth';
+import MaxHeight from './pages/category/sizing/components/MaxHeight';
+import Margin from './pages/category/sizing/components/Margin';
+import Padding from './pages/category/sizing/components/Padding';
+import Border from './pages/category/sizing/components/Border';
+import Outline from './pages/category/sizing/components/Outline';
+// category-typography
+import Typography from './pages/category/typography/Typography';
+import BasicFont from './pages/category/typography/components/BasicFont';
 
 
 const App = () => {
@@ -71,6 +73,10 @@ const App = () => {
                             <Route path="Padding" element={<Padding />} />
                             <Route path="Border" element={<Border />} />
                             <Route path="Outline" element={<Outline />} />
+                        </Route>
+                        <Route path="Typography" element={<Typography />}>
+                            <Route index element={<BasicFont />} />
+                            <Route path="BasicFont" element={<BasicFont />} />
                         </Route>
                     </Route>
                 </Routes>

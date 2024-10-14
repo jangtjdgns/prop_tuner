@@ -7,7 +7,15 @@ import { copyCss } from '../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
 
 const test: React.FC = () => {
-    // js
+
+    // const [boxTranslateX, setBoxTranslateX] = useState(0);
+    // const [boxTranslateY, setBoxTranslateY] = useState(0);
+
+    // event: React.ChangeEvent<HTMLInputElement>
+
+    // const dependencies = [outlineWidth, outlineStyle, outlineColor, outlineOpacity, outlineOffset];
+    // useElementOverflowAdjustment(['#outline'], () => 0, setBoxTranslateY, dependencies);
+
 
     return (
         <>
@@ -27,7 +35,7 @@ const test: React.FC = () => {
                         {/* 아래 태그는 표시할 내용이 있는 경우 사용 */}
                         {/* <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Basis: object-fit: none;</div> */}
                     </div>
-                    
+
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
                         {/* 제목 */}
@@ -59,7 +67,7 @@ const test: React.FC = () => {
                                 />
                             ))} */}
                         </div>
-                        
+
                         {/* 이미지 사용시 활용 */}
                         {/* <div className="divider font-bold text-lg">Image</div>
                         <button className="btn p-0">
@@ -74,10 +82,11 @@ const test: React.FC = () => {
                     </div>
                 </div>
             </div>
-            
+
             {/* view 파트 */}
-            <div id="view" className='w-full h-full flex flex-col items-center justify-start'>
-                
+            {/* transform: `translateY(${boxTranslateY}px)` */}
+            {/* transition-transform duration-500 */}
+            <div id="view" className='w-full h-full flex items-center justify-center'>
             </div>
         </>
     );

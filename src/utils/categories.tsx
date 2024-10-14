@@ -54,14 +54,14 @@ export const sizingCategories = [
     { id: 'outline', value: 'Outline', label: 'Outline' },
 ];
 
-// Typography 카테고리 데이터
-// export const typographyCategories = [
-//     { id: 'fontSize', value: 'FontSize', label: 'Font Size' },
-//     { id: 'fontWeight', value: 'FontWeight', label: 'Font Weight' },
-//     { id: 'lineHeight', value: 'LineHeight', label: 'Line Height' },
-//     { id: 'letterSpacing', value: 'LetterSpacing', label: 'Letter Spacing' },
-//     { id: 'textAlign', value: 'TextAlign', label: 'Text Align' },
-// ];
+// Typography
+export const typographyCategories = [
+    { id: 'basicFont', value: 'BasicFont', label: 'Basic Font' },
+    { id: 'textAlignment&Direction', value: 'TextAlignmenet&Direction', label: 'Text Alignment & Direction' },
+    { id: 'textDecoration&Transformation', value: 'textDecoration&Transformation', label: 'Text Decoration & Transformation' },
+    { id: 'spacing&LineHeight', value: 'Spacing&LineHeight', label: 'Spacing & Line Height' },
+    { id: 'textAlign', value: 'TextAlign', label: 'Text Align' },
+];
 
 // export const designCategories = [
 //     { id: 'background', value: 'Background', label: 'Background' },
@@ -79,7 +79,7 @@ export type Category = {
 
 }
 export const categories: Category[] = [
-    {   
+    {
         title: "select",
         pagePath: "/",
         property: [],
@@ -94,8 +94,11 @@ export const categories: Category[] = [
         pagePath: "/category/Sizing",
         property: sizingCategories.map(item => item.label),
     },
-    // 추가 카테고리들 필요 시 주석 해제
-    // { title: "Typography", pagePath: `/category/Typography` },
+    {
+        title: "Typography",
+        pagePath: `/category/Typography`,
+        property: typographyCategories.map(item => item.label),
+    },
     // { title: "Design", pagePath: `/category/Design` },
     // Typography, writing-mode, text-orientation
 

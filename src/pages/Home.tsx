@@ -1,30 +1,12 @@
 // src/pages/Home.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { layoutCategories, sizingCategories } from '../utils/categories';
+import { categories } from '../utils/categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 const Home = () => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 함수 가져오기
-
-    // categories 타입 정의
-    type Category = {
-        category: string;
-        property: string[];
-    };
-
-    // 초기 데이터 리스트
-    const categories: Category[] = [
-        {
-            category: 'Layout',
-            property: layoutCategories.map(item => item.label) //'Top / Right / Bottom / Left' 보류
-        },
-        {
-            category: 'Sizing',
-            property: sizingCategories.map(item => item.label)
-        },
-    ]
 
     const [searchTerm, setSearchTerm] = useState('');
     // 필터링된 카테고리
@@ -66,14 +48,14 @@ const Home = () => {
                             {searchTerm && filteredCategories.length > 0 ? (
                                 <div className="bg-gray-100 border rounded shadow-lg overflow-x-auto px-3 pb-4">
                                     {filteredCategories.map((category) => (
-                                        <div key={category.category} className=' pt-3'>
-                                            <h3 className="font-bold text-2xl">{category.category}</h3>
+                                        <div key={category.title} className=' pt-3'>
+                                            <h3 className="font-bold text-2xl">{category.title}</h3>
                                             <ul>
                                                 {category.property
                                                     .filter(property => property.toLowerCase().includes(searchTerm.toLowerCase()))
                                                     .map((property) => (
                                                         <li key={property} className='mx-0.5 inline'>
-                                                            <button className='badge border-gray-400 shadow-outline hover:badge-neutral' onClick={() => navigate(`/category/${category.category}/${property.replace(' ', '')}`)}>
+                                                            <button className='badge border-gray-400 shadow-outline hover:badge-neutral' onClick={() => navigate(`/category/${category.title}/${property.replace(' ', '')}`)}>
                                                                 {property}
                                                             </button>
                                                         </li>
