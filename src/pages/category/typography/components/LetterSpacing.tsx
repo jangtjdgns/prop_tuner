@@ -121,19 +121,16 @@ const LetterSpacing: React.FC = () => {
                             letterSpacing: `${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`
                         }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Suspendisse nec odio aliquet, dignissim odio a, hendrerit augue.
-                        Quisque posuere posuere ex, sed imperdiet elit tincidunt a.
-                        Vivamus fringilla lacus rutrum magna viverra, eu pulvinar ligula tristique.
-                        Nam egestas mattis felis, sit amet accumsan ipsum fermentum ac.
-                        Pellentesque rutrum ultrices nulla.
-                        Pellentesque vulputate, tellus ac ultricies pharetra, nisl enim imperdiet erat, quis tincidunt diam justo non urna.
-                        Quisque vitae urna fermentum, vehicula mi ut, consequat lectus.
-                        Vestibulum tristique molestie ipsum a iaculis
-                        Morbi eleifend tellus lectus, vel venenatis diam finibus quis.
-                        Suspendisse velit mi, mollis vitae pellentesque nec, hendrerit sed risus.
-                        Nam nibh quam, volutpat at sollicitudin id, ullamcorper sit amet dolor.
-                        Sed nunc nulla, vestibulum sed scelerisque sit amet, ultricies eget odio.
-                        Praesent varius erat eu quam rhoncus volutpat. Duis a justo nibh.
+                        Donec auctor egestas pretium.
+                        Praesent porttitor commodo maximus.
+                        Nunc arcu lacus, efficitur vitae aliquam ac, sagittis eget ante.
+                        Nullam a elit viverra lacus gravida sagittis.
+                        Nulla feugiat, tellus eu pharetra malesuada, lectus justo ultricies arcu, vitae porta nisl leo non orci.
+                        Nunc consectetur, diam at ultricies tristique, lacus velit vulputate velit, at varius felis orci non dui.
+                        Suspendisse consectetur at ex ac mattis.
+                        Mauris sit amet tincidunt sem. Nulla quis augue nibh.
+                        Vestibulum ornare cursus tortor quis ultricies.
+                        Duis aliquet metus massa, eget mollis eros consequat sed.
                     </p>
                 </div>
             </div>

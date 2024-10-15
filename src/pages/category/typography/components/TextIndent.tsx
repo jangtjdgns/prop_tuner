@@ -1,4 +1,4 @@
-// WordSpacing.tsx
+// TextIndent.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,23 +6,18 @@ import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
-const WordSpacing: React.FC = () => {
-    const [wordSpacing, setWordSpacing] = useState('normal');
-    const [customWordSpacing, setCustomWordSpacing] = useState('2.5');
-    const [unit, setUnit] = useState('px');   // 단위, px, em 등
-    const unitValues: string[] = ['px', 'em', 'rem'];
+const TextIndent: React.FC = () => {
+    const [textIndent, setTextIndent] = useState(0);
+    const [unit, setUnit] = useState('px');
+    const unitValues: string[] = ['px', '%', 'em', 'rem'];
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    // update word-spacing
-    const updateWordSpacing = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>, isCustom: boolean = false) => {
-        const target = event.target as HTMLInputElement;
-        const inputValue = target.value;
-
-        if (isCustom) {
-            setCustomWordSpacing(inputValue);
-        }
-        setWordSpacing(inputValue);
+    // update text-indent
+    const updateTextIndent = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.target.value;
+        const value = inputValue === '' || isNaN(Number(inputValue)) ? 0 : Number(inputValue);
+        setTextIndent(value);
     }
 
     // update unit
@@ -31,8 +26,8 @@ const WordSpacing: React.FC = () => {
         setUnit(inputValue);
     }
 
-    const dependencies = [wordSpacing, customWordSpacing, unit];
-    useElementOverflowAdjustment(['#word-spacing'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [textIndent, unit];
+    useElementOverflowAdjustment(['#text-indent'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -49,43 +44,32 @@ const WordSpacing: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Word Spacing</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Text Indent</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* word spacing */}
+                        {/* text indent */}
                         <div className='text-center p-0.5 text-xs'>
-                            word-spacing:
+                            text-indent:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={`${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`}
+                                value={`${textIndent}${unit}`}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('word-spacing', `${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`, false)}
+                                onClick={() => copyCss('text-indent', `${textIndent}${unit}`, false)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        <div className='grid grid-cols-2 gap-2'>
-                            <input
-                                type='radio'
-                                name='wordSpacing'
-                                className="btn"
-                                aria-label='normal'
-                                value='normal'
-                                checked={wordSpacing === 'normal'}
-                                onChange={updateWordSpacing}
-                            />
-                            {/* custom value */}
+                        <div className='grid'>
                             <button className="btn p-0">
                                 <input
                                     type='text'
                                     className='input w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center'
-                                    onClick={(event) => updateWordSpacing(event, true)}
-                                    onChange={(event) => updateWordSpacing(event, true)}
-                                    value={customWordSpacing}
+                                    onChange={updateTextIndent}
+                                    value={textIndent}
                                     placeholder='Custom Value'
                                 />
                             </button>
@@ -93,7 +77,7 @@ const WordSpacing: React.FC = () => {
 
                         {/* unit */}
                         <div className="divider font-bold text-lg">Unit</div>
-                        <div className='grid grid-cols-3 gap-2'>
+                        <div className='grid grid-cols-4 gap-2'>
                             {unitValues.map((value, index) => (
                                 <input
                                     key={index}
@@ -113,23 +97,25 @@ const WordSpacing: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='word-spacing' className='text-lg transition-transform duration-500'
+                <div id='text-indent' className='w-[700px] text-lg font-mono transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <p className='w-[700px] mx-auto font-mono'
-                        style={{
-                            wordSpacing: `${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`
-                        }}>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                        Aliquam dictum eros id mauris mollis sagittis.
-                        Quisque efficitur elementum euismod.
-                        Aenean aliquet porttitor neque, quis laoreet justo cursus eget.
-                        Aliquam porta interdum nunc ultrices dictum.
-                        Nullam ut porta purus, eget interdum leo. Nulla id tempus urna.
-                        Cras at nunc blandit, rhoncus magna vitae, commodo erat.
-                        Maecenas maximus consectetur erat, ut suscipit augue dapibus id.
-                        Suspendisse at sollicitudin nisl, et pulvinar tellus.
-                        Nam scelerisque nisl non massa consequat, tristique iaculis magna accumsan.
+                    <p className='mb-4' style={{ textIndent: `${textIndent}${unit}` }}>
+                        Quisque et maximus odio, non mollis lectus.
+                        Nullam malesuada efficitur odio, fermentum dapibus sem scelerisque tempor.
+                        Donec imperdiet odio metus, vitae eleifend massa lacinia sed.
+                        Proin egestas ligula ac tempor cursus.
+                        Vivamus vitae mi malesuada, varius dolor a, pellentesque massa.
+                        Sed mattis purus vel erat porttitor rutrum.
+                        Proin scelerisque aliquam felis et semper.
+                    </p>
+                    <p style={{ textIndent: `${textIndent}${unit}` }}>
+                        Cras vulputate at dolor vel pellentesque.
+                        Proin imperdiet dignissim justo in dictum.
+                        Nam a pharetra neque. Quisque non porttitor urna.
+                        Ut fringilla, purus fermentum tincidunt fermentum, elit est facilisis nulla, a efficitur libero massa faucibus libero.
+                        Pellentesque et iaculis mauris.
+                        Donec rutrum urna et enim ullamcorper, eget ultricies ipsum viverra.
                     </p>
                 </div>
             </div>
@@ -137,4 +123,4 @@ const WordSpacing: React.FC = () => {
     );
 }
 
-export default WordSpacing;
+export default TextIndent;

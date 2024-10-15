@@ -40,6 +40,7 @@ import AdvancedFont from './pages/category/typography/components/AdvancedFont';
 import LineHeight from './pages/category/typography/components/LineHeight';
 import LetterSpacing from './pages/category/typography/components/LetterSpacing';
 import WordSpacing from './pages/category/typography/components/WordSpacing';
+import TextIndent from './pages/category/typography/components/TextIndent';
 
 
 const App = () => {
@@ -85,6 +86,7 @@ const App = () => {
                             <Route path="LineHeight" element={<LineHeight />} />
                             <Route path="LetterSpacing" element={<LetterSpacing />} />
                             <Route path="WordSpacing" element={<WordSpacing />} />
+                            <Route path="TextIndent" element={<TextIndent />} />
                         </Route>
                     </Route>
                 </Routes>
