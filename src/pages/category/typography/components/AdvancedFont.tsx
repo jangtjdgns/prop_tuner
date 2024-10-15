@@ -58,6 +58,11 @@ const AdvancedFont: React.FC = () => {
         'traditional'              // 번체 글꼴 변형 사용
     ];
 
+    // 5. font-stretch
+    const [fontStretch, setFontStretch] = useState('normal');
+    const fontStretchValues = ['normal', 'ultra-condensed', 'extra-condensed', 'condensed', 'semi-condensed', 'semi-expanded', 'expanded', 'extra-expanded', 'ultra-expanded'];
+
+
     // 기타
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
@@ -89,6 +94,12 @@ const AdvancedFont: React.FC = () => {
         setFontKerning(inputValue);
     }
 
+    // update font-stretch
+    const updateFontStretch = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const inputValue = event.target.value;
+        setFontStretch(inputValue);
+    }
+
     // props 활성화
     // activeProps
     const activeProps = (elementId: string, event: React.ChangeEvent<HTMLInputElement>) => {
@@ -96,7 +107,6 @@ const AdvancedFont: React.FC = () => {
         // const isActive = target.checked;
         const activeElement = document.querySelector(elementId) as HTMLElement;
         activeElement.classList.toggle('hidden');
-        console.log(target.value);
 
         switch (target.value) {
             case 'feature':
@@ -112,6 +122,8 @@ const AdvancedFont: React.FC = () => {
                 setFontVariantLigatures('normal');
                 setFontVariantNumeric('normal');
                 setFontVariantEastAsian('normal');
+                break;
+            case 'stretch':
                 break;
         }
     }
@@ -388,6 +400,47 @@ const AdvancedFont: React.FC = () => {
                                 ))}
                             </div>
                         </div>
+
+                        {/* 5. font-fontStretch */}
+                        <div className='divider flex items-center justify-center font-bold text-lg'>
+                            <span>Font Stretch</span>
+                            <input type="checkbox"
+                                id="toggle-fontStretch"
+                                className="toggle toggle-info toggle-sm"
+                                value='stretch'
+                                onChange={(event) => activeProps('#font-stretch-wrap', event)}
+                            />
+                        </div>
+                        <div id='font-stretch-wrap' className='hidden'>
+                            <div className='text-center pb-2 text-xs'>
+                                font-stretch:
+                                <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                                    value={fontStretch}
+                                    readOnly
+                                />
+                                <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
+                                    onClick={() => copyCss('font-stretch', fontStretch, false)}
+                                >
+                                    <FontAwesomeIcon icon={faCopy} />
+                                </button>
+                            </div>
+                            {/* font-fontStretch 값 */}
+                            <div className='grid grid-cols-3 gap-2'>
+                                {fontStretchValues.map((value, index) => (
+                                    <input
+                                        key={index}
+                                        type='radio'
+                                        name='fontStretch'
+                                        className="btn btn-xs h-12"
+                                        value={value}
+                                        aria-label={value}
+                                        checked={fontStretch === value}
+                                        onChange={updateFontStretch}
+                                    />
+                                ))}
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -403,6 +456,7 @@ const AdvancedFont: React.FC = () => {
                         fontVariantLigatures,
                         fontVariantNumeric,
                         fontVariantEastAsian,
+                        fontStretch,
                         transform: `translateY(${boxTranslateY}px)`
                     }}>
                     <p>The Quick Brown Fox Jumps Over The Lazy Dog</p>

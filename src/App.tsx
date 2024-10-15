@@ -37,6 +37,7 @@ import Outline from './pages/category/sizing/components/Outline';
 import Typography from './pages/category/typography/Typography';
 import BasicFont from './pages/category/typography/components/BasicFont';
 import AdvancedFont from './pages/category/typography/components/AdvancedFont';
+import LineHeight from './pages/category/typography/components/LineHeight';
 
 
 const App = () => {
@@ -79,6 +80,7 @@ const App = () => {
                             <Route index element={<BasicFont />} />
                             <Route path="BasicFont" element={<BasicFont />} />
                             <Route path="AdvancedFont" element={<AdvancedFont />} />
+                            <Route path="LineHeight" element={<LineHeight />} />
                         </Route>
                     </Route>
                 </Routes>

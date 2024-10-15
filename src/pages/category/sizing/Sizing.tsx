@@ -27,7 +27,7 @@ const Sizing: React.FC = () => {
         <>
             <div className='min-h-[calc(100vh-80px)] grid grid-rows-[4rem_1fr] bg-white'>
                 {/* CSS */}
-                <div id="category-sizings" className='h-full border-b shadow-md flex gap-2 items-center px-2'>
+                <div id="category-sizings" className='h-full border-b shadow-md flex gap-2 items-center px-2 overflow-x-scroll'>
                     {sizingCategories.map(item => (
                         <input
                             key={item.id}
