@@ -39,6 +39,7 @@ import BasicFont from './pages/category/typography/components/BasicFont';
 import AdvancedFont from './pages/category/typography/components/AdvancedFont';
 import LineHeight from './pages/category/typography/components/LineHeight';
 import LetterSpacing from './pages/category/typography/components/LetterSpacing';
+import WordSpacing from './pages/category/typography/components/WordSpacing';
 
 
 const App = () => {
@@ -83,6 +84,7 @@ const App = () => {
                             <Route path="AdvancedFont" element={<AdvancedFont />} />
                             <Route path="LineHeight" element={<LineHeight />} />
                             <Route path="LetterSpacing" element={<LetterSpacing />} />
+                            <Route path="WordSpacing" element={<WordSpacing />} />
                         </Route>
                     </Route>
                 </Routes>

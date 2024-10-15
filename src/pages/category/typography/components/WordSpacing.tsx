@@ -1,4 +1,4 @@
-// LetterSpacing.tsx
+// WordSpacing.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,23 +6,23 @@ import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
-const LetterSpacing: React.FC = () => {
-    const [letterSpacing, setLetterSpacing] = useState('normal');
-    const [customLetterSpacing, setCustomLetterSpacing] = useState('2.5');
+const WordSpacing: React.FC = () => {
+    const [wordSpacing, setWordSpacing] = useState('normal');
+    const [customWordSpacing, setCustomWordSpacing] = useState('2.5');
     const [unit, setUnit] = useState('px');   // 단위, px, em 등
     const unitValues: string[] = ['px', 'em', 'rem'];
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    // update letter-spacing
-    const updateLetterSpacing = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>, isCustom: boolean = false) => {
+    // update word-spacing
+    const updateWordSpacing = (event: React.ChangeEvent<HTMLInputElement> | React.MouseEvent<HTMLInputElement>, isCustom: boolean = false) => {
         const target = event.target as HTMLInputElement;
         const inputValue = target.value;
 
         if (isCustom) {
-            setCustomLetterSpacing(inputValue);
+            setCustomWordSpacing(inputValue);
         }
-        setLetterSpacing(inputValue);
+        setWordSpacing(inputValue);
     }
 
     // update unit
@@ -31,8 +31,8 @@ const LetterSpacing: React.FC = () => {
         setUnit(inputValue);
     }
 
-    const dependencies = [letterSpacing, customLetterSpacing, unit];
-    useElementOverflowAdjustment(['#letter-spacing'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [wordSpacing, customWordSpacing, unit];
+    useElementOverflowAdjustment(['#word-spacing'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -49,20 +49,20 @@ const LetterSpacing: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Letter Spacing</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Word Spacing</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* letter spacing */}
+                        {/* word spacing */}
                         <div className='text-center p-0.5 text-xs'>
-                            letter-spacing:
+                            word-spacing:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={`${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`}
+                                value={`${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('letter-spacing', `${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`, false)}
+                                onClick={() => copyCss('word-spacing', `${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`, false)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -71,21 +71,21 @@ const LetterSpacing: React.FC = () => {
                         <div className='grid grid-cols-2 gap-2'>
                             <input
                                 type='radio'
-                                name='LetterSpacing'
+                                name='wordSpacing'
                                 className="btn"
                                 aria-label='normal'
                                 value='normal'
-                                checked={letterSpacing === 'normal'}
-                                onChange={updateLetterSpacing}
+                                checked={wordSpacing === 'normal'}
+                                onChange={updateWordSpacing}
                             />
                             {/* custom value */}
                             <button className="btn p-0">
                                 <input
                                     type='text'
                                     className='input w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center'
-                                    onClick={(event) => updateLetterSpacing(event, true)}
-                                    onChange={(event) => updateLetterSpacing(event, true)}
-                                    value={customLetterSpacing}
+                                    onClick={(event) => updateWordSpacing(event, true)}
+                                    onChange={(event) => updateWordSpacing(event, true)}
+                                    value={customWordSpacing}
                                     placeholder='Custom Value'
                                 />
                             </button>
@@ -113,12 +113,12 @@ const LetterSpacing: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='letter-spacing' className='text-lg transition-transform duration-500'
+                <div id='word-spacing' className='text-lg transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
                     <p className='w-[700px] mx-auto font-mono'
                         style={{
-                            letterSpacing: `${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`
+                            wordSpacing: `${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`
                         }}>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         Suspendisse nec odio aliquet, dignissim odio a, hendrerit augue.
@@ -141,4 +141,4 @@ const LetterSpacing: React.FC = () => {
     );
 }
 
-export default LetterSpacing;
+export default WordSpacing;
