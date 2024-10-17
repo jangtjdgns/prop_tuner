@@ -43,6 +43,7 @@ import WordSpacing from './pages/category/typography/components/WordSpacing';
 import TextIndent from './pages/category/typography/components/TextIndent';
 import TextDecoration from './pages/category/typography/components/TextDecoration';
 import TextShadow from './pages/category/typography/components/TextShadow';
+import TextAlign from './pages/category/typography/components/TextAlign';
 
 
 const App = () => {
@@ -91,6 +92,7 @@ const App = () => {
                             <Route path="TextIndent" element={<TextIndent />} />
                             <Route path="TextDecoration" element={<TextDecoration />} />
                             <Route path="TextShadow" element={<TextShadow />} />
+                            <Route path="TextAlign" element={<TextAlign />} />
                         </Route>
                     </Route>
                 </Routes>
