@@ -97,7 +97,7 @@ const TextIndent: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='text-indent' className='w-[700px] text-lg font-mono transition-transform duration-500'
+                <div id='text-indent' className='w-[700px] text-lg bg-blue-50 shadow p-4 font-mono transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
                     <p className='mb-4' style={{ textIndent: `${textIndent}${unit}` }}>

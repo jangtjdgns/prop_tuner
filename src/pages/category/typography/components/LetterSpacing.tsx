@@ -113,10 +113,10 @@ const LetterSpacing: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='letter-spacing' className='text-lg transition-transform duration-500'
+                <div id='letter-spacing' className='text-lg bg-blue-50 shadow p-4 font-mono transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <p className='w-[700px] mx-auto font-mono'
+                    <p className='w-[700px] mx-auto'
                         style={{
                             letterSpacing: `${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`
                         }}>

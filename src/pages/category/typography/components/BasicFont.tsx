@@ -364,14 +364,14 @@ const BasicFont: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='basic-font' className='w-[700px] transition-transform duration-300 text-center'
+                <div id='basic-font' className='w-[700px] text-lg bg-blue-50 shadow font-mono transition-transform duration-500 text-center'
                     style={{
                         fontWeight,
                         fontSize,
                         fontFamily,
                         transform: `translateY(${boxTranslateY}px)`
                     }}>
-                    <textarea placeholder='Please enter the text.' className='w-[500px] h-[600px] resize-none bg-transparent'
+                    <textarea placeholder='Please enter the text.' className='w-full min-h-[300px] p-4 resize-none bg-transparent'
                         style={{
                             fontStyle: fontStyle !== 'oblique' ? fontStyle : `${fontStyle} ${obliqueDeg}deg`,
                         }}

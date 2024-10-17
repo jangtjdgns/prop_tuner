@@ -1,4 +1,4 @@
-// OverflowWrap.tsx
+// Direction.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,21 +6,19 @@ import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
-const OverflowWrap: React.FC = () => {
-    type OverflowWrapValues = 'normal' | 'break-word' | 'anywhere';
-    const [overflowWrap, setOverflowWrap] = useState<OverflowWrapValues>('normal');
-    const overflowWrapValues: string[] = ['normal', 'break-word', 'anywhere'];
+const Direction: React.FC = () => {
+    const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    // update overflow-wrap
-    const updateOverflowWrap = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // update direction
+    const updateDirection = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
-        setOverflowWrap(inputValue as OverflowWrapValues);
+        setDirection(inputValue as 'ltr' | 'rtl');
     }
 
-    const dependencies = [overflowWrap];
-    useElementOverflowAdjustment(['#overflow-wrap'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 20 });
+    const dependencies = [direction];
+    useElementOverflowAdjustment(['#direction'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -37,38 +35,34 @@ const OverflowWrap: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Overflow Wrap</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Direction</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* overflow-wrap */}
+                        {/* direction */}
                         <div className='text-center p-0.5 text-xs'>
-                            overflow-wrap:
-                            <input type="text" className='input input-xs mx-1 border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={overflowWrap}
+                            direction:
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                                value={direction}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('overflow-wrap', overflowWrap)}
+                                onClick={() => copyCss('direction', direction)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        <div className='grid grid-cols-3 gap-2'>
-                            {overflowWrapValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='overflowWrap'
-                                    className="btn"
-                                    aria-label={value}
-                                    value={value}
-                                    checked={overflowWrap === value}
-                                    onChange={updateOverflowWrap}
-                                />
-                            ))}
+                        <div className='grid grid-cols-2 gap-2'>
+                            <input type='radio' name='direction' className="btn" aria-label='ltr' value='ltr'
+                                checked={direction === 'ltr'}
+                                onChange={updateDirection}
+                            />
+                            <input type='radio' name='direction' className="btn" aria-label='rtl' value='rtl'
+                                checked={direction === 'rtl'}
+                                onChange={updateDirection}
+                            />
                         </div>
                     </div>
                 </div>
@@ -76,19 +70,17 @@ const OverflowWrap: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='overflow-wrap' className='w-min max-w-[500px] min-h-[400px] bg-blue-50 shadow p-2 font-mono text-2xl transition-transform duration-500 '
+                <div id='direction' className='w-[800px] min-h-[100px] bg-blue-50 shadow font-mono text-3xl p-4 transition-transform duration-500'
                     style={{
+                        direction,
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
-                    <p style={{ overflowWrap }}>
-                        In the whirlwind of dreams, where serendipity dances with the echoes of time, the heart finds its rhythm.
-                        Through the intertwining shadows of the night, whispers of eternity linger, painting the world in hues of mystery.
-                    </p>
+                    <p>Beneath the moon’s silver glow, shadows dance in whispered flow. Time bends and folds, as rivers of thought gently unfold.</p>
                 </div>
             </div>
         </>
     );
 }
 
-export default OverflowWrap;
+export default Direction;

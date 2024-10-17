@@ -447,7 +447,7 @@ const AdvancedFont: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='advanced-font' className='transition-transform duration-500 text-3xl text-center'
+                <div id='advanced-font' className='transition-transform duration-500 text-3xl text-center bg-blue-50 shadow p-4'
                     style={{
                         fontFamily,
                         fontFeatureSettings,

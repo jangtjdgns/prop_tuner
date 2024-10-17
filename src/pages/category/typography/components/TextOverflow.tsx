@@ -87,10 +87,10 @@ const TextOverflow: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='text-overflow' className='w-[500px] h-[50px] flex items-center bg-blue-50 shadow p-2 font-mono text-xl transition-transform duration-500'
+                <div id='text-overflow' className='w-[700px] h-[70px] flex items-center bg-blue-50 shadow p-2 font-mono text-2xl transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <p className='overflow-hidden whitespace-nowrap'
+                    <p className='overflow-scroll whitespace-nowrap px-2 py-4'
                         style={{
                             textOverflow: textOverflow === 'clip' || textOverflow === 'ellipsis' ? textOverflow : `"${customTextOverflow}"`
                         }}

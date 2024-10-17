@@ -48,6 +48,7 @@ import WhiteSpace from './pages/category/typography/components/WhiteSpace';
 import OverflowWrap from './pages/category/typography/components/OverflowWrap';
 import WordBreak from './pages/category/typography/components/WordBreak';
 import TextOverflow from './pages/category/typography/components/TextOverflow';
+import Direction from './pages/category/typography/components/Direction';
 
 
 const App = () => {
@@ -101,6 +102,7 @@ const App = () => {
                             <Route path="OverflowWrap" element={<OverflowWrap />} />
                             <Route path="WordBreak" element={<WordBreak />} />
                             <Route path="TextOverflow" element={<TextOverflow />} />
+                            <Route path="Direction" element={<Direction />} />
                         </Route>
                     </Route>
                 </Routes>
