@@ -45,7 +45,7 @@ const WordBreak: React.FC = () => {
                         {/* wordBreak */}
                         <div className='text-center p-0.5 text-xs'>
                             word-break:
-                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={wordBreak}
                                 readOnly
                             />
