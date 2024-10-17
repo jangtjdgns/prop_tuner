@@ -44,6 +44,7 @@ import TextIndent from './pages/category/typography/components/TextIndent';
 import TextDecoration from './pages/category/typography/components/TextDecoration';
 import TextShadow from './pages/category/typography/components/TextShadow';
 import TextAlign from './pages/category/typography/components/TextAlign';
+import WhiteSpace from './pages/category/typography/components/WhiteSpace';
 
 
 const App = () => {
@@ -93,6 +94,7 @@ const App = () => {
                             <Route path="TextDecoration" element={<TextDecoration />} />
                             <Route path="TextShadow" element={<TextShadow />} />
                             <Route path="TextAlign" element={<TextAlign />} />
+                            <Route path="WhiteSpace" element={<WhiteSpace />} />
                         </Route>
                     </Route>
                 </Routes>

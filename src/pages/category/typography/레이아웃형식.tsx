@@ -60,7 +60,7 @@ const test: React.FC = () => {
                                     key={index}
                                     type='radio'
                                     name='aa'
-                                    className="btn border-2 focus:border-gray-400"
+                                    className="btn"
                                     aria-label={value}
                                     checked= {aa === value}
                                     onChange={() => updateAA()}
@@ -86,7 +86,7 @@ const test: React.FC = () => {
             {/* view 파트 */}
             {/* transform: `translateY(${boxTranslateY}px)` */}
             {/* transition-transform duration-500 */}
-            <div id="view" className='w-full h-full flex items-center justify-center'>
+            <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
             </div>
         </>
     );
