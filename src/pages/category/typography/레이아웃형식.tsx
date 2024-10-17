@@ -47,7 +47,7 @@ const test: React.FC = () => {
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('속성', '값', false)}
+                                onClick={() => copyCss('속성', '값')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

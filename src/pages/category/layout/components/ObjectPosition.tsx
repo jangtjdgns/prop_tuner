@@ -90,7 +90,7 @@ const ObjectPosition: React.FC = () => {
                             />
                             {/* object-position 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('object-position', `${objectPositionX} ${objectPositionY}`, false)}
+                                onClick={() => copyCss('object-position', `${objectPositionX} ${objectPositionY}`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

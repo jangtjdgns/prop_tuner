@@ -56,7 +56,7 @@ const Height: React.FC = () => {
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('height', `${height}${unit}`, false)}
+                                onClick={() => copyCss('height', height, unit)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

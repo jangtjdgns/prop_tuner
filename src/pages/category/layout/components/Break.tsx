@@ -90,7 +90,7 @@ const Break: React.FC = () => {
                             break-{breakType}: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={breakValue} readOnly />
                             {/* column-width 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss(`break-${breakType}`, breakValue, false)}
+                                onClick={() => copyCss(`break-${breakType}`, breakValue)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

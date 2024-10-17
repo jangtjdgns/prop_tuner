@@ -62,7 +62,7 @@ const LineHeight: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('line-height', `${lineHeight}${lineHeight === 'normal' ? '' : (unit !== 'none' ? unit : '')}`, false)}
+                                onClick={() => copyCss('line-height', `${lineHeight}${lineHeight === 'normal' ? '' : (unit !== 'none' ? unit : '')}`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

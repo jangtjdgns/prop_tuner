@@ -58,7 +58,7 @@ const ObjectFit: React.FC = () => {
                             />
                             {/* object-fit 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('object-fit', objectFit, false)}
+                                onClick={() => copyCss('object-fit', objectFit)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

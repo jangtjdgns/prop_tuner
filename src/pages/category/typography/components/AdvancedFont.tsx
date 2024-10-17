@@ -174,7 +174,7 @@ const AdvancedFont: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('font-family', fontFamily, false)}
+                                onClick={() => copyCss('font-family', fontFamily)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -214,7 +214,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-feature-settings', fontFeatureSettings, false)}
+                                    onClick={() => copyCss('font-feature-settings', fontFeatureSettings)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -253,7 +253,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-kerning', fontKerning, false)}
+                                    onClick={() => copyCss('font-kerning', fontKerning)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -296,7 +296,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-variant-caps', fontVariantCaps, false)}
+                                    onClick={() => copyCss('font-variant-caps', fontVariantCaps)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -324,7 +324,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-variant-ligatures', fontVariantLigatures, false)}
+                                    onClick={() => copyCss('font-variant-ligatures', fontVariantLigatures)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -352,7 +352,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-variant-numeric', fontVariantNumeric, false)}
+                                    onClick={() => copyCss('font-variant-numeric', fontVariantNumeric)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -380,7 +380,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-variant-east-asian', fontVariantEastAsian, false)}
+                                    onClick={() => copyCss('font-variant-east-asian', fontVariantEastAsian)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -419,7 +419,7 @@ const AdvancedFont: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('font-stretch', fontStretch, false)}
+                                    onClick={() => copyCss('font-stretch', fontStretch)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

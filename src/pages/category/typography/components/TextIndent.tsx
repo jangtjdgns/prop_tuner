@@ -57,7 +57,7 @@ const TextIndent: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('text-indent', `${textIndent}${unit}`, false)}
+                                onClick={() => copyCss('text-indent', `${textIndent}${unit}`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

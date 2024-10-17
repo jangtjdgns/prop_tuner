@@ -157,7 +157,7 @@ const BasicFont: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('font-style', fontStyle !== 'oblique' ? fontStyle : `${fontStyle} ${obliqueDeg}deg`, false)}
+                                onClick={() => copyCss('font-style', fontStyle !== 'oblique' ? fontStyle : `${fontStyle} ${obliqueDeg}deg`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -201,7 +201,7 @@ const BasicFont: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('font-weight', fontWeight, false)}
+                                onClick={() => copyCss('font-weight', fontWeight)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -255,7 +255,7 @@ const BasicFont: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('font-size', fontSize, false)}
+                                onClick={() => copyCss('font-size', fontSize)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -296,7 +296,7 @@ const BasicFont: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('font-family', fontFamily, false)}
+                                onClick={() => copyCss('font-family', fontFamily)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

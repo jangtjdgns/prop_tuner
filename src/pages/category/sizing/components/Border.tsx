@@ -115,7 +115,7 @@ const Border: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('border-width', borderWidth, true)}
+                                onClick={() => copyCss('border-width', borderWidth, 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -138,7 +138,7 @@ const Border: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('border-style', borderStyle, false)}
+                                onClick={() => copyCss('border-style', borderStyle)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -164,7 +164,7 @@ const Border: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('border-color', borderColor, false)}
+                                onClick={() => copyCss('border-color', borderColor)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -230,7 +230,7 @@ const Border: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('border-radius', borderRadius, true)}
+                                    onClick={() => copyCss('border-radius', borderRadius, 'px')}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

@@ -68,7 +68,7 @@ const TextDecoration: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('text-decoration=thickness', textDecorationThickness, true)}
+                                onClick={() => copyCss('text-decoration-thickness', textDecorationThickness, 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -94,7 +94,7 @@ const TextDecoration: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('text-decoration-line', textDecorationLine, false)}
+                                onClick={() => copyCss('text-decoration-line', textDecorationLine)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -124,7 +124,7 @@ const TextDecoration: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('text-decoration-style', textDecorationStyle, false)}
+                                onClick={() => copyCss('text-decoration-style', textDecorationStyle)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -154,7 +154,7 @@ const TextDecoration: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('text-decoration-color', textDecorationColor, false)}
+                                onClick={() => copyCss('text-decoration-color', textDecorationColor)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

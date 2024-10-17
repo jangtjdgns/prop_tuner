@@ -62,7 +62,7 @@ const WordSpacing: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('word-spacing', `${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`, false)}
+                                onClick={() => copyCss('word-spacing', `${wordSpacing}${wordSpacing === 'normal' ? '' : unit}`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

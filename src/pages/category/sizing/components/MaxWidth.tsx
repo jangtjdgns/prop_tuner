@@ -57,7 +57,7 @@ const Width: React.FC = () => {
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('max-width', maxWidth, true)}
+                                onClick={() => copyCss('max-width', maxWidth, 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

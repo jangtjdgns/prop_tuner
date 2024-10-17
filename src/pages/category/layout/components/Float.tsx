@@ -87,7 +87,7 @@ const Float: React.FC = () => {
                             />
                             {/* float 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('float', float, false)}
+                                onClick={() => copyCss('float', float)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -145,7 +145,7 @@ const Float: React.FC = () => {
                                 />
                                 {/* clear 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('clear', clear, false)}
+                                    onClick={() => copyCss('clear', clear)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

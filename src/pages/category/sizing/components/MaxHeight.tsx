@@ -56,7 +56,7 @@ const MaxHeight: React.FC = () => {
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('max-height', maxHeight, true)}
+                                onClick={() => copyCss('max-height', maxHeight, 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

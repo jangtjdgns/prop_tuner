@@ -52,7 +52,7 @@ const Overflow: React.FC = () => {
                             />
                             {/* overflow 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('overflow', overflow, false)}
+                                onClick={() => copyCss('overflow', overflow)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

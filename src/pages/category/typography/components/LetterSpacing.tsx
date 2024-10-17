@@ -62,7 +62,7 @@ const LetterSpacing: React.FC = () => {
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('letter-spacing', `${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`, false)}
+                                onClick={() => copyCss('letter-spacing', `${letterSpacing}${letterSpacing === 'normal' ? '' : unit}`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

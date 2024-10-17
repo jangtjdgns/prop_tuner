@@ -170,7 +170,7 @@ const Margin: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('margin', margin, true)}
+                                    onClick={() => copyCss('margin', margin, 'px')}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -184,7 +184,7 @@ const Margin: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('margin', `${marginVertical}px ${marginHorizontal}px`, false)}
+                                    onClick={() => copyCss('margin', `${marginVertical}px ${marginHorizontal}px`)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -198,7 +198,7 @@ const Margin: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('margin', `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px`, false)}
+                                    onClick={() => copyCss('margin', `${marginTop}px ${marginRight}px ${marginBottom}px ${marginLeft}px`)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

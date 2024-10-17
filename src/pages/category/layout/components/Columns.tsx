@@ -121,7 +121,7 @@ const Columns: React.FC = () => {
                             column-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center' value={columnWidth} readOnly />
                             {/* column-width 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('column-width', columnWidth, true)}
+                                onClick={() => copyCss('column-width', columnWidth, columnWidth === 'auto' ? '' : 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -141,7 +141,7 @@ const Columns: React.FC = () => {
                             column-count: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnCount} readOnly />
                             {/* column-count 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('column-count', columnCount, false)}
+                                onClick={() => copyCss('column-count', columnCount)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -161,7 +161,7 @@ const Columns: React.FC = () => {
                             column-gap: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnGap} readOnly />
                             {/* column-count 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('column-gap', columnGap, true)}
+                                onClick={() => copyCss('column-gap', columnGap, columnGap === 'auto' ? '' : 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -190,7 +190,7 @@ const Columns: React.FC = () => {
                                 column-rule-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleWidth} readOnly />
                                 {/* column-rule-width 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                    onClick={() => copyCss('column-rule-width', columnRuleWidth, true)}
+                                    onClick={() => copyCss('column-rule-width', columnRuleWidth, 'px')}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -206,7 +206,7 @@ const Columns: React.FC = () => {
                                 column-rule-style: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleStyle} readOnly />
                                 {/* column-rule-style 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                    onClick={() => copyCss('column-rule-style', columnRuleStyle, false)}
+                                    onClick={() => copyCss('column-rule-style', columnRuleStyle)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -227,7 +227,7 @@ const Columns: React.FC = () => {
                                 column-rule-color: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={columnRuleColor} readOnly />
                                 {/* column-rule-style 복사 */}
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                    onClick={() => copyCss('column-rule-color', columnRuleColor, false)}
+                                    onClick={() => copyCss('column-rule-color', columnRuleColor)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

@@ -170,7 +170,7 @@ const Padding: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('padding', padding, true)}
+                                    onClick={() => copyCss('padding', padding, 'px')}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -184,7 +184,7 @@ const Padding: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('padding', `${paddingVertical}px ${paddingHorizontal}px`, false)}
+                                    onClick={() => copyCss('padding', `${paddingVertical}px ${paddingHorizontal}px`)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -198,7 +198,7 @@ const Padding: React.FC = () => {
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('padding', `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`, false)}
+                                    onClick={() => copyCss('padding', `${paddingTop}px ${paddingRight}px ${paddingBottom}px ${paddingLeft}px`)}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>

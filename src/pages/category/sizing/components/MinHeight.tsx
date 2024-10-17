@@ -58,7 +58,7 @@ const MinHeight: React.FC = () => {
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('min-height', minHeight, true)}
+                                onClick={() => copyCss('min-height', minHeight, 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

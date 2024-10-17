@@ -72,7 +72,7 @@ const Display: React.FC = () => {
                             />
                             {/* display 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('display', display, false)}
+                                onClick={() => copyCss('display', display)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

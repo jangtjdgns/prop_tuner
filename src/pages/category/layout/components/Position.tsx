@@ -96,7 +96,7 @@ const Position: React.FC = () => {
                             />
                             {/* position 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('position', position, false)}
+                                onClick={() => copyCss('position', position)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

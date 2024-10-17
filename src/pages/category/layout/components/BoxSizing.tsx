@@ -56,7 +56,7 @@ const BoxSizing: React.FC = () => {
                             box-sizing: <input type="text" className='input input-xs border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2' value={`${boxSizing}-box`} readOnly />
                             {/* box-sizing 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('box-sizing', `${boxSizing}-box`, false)}
+                                onClick={() => copyCss('box-sizing', `${boxSizing}-box`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

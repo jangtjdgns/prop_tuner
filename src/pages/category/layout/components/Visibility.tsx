@@ -85,7 +85,7 @@ const Visibility: React.FC = () => {
                             />
                             {/* visibility 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('visibility', visibility, false)}
+                                onClick={() => copyCss('visibility', visibility)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

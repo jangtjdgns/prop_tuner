@@ -53,7 +53,7 @@ const ZIndex: React.FC = () => {
                             />
                             {/* z-index 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('z-index', lastZIndexValue, false)}
+                                onClick={() => copyCss('z-index', lastZIndexValue)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>

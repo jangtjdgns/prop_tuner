@@ -111,12 +111,12 @@ const Outline: React.FC = () => {
                         {/* outline-width */}
                         <div className='text-center p-0.5 text-xs'>
                             outline-width:
-                            <input type="text" className='input input-xs mx-1 outline-gray-200 w-16 rounded focus:outline-none focus:outline-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={outlineWidth}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('outline-width', outlineWidth, true)}
+                                onClick={() => copyCss('outline-width', outlineWidth, 'px')}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -124,7 +124,7 @@ const Outline: React.FC = () => {
                         <div className='grid'>
                             <button className="btn p-0">
                                 <input type="text"
-                                    className="input input-xs w-full h-full bg-transparent focus:outline-none outline-2 focus:outline-gray-400 text-center"
+                                    className="input input-xs w-full h-full bg-transparent focus:outline-none outline-2 focus:border-gray-400 text-center"
                                     onChange={updateOutlineWidth}
                                     value={outlineWidth}
                                 />
@@ -134,12 +134,12 @@ const Outline: React.FC = () => {
                         {/* outline-style */}
                         <div className='text-center p-0.5 text-xs'>
                             outline-style:
-                            <input type="text" className='input input-xs mx-1 outline-gray-200 w-16 rounded focus:outline-none focus:outline-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={outlineStyle}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('outline-style', outlineStyle, false)}
+                                onClick={() => copyCss('outline-style', outlineStyle)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -160,12 +160,12 @@ const Outline: React.FC = () => {
                         {/* outline-color */}
                         <div className='text-center p-0.5 text-xs'>
                             outline-color:
-                            <input type="text" className='input input-xs w-20 outline-gray-200 w-16 rounded focus:outline-none focus:outline-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={outlineColor}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2'
-                                onClick={() => copyCss('outline-color', outlineColor, false)}
+                                onClick={() => copyCss('outline-color', outlineColor)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -175,10 +175,10 @@ const Outline: React.FC = () => {
                                 value={outlineColor}
                                 onChange={updateOutlineColor}
                             />
-                            <input type="text" className="col-start-2 col-end-4 btn focus:outline-none outline-2 focus:outline-gray-400"
+                            <input type="text" className="col-start-2 col-end-4 btn focus:outline-none border-2 focus:border-gray-400"
                                 value={outlineColor}
                                 onChange={updateOutlineColor}
-                                placeholder='outline-color'
+                                placeholder='Color'
                             />
                         </div>
 
@@ -226,12 +226,12 @@ const Outline: React.FC = () => {
                         <div id='offset-wrap' className='hidden'>
                             <div className='text-center p-0.5 pb-2 text-xs'>
                                 outline-offset:
-                                <input type="text" className='input input-xs mx-1 outline-gray-200 w-16 rounded focus:outline-none focus:outline-gray-200 text-center px-2'
+                                <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                     value={outlineOffset}
                                     readOnly
                                 />
                                 <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                    onClick={() => copyCss('outline-offset', outlineOffset, true)}
+                                    onClick={() => copyCss('outline-offset', outlineOffset, 'px')}
                                 >
                                     <FontAwesomeIcon icon={faCopy} />
                                 </button>
@@ -239,7 +239,7 @@ const Outline: React.FC = () => {
                             <div className='grid'>
                                 <button className="btn p-0">
                                     <input type="text"
-                                        className="input input-xs w-full h-full bg-transparent focus:outline-none outline-2 focus:outline-gray-400 text-center"
+                                        className="input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center"
                                         onChange={updateOutlineOffset}
                                         value={outlineOffset}
                                     />
