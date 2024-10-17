@@ -42,6 +42,7 @@ import LetterSpacing from './pages/category/typography/components/LetterSpacing'
 import WordSpacing from './pages/category/typography/components/WordSpacing';
 import TextIndent from './pages/category/typography/components/TextIndent';
 import TextDecoration from './pages/category/typography/components/TextDecoration';
+import TextShadow from './pages/category/typography/components/TextShadow';
 
 
 const App = () => {
@@ -89,6 +90,7 @@ const App = () => {
                             <Route path="WordSpacing" element={<WordSpacing />} />
                             <Route path="TextIndent" element={<TextIndent />} />
                             <Route path="TextDecoration" element={<TextDecoration />} />
+                            <Route path="TextShadow" element={<TextShadow />} />
                         </Route>
                     </Route>
                 </Routes>

@@ -36,7 +36,7 @@ const TextDecoration: React.FC = () => {
         }
     }
 
-    const dependencies = [''];
+    const dependencies = [textDecorationThickness, textDecorationLine, textDecorationStyle, textDecorationColor];
     useElementOverflowAdjustment(['#text-decoration'], () => 0, setBoxTranslateY, dependencies);
 
 
@@ -149,7 +149,7 @@ const TextDecoration: React.FC = () => {
                         <div className="divider font-bold text-lg"></div>
                         <div className='text-center p-0.5 text-xs'>
                             text-decoration-color:
-                            <input type="text" className='input input-xs w-20 outline-gray-200 w-16 rounded focus:outline-none focus:outline-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs w-20 outline-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={textDecorationColor}
                                 readOnly
                             />
@@ -164,7 +164,7 @@ const TextDecoration: React.FC = () => {
                                 value={textDecorationColor}
                                 onChange={(event) => updateTextDecoration('color', event)}
                             />
-                            <input type="text" className="col-start-2 col-end-4 btn focus:outline-none outline-2 focus:outline-gray-400"
+                            <input type="text" className="col-start-2 col-end-4 btn focus:outline-none outline-2 focus:border-gray-400"
                                 value={textDecorationColor}
                                 onChange={(event) => updateTextDecoration('color', event)}
                                 placeholder='Color'
