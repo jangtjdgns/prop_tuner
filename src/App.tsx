@@ -46,6 +46,7 @@ import TextShadow from './pages/category/typography/components/TextShadow';
 import TextAlign from './pages/category/typography/components/TextAlign';
 import WhiteSpace from './pages/category/typography/components/WhiteSpace';
 import OverflowWrap from './pages/category/typography/components/OverflowWrap';
+import WordBreak from './pages/category/typography/components/WordBreak';
 
 
 const App = () => {
@@ -97,6 +98,7 @@ const App = () => {
                             <Route path="TextAlign" element={<TextAlign />} />
                             <Route path="WhiteSpace" element={<WhiteSpace />} />
                             <Route path="OverflowWrap" element={<OverflowWrap />} />
+                            <Route path="WordBreak" element={<WordBreak />} />
                         </Route>
                     </Route>
                 </Routes>

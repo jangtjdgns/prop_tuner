@@ -1,4 +1,4 @@
-// OverflowWrap.tsx
+// WordBreak.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,21 +6,21 @@ import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
-const OverflowWrap: React.FC = () => {
-    type OverflowWrapValues = 'normal' | 'break-word' | 'anywhere';
-    const [overflowWrap, setOverflowWrap] = useState<OverflowWrapValues>('normal');
-    const overflowWrapValues: string[] = ['normal', 'break-word', 'anywhere'];
+const WordBreak: React.FC = () => {
+    type WordBreakValues = 'normal' | 'break-all' | 'keep-all' | 'break-word';
+    const [wordBreak, setWordBreak] = useState<WordBreakValues>('normal');
+    const wordBreakValues: string[] = ['normal', 'break-all', 'keep-all', 'break-word'];
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    // update overflow-wrap
-    const updateOverflowWrap = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // update wordBreak
+    const updateWordBreak = (event: React.ChangeEvent<HTMLInputElement>) => {
         const inputValue = event.target.value;
-        setOverflowWrap(inputValue as OverflowWrapValues);
+        setWordBreak(inputValue as WordBreakValues);
     }
 
-    const dependencies = [overflowWrap];
-    useElementOverflowAdjustment(['#overflow-wrap'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 20 });
+    const dependencies = [wordBreak];
+    useElementOverflowAdjustment(['#word-break'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 20 });
 
 
     return (
@@ -37,36 +37,36 @@ const OverflowWrap: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Overflow Wrap</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Word Break</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* overflow-wrap */}
+                        {/* wordBreak */}
                         <div className='text-center p-0.5 text-xs'>
-                            overflow-wrap:
-                            <input type="text" className='input input-xs mx-1 border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={overflowWrap}
+                            word-break:
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                                value={wordBreak}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('overflow-wrap', overflowWrap)}
+                                onClick={() => copyCss('word-break', wordBreak)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        <div className='grid grid-cols-3 gap-2'>
-                            {overflowWrapValues.map((value, index) => (
+                        <div className='grid grid-cols-2 gap-2'>
+                            {wordBreakValues.map((value, index) => (
                                 <input
                                     key={index}
                                     type='radio'
-                                    name='overflowWrap'
+                                    name='wordBreak'
                                     className="btn"
                                     aria-label={value}
                                     value={value}
-                                    checked={overflowWrap === value}
-                                    onChange={updateOverflowWrap}
+                                    checked={wordBreak === value}
+                                    onChange={updateWordBreak}
                                 />
                             ))}
                         </div>
@@ -76,14 +76,17 @@ const OverflowWrap: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='overflow-wrap' className='w-min max-w-[500px] min-h-[400px] bg-blue-50 shadow p-2 text-2xl transition-transform duration-500 '
+                <div id='word-break' className='w-[500px] h-[500px] bg-blue-50 shadow p-2 text-2xl font-mono transition-transform duration-500 '
                     style={{
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
-                    <p style={{ overflowWrap }}>
-                        In the whirlwind of dreams, where serendipity dances with the echoes of time, the heart finds its rhythm.
-                        Through the intertwining shadows of the night, whispers of eternity linger, painting the world in hues of mystery.
+                    <p style={{ wordBreak }}>
+                        Quisquepharetraenimnonvelittincidunt, eupellentesqueorcifringilla.
+                        Phaselluspellentesquequeligula, sitametfermentummivehiculain.
+                        Vestibulumarcumassa, fringillasitametsapienvitae,dignissimiaculisquam.
+                        Vestibulumpulvinarfinibustellus,utsemperaugueplaceratet.
+                        Suspendissevestibulumexquisturpisgravidaultrices.Duisalibero.
                     </p>
                 </div>
             </div>
@@ -91,4 +94,4 @@ const OverflowWrap: React.FC = () => {
     );
 }
 
-export default OverflowWrap;
+export default WordBreak;

@@ -196,15 +196,20 @@ const TextShadow: React.FC = () => {
                 <div id='text-shadow' className='w-[700px] text-lg font-mono transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <p className='mb-4' style={{
-                        textShadow: textShadow
-                    }}>
+                    <p className='pb-4' style={{ textShadow: textShadow }}>
                         Nunc in viverra sapien. Duis ut sem nulla.
                         Morbi fermentum nisi sapien, sit amet semper sapien dapibus et.
                         Ut lorem ligula, placerat vel consectetur vel, ullamcorper lobortis neque.
                         Morbi faucibus lobortis nulla. Pellentesque pulvinar aliquet quam non aliquam.
                         Integer ex diam, congue non consequat eget, efficitur eu ligula. Praesent quis pulvinar orci.
                         Vivamus quis dapibus mauris.
+                    </p>
+                    <p style={{ textShadow: textShadow }}>
+                        Praesent elementum nulla non dictum vestibulum. Donec quis dictum enim.
+                        Phasellus varius enim luctus, malesuada risus vel, hendrerit libero.
+                        Vivamus ut posuere libero, suscipit vehicula ligula.
+                        Nulla massa elit, aliquam ac est gravida, aliquet scelerisque magna.
+                        Nunc sit amet ultrices augue. Donec rutrum est nunc, in vestibulum velit cursus at.
                     </p>
                 </div>
             </div>
