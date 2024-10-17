@@ -28,7 +28,7 @@ const WhiteSpace: React.FC = () => {
 
 
     const dependencies = [whiteSpace, paragraph1, paragraph2];
-    useElementOverflowAdjustment(['#white-space'], () => 0, setBoxTranslateY, dependencies);
+    useElementOverflowAdjustment(['#white-space'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 100 });
 
 
     return (

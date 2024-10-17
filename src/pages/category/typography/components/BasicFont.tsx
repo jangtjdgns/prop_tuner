@@ -371,7 +371,7 @@ const BasicFont: React.FC = () => {
                         fontFamily,
                         transform: `translateY(${boxTranslateY}px)`
                     }}>
-                    <textarea placeholder='Please enter text.' className='w-[500px] h-[600px] resize-none bg-transparent'
+                    <textarea placeholder='Please enter the text.' className='w-[500px] h-[600px] resize-none bg-transparent'
                         style={{
                             fontStyle: fontStyle !== 'oblique' ? fontStyle : `${fontStyle} ${obliqueDeg}deg`,
                         }}
