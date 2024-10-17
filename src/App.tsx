@@ -41,6 +41,7 @@ import LineHeight from './pages/category/typography/components/LineHeight';
 import LetterSpacing from './pages/category/typography/components/LetterSpacing';
 import WordSpacing from './pages/category/typography/components/WordSpacing';
 import TextIndent from './pages/category/typography/components/TextIndent';
+import TextDecoration from './pages/category/typography/components/TextDecoration';
 
 
 const App = () => {
@@ -87,6 +88,7 @@ const App = () => {
                             <Route path="LetterSpacing" element={<LetterSpacing />} />
                             <Route path="WordSpacing" element={<WordSpacing />} />
                             <Route path="TextIndent" element={<TextIndent />} />
+                            <Route path="TextDecoration" element={<TextDecoration />} />
                         </Route>
                     </Route>
                 </Routes>
