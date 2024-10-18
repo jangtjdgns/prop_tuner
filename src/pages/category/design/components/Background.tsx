@@ -19,7 +19,7 @@ import { copyCss } from '../../../../utils/clipboardUtils';
 
 const Background: React.FC = () => {
     // 1. background-color
-    const [backgroundColor, setBackgroundColor] = useState('#818CF8');
+    const [backgroundColor, setBackgroundColor] = useState('#EFF6FF');
     // const [bgOpacity, setBgOpacity] = useState(1);
     // 2. background-clip
     const [backgroundClip, setBackgroundClip] = useState('border-box');
@@ -375,8 +375,8 @@ const Background: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div className='w-[500px] h-[500px] overflow-scroll'>
-                    <div id='background' className='flex items-center justify-center font-mono font-bold p-6 text-2xl text-gray-50 text-center'
+                <div id='background' className='w-[500px] h-[500px] overflow-scroll'>
+                    <div className='flex items-center justify-center font-mono font-bold p-6 text-2xl text-center transsition-all duration-500'
                         style={{
                             backgroundColor,
                             backgroundClip,

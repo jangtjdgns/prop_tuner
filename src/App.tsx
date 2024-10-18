@@ -52,6 +52,7 @@ import Direction from './pages/category/typography/components/Direction';
 // category-design
 import Design from './pages/category/design/Design';
 import Background from './pages/category/design/components/Background';
+import Color from './pages/category/design/components/Color';
 
 const App = () => {
     return (
@@ -109,6 +110,7 @@ const App = () => {
                         <Route path="Design" element={<Design />}>
                             <Route index element={<Background />} />
                             <Route path="Background" element={<Background />} />
+                            <Route path="Color" element={<Color />} />
                         </Route>
                     </Route>
                 </Routes>
