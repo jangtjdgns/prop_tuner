@@ -12,7 +12,7 @@ const ObjectPosition: React.FC = () => {
     const [customValueX, setCustomValueX] = useState('50%');            // 포지션 수평 커스텀 값
     const [customValueY, setCustomValueY] = useState('50%');            // 포지션 수직 커스텀 값
     const objectPositionValues: string[] = ['center', 'left', 'right', 'top', 'bottom'];
-    const [image, setImage] = useState('/images/모찌.jpg');
+    const [image, setImage] = useState('https://img.icons8.com/?size=100&id=45732&format=png&color=000000');
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
 
@@ -165,15 +165,14 @@ const ObjectPosition: React.FC = () => {
                 <div id='object-position' className='w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <img
+                    <img id = 'view-image'
+                        className='w-full h-full transition-all duration-200 bg-white bg-opacity-0 flex justify-center items-center text-xl'
                         src={image}
                         alt='no image'
                         style={{ 
                             objectFit: 'none'
                             , objectPosition: `${objectPositionX} ${objectPositionY}`
                         }}
-                        id = 'view-image'
-                        className='w-full h-full transition-all duration-200 bg-white bg-opacity-0 flex justify-center items-center text-xl'
                     />
                 </div>
             </div>

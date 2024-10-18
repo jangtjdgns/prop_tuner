@@ -62,6 +62,7 @@ const test: React.FC = () => {
                                     name='aa'
                                     className="btn"
                                     aria-label={value}
+                                    value={value}
                                     checked= {aa === value}
                                     onChange={() => updateAA()}
                                 />
@@ -73,9 +74,9 @@ const test: React.FC = () => {
                         <button className="btn p-0">
                             <input type="text"
                                 className="input input-xs w-full h-full bg-transparent focus:outline-none border-2 focus:border-gray-400 text-center"
+                                value={image}
                                 onClick={changeImage}
                                 onChange={changeImage}
-                                value={image}
                                 placeholder='image url'
                             />
                         </button> */}
@@ -84,8 +85,8 @@ const test: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            {/* transform: `translateY(${boxTranslateY}px)` */}
             {/* transition-transform duration-500 */}
+            {/* transform: `translateY(${boxTranslateY}px)` */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
             </div>
         </>

@@ -49,7 +49,9 @@ import OverflowWrap from './pages/category/typography/components/OverflowWrap';
 import WordBreak from './pages/category/typography/components/WordBreak';
 import TextOverflow from './pages/category/typography/components/TextOverflow';
 import Direction from './pages/category/typography/components/Direction';
-
+// category-design
+import Design from './pages/category/design/Design';
+import Background from './pages/category/design/components/Background';
 
 const App = () => {
     return (
@@ -103,6 +105,10 @@ const App = () => {
                             <Route path="WordBreak" element={<WordBreak />} />
                             <Route path="TextOverflow" element={<TextOverflow />} />
                             <Route path="Direction" element={<Direction />} />
+                        </Route>
+                        <Route path="Design" element={<Design />}>
+                            <Route index element={<Background />} />
+                            <Route path="Background" element={<Background />} />
                         </Route>
                     </Route>
                 </Routes>

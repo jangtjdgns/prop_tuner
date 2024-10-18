@@ -72,11 +72,12 @@ export const typographyCategories = [
     { id: 'direction', value: 'Direction', label: 'Direction' }                     // 텍스트 방향
 ];
 
-// export const designCategories = [
-//     { id: 'background', value: 'Background', label: 'Background' },
-//     { id: 'color', value: 'Color', label: 'Color' },
-//     { id: 'clipPath', value: 'ClipPath', label: 'Clip Path' },
-// ];
+// design
+export const designCategories = [
+    { id: 'background', value: 'Background', label: 'Background' },                 // 배경 속성 (색상, 이미지, 그라데이션 등)
+    { id: 'color', value: 'Color', label: 'Color' },                                // 텍스트 색상
+    { id: 'clipPath', value: 'ClipPath', label: 'Clip Path' },                      // 요소의 일부분을 특정한 모양으로 잘라내기 위한 경로 설정
+];
 
 
 // ============================================= //
@@ -108,8 +109,11 @@ export const categories: Category[] = [
         pagePath: `/category/Typography`,
         property: typographyCategories.map(item => item.label),
     },
-    // { title: "Design", pagePath: `/category/Design` },
-    // Typography, writing-mode, text-orientation
+    {
+        title: "Design",
+        pagePath: `/category/Design`,
+        property: designCategories.map(item => item.label),
+    },
 
 
     // { title: "Interactivity", pagePath: `/category/Interactivity` },
