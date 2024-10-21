@@ -74,7 +74,8 @@ export const typographyCategories = [
 
 // design
 export const designCategories = [
-    { id: 'background', value: 'Background', label: 'Background' },                 // 배경 속성 (색상, 이미지, 그라데이션 등)
+    { id: 'background', value: 'Background', label: 'Background' },                 // 배경 속성 (색상, 이미지 등)
+    // background 그라데이션 적용해야함
     { id: 'color', value: 'Color', label: 'Color' },                                // 텍스트 색상
     { id: 'clipPath', value: 'ClipPath', label: 'Clip Path' },                      // 요소의 일부분을 특정한 모양으로 잘라내기 위한 경로 설정
 ];
