@@ -205,14 +205,14 @@ const ClipPath: React.FC = () => {
                         {/* input */}
                         <div className='grid grid-cols-2 gap-2'>
                             {inset.slice(0, 2).map((value, index) => (
-                                <>
+                                <React.Fragment key={index}>
                                     <div className='flex items-center justify-center font-bold text-sm'>{index === 0 ? 'top-bototm' : 'left-right'}</div>
                                     <input type="text" className="btn btn-sm focus:outline-none border-2 focus:border-gray-400"
                                         value={value}
                                         onChange={(e) => updateInset(index, Number(e.target.value))}
                                         placeholder='inset'
                                     />
-                                </>
+                                </React.Fragment>
                             ))}
                         </div>
                         {/* round */}
@@ -253,14 +253,14 @@ const ClipPath: React.FC = () => {
                         <div className={showAt ? '' : 'hidden'}>
                             <div className='grid grid-cols-2 gap-2'>
                                 {circle.slice(1).map((value, index) => (
-                                    <>
+                                    <React.Fragment key={index + 1}>
                                         <div className='flex items-center justify-center font-bold text-sm'>{index === 0 ? 'x (%)' : 'y (%)'}</div>
                                         <input type="text" className="btn btn-sm focus:outline-none border-2 focus:border-gray-400"
                                             value={value}
                                             onChange={(e) => updateCircle(index + 1, Number(e.target.value))}
                                             placeholder='circle'
                                         />
-                                    </>
+                                    </React.Fragment>
                                 ))}
                             </div>
                         </div>
@@ -280,28 +280,28 @@ const ClipPath: React.FC = () => {
                         {/* input */}
                         <div className='grid grid-cols-2 gap-2'>
                             {ellipse.slice(0, 2).map((value, index) => (
-                                <>
+                                <React.Fragment key={index}>
                                     <div className='flex items-center justify-center font-bold text-sm'>{index === 0 ? 'H-Radius' : 'V-Radius'}</div>
                                     <input type="text" className="btn btn-sm focus:outline-none border-2 focus:border-gray-400"
                                         value={value}
                                         onChange={(e) => updateEllipse(index, Number(e.target.value))}
                                         placeholder='ellipse'
                                     />
-                                </>
+                                </React.Fragment>
                             ))}
                         </div>
                         {/* at */}
                         <div className={showAt ? '' : 'hidden'}>
                             <div className='grid grid-cols-2 gap-2'>
                                 {ellipse.slice(2).map((value, index) => (
-                                    <>
+                                    <React.Fragment key={index + 2}>
                                         <div className='flex items-center justify-center font-bold text-sm'>{index === 0 ? 'x (%)' : 'y (%)'}</div>
                                         <input type="text" className="btn btn-sm focus:outline-none border-2 focus:border-gray-400"
                                             value={value}
                                             onChange={(e) => updateEllipse(index + 2, Number(e.target.value))}
                                             placeholder='ellipse'
                                         />
-                                    </>
+                                    </React.Fragment>
                                 ))}
                             </div>
                         </div>
@@ -320,7 +320,7 @@ const ClipPath: React.FC = () => {
                         </div>
                         <div className='grid grid-cols-3 gap-2'>
                             {polygon.map((value, index) => (
-                                <>
+                                <React.Fragment key={index}>
                                     <div className='flex items-center justify-center font-bold text-sm'>Point {index + 1}</div>
                                     <input type="text" className="btn btn-sm focus:outline-none border-2 focus:border-gray-400"
                                         value={parseFloat(value.x.toFixed(2))}
@@ -332,7 +332,7 @@ const ClipPath: React.FC = () => {
                                         onChange={(e) => updatePolygonPoint(index, 'y', e.target.value)}
                                         placeholder='y'
                                     />
-                                </>
+                                </React.Fragment>
                             ))}
                         </div>
                     </>
@@ -412,14 +412,13 @@ const ClipPath: React.FC = () => {
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* 제목 */}
+                        {/* clip-path */}
                         <div className='text-center p-0.5 text-xs'>
                             clip-path:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-40 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={getClipPathValue()}
                                 readOnly
                             />
-                            {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
                                 onClick={() => copyCss('clip-path', getClipPathValue())}
                             >

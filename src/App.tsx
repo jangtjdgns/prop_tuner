@@ -53,6 +53,7 @@ import Direction from './pages/category/typography/components/Direction';
 import Design from './pages/category/design/Design';
 import Background from './pages/category/design/components/Background';
 import Color from './pages/category/design/components/Color';
+import Gradient from './pages/category/design/components/Gradient';
 import ClipPath from './pages/category/design/components/ClipPath';
 
 const App = () => {
@@ -112,6 +113,7 @@ const App = () => {
                             <Route index element={<Background />} />
                             <Route path="Background" element={<Background />} />
                             <Route path="Color" element={<Color />} />
+                            <Route path="Gradient" element={<Gradient />} />
                             <Route path="ClipPath" element={<ClipPath />} />
                         </Route>
                     </Route>
