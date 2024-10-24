@@ -1,4 +1,4 @@
-// WritingMode.tsx
+// Hyphens.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,15 +6,15 @@ import { handleOptionToggle } from '../../../../utils/handleOptionToggle';
 import { copyCss } from '../../../../utils/clipboardUtils';
 import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
 
-const WritingMode: React.FC = () => {
-    type WrtingModeType = 'horizontal-tb' | 'vertical-rl' | 'vertical-lr';
-    const [writingMode, setWritingMode] = useState<WrtingModeType>('horizontal-tb');
-    const writingModeValues: string[] = ['horizontal-tb', 'vertical-rl', 'vertical-lr'];
+const Hyphens: React.FC = () => {
+    type HyphensType = 'none' | 'manual' | 'auto';
+    const [hyphens, setHyphens] = useState<HyphensType>('none');
+    const hyphensValues: string[] = ['none', 'manual', 'auto'];
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const dependencies = [writingMode];
-    useElementOverflowAdjustment(['#writing-mode'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [hyphens];
+    useElementOverflowAdjustment(['#hyphens'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -31,36 +31,36 @@ const WritingMode: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Writing Mode</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Hyphens</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
-                        {/* writing mode */}
+                        {/* hyphens */}
                         <div className='text-center p-0.5 text-xs'>
-                            writing-mode:
+                            hyphens:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-24 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={writingMode}
+                                value={hyphens}
                                 readOnly
                             />
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('writing-mode', writingMode)}
+                                onClick={() => copyCss('hyphens', hyphens)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
                         <div className='grid grid-cols-3 gap-2'>
-                            {writingModeValues.map((value, index) => (
+                            {hyphensValues.map((value, index) => (
                                 <input
                                     key={index}
                                     type='radio'
-                                    name='writingMode'
+                                    name='hyphens'
                                     className="btn"
                                     aria-label={value}
                                     value={value}
-                                    checked={writingMode === value}
-                                    onChange={() => setWritingMode(value as WrtingModeType)}
+                                    checked={hyphens === value}
+                                    onChange={() => setHyphens(value as HyphensType)}
                                 />
                             ))}
                         </div>
@@ -70,21 +70,19 @@ const WritingMode: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='writing-mode' className='w-[500px] h-[500px] bg-blue-50 shadow font-mono text-2xl overflow-scroll p-4 transition-transform duration-500'
-                    style={{ transform: `translateY(${boxTranslateY}px)` }}
+                <div id='hyphens'
+                    className='w-[150px] h-[500px] bg-blue-50 shadow font-mono text-2xl p-2 transition-transform duration-500 text-left overflow-scroll'
+                    style={{
+                        transform: `translateY(${boxTranslateY}px)`,
+                        hyphens
+                    }}
                 >
-                    <p style={{ writingMode }}>
-                        <span className='font-bold underline'>Fusce ultrices blandit sapien, ac venenatis dolor tempus nec. <br /></span>
-                        Nunc euismod lectus sit amet massa eleifend consectetur. Mauris porta varius ultrices.
-                        Sed vitae semper leo, at gravida erat. Phasellus ut sollicitudin est.
-                        Integer aliquet ut felis sed molestie. Vestibulum tincidunt, orci vitae accumsan laoreet,
-                        urna arcu consequat nisi, non sodales nulla lectus vitae nisl.
-                        Quisque vitae orci eget nisi porta convallis.
-                    </p>
+                    <p>The magnificently shimmering ocean reflects the unquestionable beauty of the endless horizon.</p>
+                    <p>The incomprehensibly vast universe holds infinite possibilities, each star a testament to the beauty of existence.</p>
                 </div>
             </div>
         </>
     );
 }
 
-export default WritingMode;
+export default Hyphens;

@@ -70,8 +70,8 @@ export const typographyCategories = [
     { id: 'wordBreak', value: 'WordBreak', label: 'Word Break' },                   // 단어 줄바꿈
     { id: 'textOverflow', value: 'TextOverflow', label: 'Text Overflow' },          // 텍스트 오버플로우
     { id: 'direction', value: 'Direction', label: 'Direction' },                    // 텍스트 방향
-    { id: 'writingMode', value: 'WritingMode', label: 'Writing Mode' }              // 텍스트 쓰기 방향 설정 (세로 쓰기 등)
-    // hyphens      // 단어를 자동으로 하이픈으로 구분하는 속성
+    { id: 'writingMode', value: 'WritingMode', label: 'Writing Mode' },             // 텍스트 쓰기 방향 설정 (세로 쓰기 등)
+    { id: 'hyphens', value: 'Hyphens', label: 'Hyphens' },                          // 단어를 자동으로 하이픈으로 구분하는 속성
     // fontSmoothing
     // listStyleType
     // listStylePosition

@@ -50,6 +50,7 @@ import WordBreak from './pages/category/typography/components/WordBreak';
 import TextOverflow from './pages/category/typography/components/TextOverflow';
 import Direction from './pages/category/typography/components/Direction';
 import WritingMode from './pages/category/typography/components/WritingMode';
+import Hyphens from './pages/category/typography/components/Hyphens';
 // category-design
 import Design from './pages/category/design/Design';
 import Background from './pages/category/design/components/Background';
@@ -110,6 +111,7 @@ const App = () => {
                             <Route path="TextOverflow" element={<TextOverflow />} />
                             <Route path="Direction" element={<Direction />} />
                             <Route path="WritingMode" element={<WritingMode />} />
+                            <Route path="Hyphens" element={<Hyphens />} />
                         </Route>
                         <Route path="Design" element={<Design />}>
                             <Route index element={<Background />} />
