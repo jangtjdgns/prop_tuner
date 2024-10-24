@@ -69,7 +69,15 @@ export const typographyCategories = [
     { id: 'overflowWrap', value: 'OverflowWrap', label: 'Overflow Wrap' },          // 텍스트 줄바꿈
     { id: 'wordBreak', value: 'WordBreak', label: 'Word Break' },                   // 단어 줄바꿈
     { id: 'textOverflow', value: 'TextOverflow', label: 'Text Overflow' },          // 텍스트 오버플로우
-    { id: 'direction', value: 'Direction', label: 'Direction' }                     // 텍스트 방향
+    { id: 'direction', value: 'Direction', label: 'Direction' },                    // 텍스트 방향
+    { id: 'writingMode', value: 'WritingMode', label: 'Writing Mode' }              // 텍스트 쓰기 방향 설정 (세로 쓰기 등)
+    // hyphens      // 단어를 자동으로 하이픈으로 구분하는 속성
+    // fontSmoothing
+    // listStyleType
+    // listStylePosition
+    // textUnderlineOffset
+    // textTransform
+    // vertical-align (table)
 ];
 
 // design
@@ -78,7 +86,46 @@ export const designCategories = [
     { id: 'color', value: 'Color', label: 'Color' },                                // 텍스트 색상
     { id: 'gradient', value: 'Gradient', label: 'Gradient' },                       // 새로운 그라데이션 카테고리
     { id: 'clipPath', value: 'ClipPath', label: 'Clip Path' },                      // 요소의 일부분을 특정한 모양으로 잘라내기 위한 경로 설정
+    // filter           // 요소에 필터 효과를 추가
+    // backdropFilter   // 배경 필터를 적용하는 속성
+    // background-blend-mode    // 배경 이미지나 색상의 혼합 모드를 설정
 ];
+
+// flexbox
+export const flexboxCategories = [
+    { id: 'flexDirection', value: 'FlexDirection', label: 'Flex Direction' },       // 플렉스 방향
+    { id: 'flexWrap', value: 'FlexWrap', label: 'Flex Wrap' },                      // 플렉스 줄바꿈
+    { id: 'flexFlow', value: 'FlexFlow', label: 'Flex Flow' },                      // 플렉스 방향과 줄바꿈 단축 속성
+    { id: 'justifyContent', value: 'JustifyContent', label: 'Justify Content' },    // 주축 정렬
+    { id: 'alignItems', value: 'AlignItems', label: 'Align Items' },                // 교차 축 정렬
+    { id: 'alignContent', value: 'AlignContent', label: 'Align Content' },          // 여러 행의 정렬
+    { id: 'alignSelf', value: 'AlignSelf', label: 'Align Self' },                   // 개별 아이템 정렬
+    { id: 'order', value: 'Order', label: 'Order' },                                // 아이템 순서
+    { id: 'flexGrow', value: 'FlexGrow', label: 'Flex Grow' },                      // 남는 공간 차지 비율
+    { id: 'flexShrink', value: 'FlexShrink', label: 'Flex Shrink' },                // 공간 부족 시 축소 비율
+    { id: 'flexBasis', value: 'FlexBasis', label: 'Flex Basis' }                    // 기본 크기
+];
+
+// grid
+export const gridCategories = [
+    { id: 'gridTemplateColumns', value: 'GridTemplateColumns', label: 'Grid Template Columns' }, // 열 정의
+    { id: 'gridTemplateRows', value: 'GridTemplateRows', label: 'Grid Template Rows' },          // 행 정의
+    { id: 'gridColumnGap', value: 'GridColumnGap', label: 'Grid Column Gap' },                   // 열 간격
+    { id: 'gridRowGap', value: 'GridRowGap', label: 'Grid Row Gap' },                            // 행 간격
+    { id: 'gridGap', value: 'GridGap', label: 'Grid Gap' },                                      // 열과 행 간의 간격
+    { id: 'gridTemplateAreas', value: 'GridTemplateAreas', label: 'Grid Template Areas' },       // 그리드 영역 정의
+    { id: 'gridArea', value: 'GridArea', label: 'Grid Area' },                                   // 아이템 위치 정의
+    { id: 'gridAutoColumns', value: 'GridAutoColumns', label: 'Grid Auto Columns' },             // 자동 생성 열 크기
+    { id: 'gridAutoRows', value: 'GridAutoRows', label: 'Grid Auto Rows' },                      // 자동 생성 행 크기
+    { id: 'gridAutoFlow', value: 'GridAutoFlow', label: 'Grid Auto Flow' },                      // 배치 순서
+    { id: 'justifyItems', value: 'JustifyItems', label: 'Justify Items' },                       // 그리드 셀 수평 정렬
+    { id: 'alignItems', value: 'AlignItems', label: 'Align Items' },                             // 그리드 셀 수직 정렬
+    { id: 'justifyContent', value: 'JustifyContent', label: 'Justify Content' },                 // 컨테이너 내 수평 정렬
+    { id: 'alignContent', value: 'AlignContent', label: 'Align Content' },                       // 컨테이너 내 수직 정렬
+    { id: 'gridColumn', value: 'GridColumn', label: 'Grid Column' },                             // 아이템이 차지할 열 범위
+    { id: 'gridRow', value: 'GridRow', label: 'Grid Row' }                                       // 아이템이 차지할 행 범위
+];
+
 
 
 // ============================================= //
