@@ -72,12 +72,10 @@ export const typographyCategories = [
     { id: 'direction', value: 'Direction', label: 'Direction' },                    // 텍스트 방향
     { id: 'writingMode', value: 'WritingMode', label: 'Writing Mode' },             // 텍스트 쓰기 방향 설정 (세로 쓰기 등)
     { id: 'hyphens', value: 'Hyphens', label: 'Hyphens' },                          // 단어를 자동으로 하이픈으로 구분하는 속성
-    // fontSmoothing
-    // listStyleType
-    // listStylePosition
-    // textUnderlineOffset
-    // textTransform
-    // vertical-align (table)
+    { id: 'listStyle', value: 'ListStyle', label: 'List Style' },                   // 목록 스타일
+    // textUnderlineOffset: 텍스트 밑줄의 오프셋 설정 (밑줄의 위치 조정)
+    // textTransform: 텍스트 변환 설정 (대문자, 소문자 등)
+    // vertical-align: 수직 정렬 설정 (주로 테이블 셀에서 사용)
 ];
 
 // design
