@@ -3,40 +3,81 @@
 @tailwind components;
 @tailwind utilities;
 
-
-/* 레이아웃 */
-#root {
-  display: flex;                 /* flexbox 사용 */
-  flex-direction: column;        /* 세로 방향으로 배치 */
-  min-height: 100vh;            /* 전체 화면 높이 사용 */
-  width: 100vw;
+/* layout */
+* {
   box-sizing: border-box;
 }
 
-/* 헤더 */
+/* header */
 header {
   height: 80px;
-  min-width: 1024px;
 }
 
-/* 메인 */
-main {
-  flex: 1;                       /* 남은 공간을 모두 차지하도록 설정 */
-  min-width: 1024px;
-}
-
-/* 푸터 */
+/* footer */
 footer {
   height: 64px;
-  min-width: 1024px;
 }
+
+/* +main */
+header,
+footer,
+main {
+  width: 100%;
+  min-width: 1024px;
+  box-sizing: border-box;
+}
+
+
 
 /* daisy ui 버튼 클릭 색상 변경
 .btn-active {
   --fallback-p: #dedad5;
 } */
 
-/* 메인 페이지 배너 */
-#banner {
-  height: calc(100vh-80px);
+/* main_page_banner */
+/* #banner {
+
+} */
+
+
+/* === scrollbar === */
+
+/* firefox */
+@-moz-document url-prefix() {
+
+  *,
+  *:hover {
+    scrollbar-width: thin;
+    scrollbar-color: #858585 transparent;
+  }
 }
+
+/** 
+  chrome_scrollbar_default
+  ::-webkit-scrollbar : 스크롤바 전체
+  ::-webkit-scrollbar-thumb : 드래그 가능한 스크롤 핸들 막대
+  ::-webkit-scrollbar-track : 스크롤바 트랙 (스크롤이 움직이는 영역 / 스크롤 진행률 표시줄)
+  ::-webkit-scrollbar-button : 스크롤바의 방향 버튼 (= 위/아래 표시 화살표)
+  ::-webkit-scrollbar-track-piece : 스크롤 진행률 표시줄에서 스크롤 핸들 막대 부분을 제외한 남은 빈 공간
+  ::-webkit-scrollbar-corner : 수평/수직 스크롤 막대가 만나는 스크롤 막대의 하단 모서리
+  ::-webkit-resizer : 요소의 하단 모서리에 나타나는 크기 조정 핸들
+*/
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #858585;
+  border-radius: 12px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #858585;
+}
+

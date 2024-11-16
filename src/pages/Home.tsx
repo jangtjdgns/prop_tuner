@@ -17,10 +17,10 @@ const Home = () => {
     return (
         <>
             {/* h-[calc(100vh-20rem)] min-h-[586px] */}
-            <div id="banner" className='relative w-full min-w-[1024px] min-h-[calc(100vh-80px)] grid grid-rows-[500px_1fr]'>
+            <div id="banner" className='relative w-full min-w-[1024px]'>
                 {/* 배너 배경 */}
                 <div
-                    className='w-screen min-w-[1024px]' // width 및 height 설정
+                    className='w-full min-w-[1024px] h-[500px]' // width 및 height 설정
                     style={{
                         backgroundImage: 'url(https://cdn.pixabay.com/photo/2021/11/20/13/47/sky-6811874_1280.jpg)',
                         backgroundSize: 'cover',
@@ -77,7 +77,7 @@ const Home = () => {
                 </div>
 
                 {/* 배너 글 */}
-                <div className='w-screen min-w-[1024px]  bg-gray-100 flex items-center'>
+                <div className='w-full min-w-[1024px] h-[calc(100vh-80px-500px)] min-h-[300px] bg-gray-100 flex items-center'>
                     <div className='min-w-[1024px] grid grid-cols-[160px_600px_160px] items-center justify-center gap-6 mx-auto'>
                         {/* 배너 글 좌측 사이드 */}
                         <div className="w-40 h-40 bg-base-100 p-2 shadow-xl rounded-lg text-center self-start">
@@ -113,10 +113,10 @@ const Home = () => {
                 </div>
             </div>
 
-            {/* <div>
+            <div>
                 <h1>Home Page</h1>
                 <button className='btn' onClick={() => navigate('/board')}>Go to Board</button>
-            </div> */}
+            </div>
         </>
     );
 }

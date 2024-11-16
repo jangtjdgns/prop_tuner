@@ -33,7 +33,7 @@ const Header = () => {
     }, [location.pathname]);
 
     return (
-        <header className='w-screen min-w-[1024px] border-b flex justify-center items-center'>
+        <header className='border-b flex justify-center items-center'>
             <div className="navbar bg-base-100">
                 <div className="flex-none z-[10001]">
                     {/* aside side bar */}

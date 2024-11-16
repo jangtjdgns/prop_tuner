@@ -6,5 +6,14 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [require('daisyui')],
+  plugins: [
+    require('daisyui'),
+    function ({ addBase }) {
+      addBase({
+        '*, *:hover': {
+          scrollbarColor: 'unset',
+        },
+      });
+    },
+  ],
 }

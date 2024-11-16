@@ -11,7 +11,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     return (
         <>
             <Header />
-            <main>
+            <main className='min-h-[calc(100vh-80px)]'>
                 {children}
             </main>
             <Footer />

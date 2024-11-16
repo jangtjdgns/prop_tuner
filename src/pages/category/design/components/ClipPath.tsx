@@ -453,7 +453,7 @@ const ClipPath: React.FC = () => {
                 <div id='clip-path' className='relative w-[500px] bg-blue-50 shadow transition-transform duration-500'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <img id="image" className='w-[500px]' alt="no image"
+                    <img id="image" className='w-[500px] select-none' alt="no image"
                         draggable='false'
                         src={image}
                         style={{
