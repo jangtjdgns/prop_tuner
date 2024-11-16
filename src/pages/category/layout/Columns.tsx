@@ -115,7 +115,7 @@ const Columns: React.FC = () => {
                     </div>
 
                     {/* 옵션 내용 하단 */}
-                    <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
+                    <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* column-width */}
                         <div className='text-center p-0.5 text-xs'>
                             column-width: <input type="text" className='input input-xs border-gray-200 w-20 rounded focus:outline-none focus:border-gray-200 text-center' value={columnWidth} readOnly />

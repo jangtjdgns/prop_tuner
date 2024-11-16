@@ -147,7 +147,7 @@ const BasicFont: React.FC = () => {
                     </div>
 
                     {/* 옵션 내용 하단 */}
-                    <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
+                    <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* 1. font-style */}
                         <div className="divider font-bold text-lg">Font Style</div>
                         <div className='text-center pb-0.5 text-xs'>

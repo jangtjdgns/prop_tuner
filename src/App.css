@@ -80,3 +80,40 @@ main {
   background: #6e6e6e;
 }
 
+/* category_page sub_category x_scrollbar */
+#category::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+#category::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#category::-webkit-scrollbar-thumb {
+  background: #726d6c;
+  border-radius: 8px;
+}
+
+#category::-webkit-scrollbar-thumb:hover {
+  background: #5c5857;
+}
+
+/* category_page option-wrap y_scrollbar */
+#option-wrap-bottom::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+#option-wrap-bottom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#option-wrap-bottom::-webkit-scrollbar-thumb {
+  background: #9c9999;
+  border-radius: 8px;
+}
+
+#option-wrap-bottom::-webkit-scrollbar-thumb:hover {
+  background: #827f7f;
+}

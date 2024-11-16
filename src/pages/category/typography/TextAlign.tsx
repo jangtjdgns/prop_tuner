@@ -42,7 +42,7 @@ const TextAlign: React.FC = () => {
                     </div>
 
                     {/* 옵션 내용 하단 */}
-                    <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
+                    <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* text align */}
                         <div className='text-center p-0.5 text-xs'>
                             text-align:

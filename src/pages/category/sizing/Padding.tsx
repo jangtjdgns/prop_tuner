@@ -159,7 +159,7 @@ const Padding: React.FC = () => {
                     </div>
 
                     {/* 옵션 내용 하단 */}
-                    <div className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll'>
+                    <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* padding copy body */}
                         <div id='padding-copy-body'>
                             {/* all */}
