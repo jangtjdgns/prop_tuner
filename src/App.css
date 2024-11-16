@@ -43,8 +43,8 @@ main {
 /* === scrollbar === */
 
 /* firefox */
+/* @-moz-document url-prefix() -> firefox 전용 CSS 구문 */
 @-moz-document url-prefix() {
-
   *,
   *:hover {
     scrollbar-width: thin;
@@ -52,8 +52,7 @@ main {
   }
 }
 
-/** 
-  chrome_scrollbar_default
+/* chrome_scrollbar_default
   ::-webkit-scrollbar : 스크롤바 전체
   ::-webkit-scrollbar-thumb : 드래그 가능한 스크롤 핸들 막대
   ::-webkit-scrollbar-track : 스크롤바 트랙 (스크롤이 움직이는 영역 / 스크롤 진행률 표시줄)
@@ -78,6 +77,6 @@ main {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #858585;
+  background: #6e6e6e;
 }
 

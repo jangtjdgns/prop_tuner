@@ -11,7 +11,7 @@ export const adjustElementOverflow = (
 
     viewChildElements.forEach((viewChildElement) => {
         const viewChildTag = document.querySelector(viewChildElement) as Element;
-
+        
         if (viewChildTag) {
             // X축 조정
             if (viewChildTag.clientWidth > window.innerWidth) {

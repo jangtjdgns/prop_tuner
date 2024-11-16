@@ -1,7 +1,7 @@
 // src/pages/Home.tsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { categories } from '../utils/categories';
+import { categoryMetaData } from '../utils/categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,7 +10,7 @@ const Home = () => {
 
     const [searchTerm, setSearchTerm] = useState('');
     // 필터링된 카테고리
-    const filteredCategories = categories.filter(category =>
+    const filteredCategories = categoryMetaData.filter(category =>
         category.property.some(property => property.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
@@ -113,10 +113,10 @@ const Home = () => {
                 </div>
             </div>
 
-            <div>
+            {/* <div>
                 <h1>Home Page</h1>
                 <button className='btn' onClick={() => navigate('/board')}>Go to Board</button>
-            </div>
+            </div> */}
         </>
     );
 }

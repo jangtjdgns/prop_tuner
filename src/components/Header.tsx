@@ -3,18 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faEllipsis } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Category, categories } from '../utils/categories';
+import { CategoryMeta, categoryMetaData } from '../utils/categories';
 
 const Header = () => {
     const [categoryTitle, setCategoryTitle] = useState('select');
     const location = useLocation();
     const navigate = useNavigate();
-
-    // css 제목 클릭 이벤트
-    function clickedCategory(category: Category) {
-        setCategoryTitle(category.title);
-        navigateToCategory(category.pagePath);
-    }
 
     // 카테고리 페이지 이동
     const navigateToCategory = (pagePath: string) => {
@@ -49,7 +43,7 @@ const Header = () => {
                             <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                                 <li className='w-full font-bold text-2xl'>
                                     <button className='block text-center'
-                                        onClick={() => clickedCategory(categories[0])}
+                                        onClick={() => navigateToCategory(categoryMetaData[0].pagePath)}
                                     >
                                         Prop_Tuner
                                     </button>
@@ -59,7 +53,7 @@ const Header = () => {
                                 <li>
                                     <h2 className="menu-title">Css Properties</h2>
                                     <ul id="category-props">
-                                        {categories.slice(1).map((category, categoryIndex) => (
+                                        {categoryMetaData.slice(1).map((category, categoryIndex) => (
                                             <li key={categoryIndex}>
                                                 <details>
                                                     <summary>{category.title}</summary>
@@ -90,7 +84,7 @@ const Header = () => {
                 </div>
                 <div className="flex-1">
                     <button id="site-title" className="btn btn-ghost text-xl"
-                        onClick={() => clickedCategory(categories[0])}>
+                        onClick={() => navigateToCategory(categoryMetaData[0].pagePath)}>
                         Prop_Tuner
                     </button>
                 </div>
@@ -102,11 +96,11 @@ const Header = () => {
                                 <ul className="bg-base-100 rounded-t-none p-2">
                                     {/* css 카테고리 리스트 추가 */}
                                     {
-                                        categories.slice(1).map((item, idx) => (
+                                        categoryMetaData.slice(1).map((item, idx) => (
                                             <li className='css-category-list' key={idx}>
                                                 <button
                                                     className="btn btn-sm h-full px-10 btn-square btn-ghost"
-                                                    onClick={() => clickedCategory(item)}
+                                                    onClick={() => navigateToCategory(item.pagePath + '/' + item.property[0].replace(' ', ''))}
                                                 >
                                                     {item.title}
                                                 </button>
