@@ -5,7 +5,7 @@ import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../utils/colorUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Float: React.FC = () => {
     type FloatValue = 'none' | 'right' | 'left';
@@ -58,7 +58,7 @@ const Float: React.FC = () => {
         }
     }
 
-    useElementOverflowAdjustment(['#float'], () => 0, setBoxTranslateY, [float, clear, floatTags, clearTags]);
+    useOverflowHandler(['#float'], () => 0, setBoxTranslateY, [float, clear, floatTags, clearTags]);
 
     return (
         <>

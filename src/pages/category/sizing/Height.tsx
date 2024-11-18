@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Height: React.FC = () => {
     type Units = 'px' | '%' | 'vw' | 'rem';
@@ -25,7 +25,7 @@ const Height: React.FC = () => {
         setUnit(value);
     }
 
-    useElementOverflowAdjustment(['#height'], () => 0, setBoxTranslateY, [height, unit]);
+    useOverflowHandler(['#height'], () => 0, setBoxTranslateY, [height, unit]);
 
 
     return (

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Visibility: React.FC = () => {
     const [visibility, setVisibility] = useState<'visible' | 'hidden'>('visible');
@@ -30,7 +30,7 @@ const Visibility: React.FC = () => {
         return value;
     }
 
-    useElementOverflowAdjustment(['#visibility'], () => 0, setBoxTranslateY, [visibility, activeTags]);
+    useOverflowHandler(['#visibility'], () => 0, setBoxTranslateY, [visibility, activeTags]);
 
     return (
         <>

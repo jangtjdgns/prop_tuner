@@ -1,10 +1,11 @@
-// adjustElementOverflow를 활용하는 useEffect 커스텀 훅
+// adjustOverflow를 활용하는 useEffect 커스텀 훅
 // Css Props 페이지 전용
 
 import { useEffect } from 'react';
-import { adjustElementOverflow } from '../utils/adjustElementOverflow';
+import { adjustOverflow } from '../utils/adjustOverflow';
 
-export const useElementOverflowAdjustment = (
+// useOveflowHandler, translate만 사용
+export const useOverflowHandler = (
     viewChildElements: string[],
     setTranslateX: (x: number) => void = (x) => { },
     setTranslateY: (y: number) => void = (y) => { },
@@ -13,7 +14,7 @@ export const useElementOverflowAdjustment = (
 ) => {
     useEffect(() => {
         const handleResize = () => {
-            adjustElementOverflow(viewChildElements, setTranslateX, setTranslateY, padding);
+            adjustOverflow(viewChildElements, setTranslateX, setTranslateY, padding);
         };
 
         window.addEventListener('resize', handleResize);

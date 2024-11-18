@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const ListStyle: React.FC = () => {
     // 1. list style type
@@ -39,7 +39,7 @@ const ListStyle: React.FC = () => {
     }
 
     const dependencies = [listStyleType, customLiType, isCustom, listStylePosition, useImage, listStyleImage, customImage];
-    useElementOverflowAdjustment(['#list-style'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#list-style'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

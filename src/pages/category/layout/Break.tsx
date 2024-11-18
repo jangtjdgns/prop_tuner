@@ -5,7 +5,7 @@ import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-ic
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../utils/colorUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Break: React.FC = () => {
     const [breakType, setBreakType] = useState('after');    // after, before, inside
@@ -65,7 +65,7 @@ const Break: React.FC = () => {
         newWindow?.document.close();
     };
 
-    useElementOverflowAdjustment(['#break'], () => 0, setBoxTranslateY, [breakType, breakValue, activeTag]);
+    useOverflowHandler(['#break'], () => 0, setBoxTranslateY, [breakType, breakValue, activeTag]);
 
     return (
         <>

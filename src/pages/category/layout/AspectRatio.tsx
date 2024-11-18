@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const AspectRatio: React.FC = () => {
     const [aspectRatio, setAspectRatio] = useState('auto');
@@ -47,7 +47,7 @@ const AspectRatio: React.FC = () => {
         }
     }
 
-    useElementOverflowAdjustment(['#image'], () => 0, setBoxTranslateY, [aspectRatio, imgWidth, image]);
+    useOverflowHandler(['#image'], () => 0, setBoxTranslateY, [aspectRatio, imgWidth, image]);
 
     return (
         <>

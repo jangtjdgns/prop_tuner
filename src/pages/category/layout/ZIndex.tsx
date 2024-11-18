@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const ZIndex: React.FC = () => {
     const [zIndexValues, setZIndexValues] = useState([0, 0, 0, 0, 0, 0, 0]);
@@ -23,7 +23,7 @@ const ZIndex: React.FC = () => {
     }
 
     
-    useElementOverflowAdjustment(['#z-index'], () => 0, setBoxTranslateY, [zIndexValues, lastZIndexValue]);
+    useOverflowHandler(['#z-index'], () => 0, setBoxTranslateY, [zIndexValues, lastZIndexValue]);
 
     return (
         <>

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const ObjectPosition: React.FC = () => {
     const [objectPositionX, setObjectPositionX] = useState('center');      // 포지션 수평 값
@@ -55,7 +55,7 @@ const ObjectPosition: React.FC = () => {
     }
 
     const dependencies = [objectPositionX, objectPositionY, customValueX, customValueY, image];
-    useElementOverflowAdjustment(['#object-position'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#object-position'], () => 0, setBoxTranslateY, dependencies);
 
     return (
         <>

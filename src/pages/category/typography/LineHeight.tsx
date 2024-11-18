@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const LineHeight: React.FC = () => {
     const [lineHeight, setLineHeight] = useState('normal');
@@ -32,7 +32,7 @@ const LineHeight: React.FC = () => {
     }
 
     const dependencies = [lineHeight, customLineHeight, unit];
-    useElementOverflowAdjustment(['#line-height'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#line-height'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-// import { useElementOverflowAdjustment } from '../../../../hooks/useElementOverflowAdjustment ';
-// background-attachment 속성 떄문에 useElementOverflowAdjustment 사용할 수 없음
+// import { useOverflowHandler } from '../../../../hooks/useOverflowHandler ';
+// background-attachment 속성 떄문에 useOverflowHandler 사용할 수 없음
 
 // = background 구성 속성 =
 // - background-color

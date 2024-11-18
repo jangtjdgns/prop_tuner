@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Overflow: React.FC = () => {
     const [overflow, setOverflow] = useState('visible'); // 기본값 visible
@@ -22,7 +22,7 @@ const Overflow: React.FC = () => {
         event.target.checked ? setWhiteSpace('nowrap') : setWhiteSpace('normal');
     }
 
-    useElementOverflowAdjustment(['#overflow'], () => 0, setBoxTranslateY, [overflow, whiteSpace], {widthPadding: 0, heightPadding: 20});
+    useOverflowHandler(['#overflow'], () => 0, setBoxTranslateY, [overflow, whiteSpace], {widthPadding: 0, heightPadding: 20});
 
     return (
         <>

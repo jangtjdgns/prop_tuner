@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const ClipPath: React.FC = () => {
     // 1. clipPath, 값 선택
@@ -389,7 +389,7 @@ const ClipPath: React.FC = () => {
     }
 
     const dependencies = [clipPath, inset, circle, ellipse, point, polygon, isDragging, selectedPoint, svgPath, round, showRound, showAt];
-    useElementOverflowAdjustment(['#clip-path'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#clip-path'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

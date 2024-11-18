@@ -5,7 +5,7 @@ import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-ic
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { colorsRGB } from '../../../utils/colorUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Display: React.FC = () => {
     const [display, setDisplay] = useState('block');
@@ -43,7 +43,7 @@ const Display: React.FC = () => {
         setActiveTags(updatedTags);
     };
 
-    useElementOverflowAdjustment(['#display'], () => 0, setBoxTranslateY, [display, activeTags]);
+    useOverflowHandler(['#display'], () => 0, setBoxTranslateY, [display, activeTags]);
 
     return (
         <>

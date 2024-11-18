@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 import { hexToRgba } from '../../../utils/colorUtils';
 
 const TextShadow: React.FC = () => {
@@ -123,7 +123,7 @@ const TextShadow: React.FC = () => {
 
     const dependencies = [textShadow, curCount, shadows];
     useEffect(() => { getTextShadowValue(); }, dependencies);
-    useElementOverflowAdjustment(['#text-shadow'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#text-shadow'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

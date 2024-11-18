@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const ObjectFit: React.FC = () => {
     type ObjectFitValue = 'fill' | 'contain' | 'cover' | 'none' | 'scale-down';
@@ -29,7 +29,7 @@ const ObjectFit: React.FC = () => {
         }
     }
 
-    useElementOverflowAdjustment(['#object-fit'], () => 0, setBoxTranslateY, [objectFit, image]);
+    useOverflowHandler(['#object-fit'], () => 0, setBoxTranslateY, [objectFit, image]);
 
     return (
         <>

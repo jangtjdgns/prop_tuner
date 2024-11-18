@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Direction: React.FC = () => {
     const [direction, setDirection] = useState<'ltr' | 'rtl'>('ltr');
@@ -18,7 +18,7 @@ const Direction: React.FC = () => {
     }
 
     const dependencies = [direction];
-    useElementOverflowAdjustment(['#direction'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#direction'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

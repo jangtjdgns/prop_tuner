@@ -5,7 +5,7 @@ import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { hexToRgb, hexToRgba, hexToHsl, hexToHsla } from '../../../utils/colorUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Color: React.FC = () => {
     const [colorType, setColorType] = useState('hex');
@@ -53,7 +53,7 @@ const Color: React.FC = () => {
 
     const dependencies = [colorType, color, hexColor, colorOpacity];
     useEffect(() => { convertColor() }, [dependencies]);
-    useElementOverflowAdjustment(['#color'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#color'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

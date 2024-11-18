@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const LetterSpacing: React.FC = () => {
     const [letterSpacing, setLetterSpacing] = useState('normal');
@@ -32,7 +32,7 @@ const LetterSpacing: React.FC = () => {
     }
 
     const dependencies = [letterSpacing, customLetterSpacing, unit];
-    useElementOverflowAdjustment(['#letter-spacing'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#letter-spacing'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../utils/handleOptionToggle';
 import { copyCss } from '../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../hooks/useOverflowHandler';
 
 const test: React.FC = () => {
 
@@ -14,7 +14,7 @@ const test: React.FC = () => {
     // event: React.ChangeEvent<HTMLInputElement>
 
     // const dependencies = [outlineWidth, outlineStyle, outlineColor, outlineOpacity, outlineOffset];
-    // useElementOverflowAdjustment(['#outline'], () => 0, setBoxTranslateY, dependencies);
+    // useOverflowHandler(['#outline'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

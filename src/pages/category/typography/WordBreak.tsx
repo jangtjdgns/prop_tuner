@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const WordBreak: React.FC = () => {
     type WordBreakValues = 'normal' | 'break-all' | 'keep-all' | 'break-word';
@@ -20,7 +20,7 @@ const WordBreak: React.FC = () => {
     }
 
     const dependencies = [wordBreak];
-    useElementOverflowAdjustment(['#word-break'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 20 });
+    useOverflowHandler(['#word-break'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 20 });
 
 
     return (

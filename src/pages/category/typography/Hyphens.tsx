@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Hyphens: React.FC = () => {
     type HyphensType = 'none' | 'manual' | 'auto';
@@ -14,7 +14,7 @@ const Hyphens: React.FC = () => {
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     const dependencies = [hyphens];
-    useElementOverflowAdjustment(['#hyphens'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#hyphens'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

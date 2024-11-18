@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const TextIndent: React.FC = () => {
     const [textIndent, setTextIndent] = useState(0);
@@ -27,7 +27,7 @@ const TextIndent: React.FC = () => {
     }
 
     const dependencies = [textIndent, unit];
-    useElementOverflowAdjustment(['#text-indent'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#text-indent'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

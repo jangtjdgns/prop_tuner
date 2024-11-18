@@ -10,6 +10,7 @@ interface CategoryData {
     sizing: CategoryItem[];
     typography: CategoryItem[];
     design: CategoryItem[];
+    transform: CategoryItem[];
     flexbox: CategoryItem[];
     grid: CategoryItem[];
 }
@@ -97,6 +98,24 @@ export const categoryData: CategoryData = {
         // backdropFilter               // 배경 필터를 적용하는 속성
         // background-blend-mode        // 배경 이미지나 색상의 혼합 모드를 설정
     ],
+    transform: [
+        { id: 'transform', value: 'Transform', label: 'Transform' },                                // 요소에 변환을 적용 (rotate, translate, scale, skew 등)
+        { id: '3dTransform', value: '3DTransform', label: '3D Transform' },                         // 3D 변환 속성 (rotate3d, translateZ 등)
+        { id: 'transformOrigin', value: 'TransformOrigin', label: 'Transform Origin' },             // 변환의 기준점(origin)을 설정
+        { id: 'perspective', value: 'Perspective', label: 'Perspective' },                          // 3D 변환 시 원근감을 설정
+        { id: 'perspectiveOrigin', value: 'PerspectiveOrigin', label: 'Perspective Origin' },       // 원근감 기준점 설정
+        { id: 'backfaceVisibility', value: 'BackfaceVisibility', label: 'Backface Visibility' },    // 3D 변환 시 요소 뒷면의 가시성 설정
+        // { id: 'skew', value: 'Skew', label: 'Skew' },                                               // 요소를 X, Y 축 기준으로 기울이기
+        // { id: 'rotate', value: 'Rotate', label: 'Rotate' },                                         // 요소를 지정된 축 기준으로 회전
+        // { id: 'translate', value: 'Translate', label: 'Translate' },                                // 요소를 X, Y (또는 Z) 축 기준으로 이동
+        // { id: 'scale', value: 'Scale', label: 'Scale' },                                            // 요소의 크기 조정
+        // { id: 'matrix', value: 'Matrix', label: 'Matrix' },                                         // 2D 또는 3D 변환을 행렬(matrix)로 지정
+        // perspective, perspective-origin    // 3D 환경에서의 원근감과 기준점
+        // transform-style                    // 3D 변환에 부모-자식 관계 설정 (flat/preserve-3d)
+        // rotateX, rotateY, rotateZ          // 각 축에 대한 개별 회전
+        // translateX, translateY, translateZ // 각 축에 대한 개별 이동
+        // scaleX, scaleY, scaleZ             // 각 축에 대한 개별 크기 조정
+    ],
     flexbox: [
         { id: 'flexDirection', value: 'FlexDirection', label: 'Flex Direction' },           // 플렉스 방향
         { id: 'flexWrap', value: 'FlexWrap', label: 'Flex Wrap' },                          // 플렉스 줄바꿈
@@ -127,7 +146,9 @@ export const categoryData: CategoryData = {
         { id: 'alignContent', value: 'AlignContent', label: 'Align Content' },                       // 컨테이너 내 수직 정렬
         { id: 'gridColumn', value: 'GridColumn', label: 'Grid Column' },                             // 아이템이 차지할 열 범위
         { id: 'gridRow', value: 'GridRow', label: 'Grid Row' }                                       // 아이템이 차지할 행 범위
-    ]
+    ],
+    // table
+    // transform
 };
 
 export type CategoryMeta = {
@@ -145,23 +166,28 @@ export const categoryMetaData: CategoryMeta[] = [
     },
     {
         title: "Layout",
-        pagePath: "/category/Layout",
+        pagePath: "/category/layout",
         property: categoryData.layout.map(item => item.label),
     },
     {
         title: "Sizing",
-        pagePath: "/category/Sizing",
+        pagePath: "/category/sizing",
         property: categoryData.sizing.map(item => item.label),
     },
     {
         title: "Typography",
-        pagePath: `/category/Typography`,
+        pagePath: `/category/typography`,
         property: categoryData.typography.map(item => item.label),
     },
     {
         title: "Design",
-        pagePath: `/category/Design`,
+        pagePath: `/category/design`,
         property: categoryData.design.map(item => item.label),
+    },
+    {
+        title: "Transform",
+        pagePath: `/category/transform`,
+        property: categoryData.transform.map(item => item.label),
     },
     // { title: "Interactivity", pagePath: `/category/Interactivity` },
     // { title: "Filters", pagePath: `/category/Filters` },

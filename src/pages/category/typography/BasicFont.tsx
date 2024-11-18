@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus, faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const BasicFont: React.FC = () => {
     // 1. font-style
@@ -127,7 +127,7 @@ const BasicFont: React.FC = () => {
     }
 
     const dependencies = [fontStyle, fontWeight, fontSize, fontFamily];
-    useElementOverflowAdjustment(['#basic-font'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 50 });
+    useOverflowHandler(['#basic-font'], () => 0, setBoxTranslateY, dependencies, { widthPadding: 0, heightPadding: 50 });
 
     return (
         <>

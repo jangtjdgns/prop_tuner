@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const TextDecoration: React.FC = () => {
     // 1. text-decoration-thickness, default 1px
@@ -37,7 +37,7 @@ const TextDecoration: React.FC = () => {
     }
 
     const dependencies = [textDecorationThickness, textDecorationLine, textDecorationStyle, textDecorationColor];
-    useElementOverflowAdjustment(['#text-decoration'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#text-decoration'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

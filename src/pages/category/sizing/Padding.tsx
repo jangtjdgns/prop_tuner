@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Padding: React.FC = () => {
     const [paddingType, setPaddingType] = useState(0);                // padding 타입, 0: all, 1: V&H, 2:Individual
@@ -138,7 +138,7 @@ const Padding: React.FC = () => {
     }
 
     const dependencies = [paddingType, padding, paddingVertical, paddingHorizontal, paddingTop, paddingRight, paddingBottom, paddingLeft];
-    useElementOverflowAdjustment(['#padding'], setBoxTranslateX, setBoxTranslateY, dependencies, { widthPadding: 100, heightPadding: 150 });
+    useOverflowHandler(['#padding'], setBoxTranslateX, setBoxTranslateY, dependencies, { widthPadding: 100, heightPadding: 150 });
 
     return (
         <>

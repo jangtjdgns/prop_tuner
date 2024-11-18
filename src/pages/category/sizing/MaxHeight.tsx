@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const MaxHeight: React.FC = () => {
     const [maxHeight, setMaxHeight] = useState(400);
@@ -25,7 +25,7 @@ const MaxHeight: React.FC = () => {
         setBoxheight(value);
     }
 
-    useElementOverflowAdjustment(['#max-height'], () => 0, setBoxTranslateY, [maxHeight]);
+    useOverflowHandler(['#max-height'], () => 0, setBoxTranslateY, [maxHeight]);
 
     return (
         <>

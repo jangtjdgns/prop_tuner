@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Width: React.FC = () => {
     const [minWidth, setMinWidth] = useState(800);
@@ -25,7 +25,7 @@ const Width: React.FC = () => {
         setBoxWidth(value);
     }
 
-    useElementOverflowAdjustment(['#min-width', '#box-width'], setBoxTranslateX, () => 0, [minWidth, boxWidth]);
+    useOverflowHandler(['#min-width', '#box-width'], setBoxTranslateX, () => 0, [minWidth, boxWidth]);
 
 
     return (

@@ -54,6 +54,8 @@ import Background from './pages/category/design/Background';
 import Color from './pages/category/design/Color';
 import Gradient from './pages/category/design/Gradient';
 import ClipPath from './pages/category/design/ClipPath';
+// category-transform
+import Transform from './pages/category/transform/Transform';
 
 const App = () => {
     return (
@@ -118,6 +120,10 @@ const App = () => {
                             <Route path="Color" element={<Color />} />
                             <Route path="Gradient" element={<Gradient />} />
                             <Route path="ClipPath" element={<ClipPath />} />
+                        </Route>
+                        <Route path='transform'>
+                            <Route index element={<Transform />} />
+                            <Route path='Transform' element={<Transform />} />
                         </Route>
                     </Route>
                 </Routes>

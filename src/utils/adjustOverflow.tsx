@@ -1,17 +1,17 @@
 // #view 자식 태그가 브라우저 크기를 벗어났을 때 오버플로우를 조정하는 함수 
 // Css Props 페이지 전용
 
-export const adjustElementOverflow = (
+export const adjustOverflow = (
     viewChildElements: string[],
-    setTranslateX: (x: number) => void = (x) => {},
-    setTranslateY: (y: number) => void = (y) => {},
+    setTranslateX: (x: number) => void = (x) => { },
+    setTranslateY: (y: number) => void = (y) => { },
     padding: { widthPadding: number; heightPadding: number } = { widthPadding: 0, heightPadding: 0 } // 여백 설정
 ) => {
     const viewTag = document.querySelector('#view') as Element;
 
     viewChildElements.forEach((viewChildElement) => {
         const viewChildTag = document.querySelector(viewChildElement) as Element;
-        
+        console.log(viewChildTag.clientWidth)
         if (viewChildTag) {
             // X축 조정
             if (viewChildTag.clientWidth > window.innerWidth) {
@@ -29,5 +29,3 @@ export const adjustElementOverflow = (
         }
     });
 };
-
-

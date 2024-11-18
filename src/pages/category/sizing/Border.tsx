@@ -5,7 +5,7 @@ import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { hexToRgba } from '../../../utils/colorUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Border: React.FC = () => {
     const [borderWidth, setBorderWidth] = useState(50);
@@ -60,7 +60,7 @@ const Border: React.FC = () => {
     }
 
     const dependencies = [borderWidth, borderStyle, borderColor, borderOpacity, borderRadius];
-    useElementOverflowAdjustment(['#border'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#border'], () => 0, setBoxTranslateY, dependencies);
 
     return (
         <>

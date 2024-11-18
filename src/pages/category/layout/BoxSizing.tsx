@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const BoxSizing: React.FC = () => {
     type BoxSizingValues = 'border' | 'content';
@@ -30,7 +30,7 @@ const BoxSizing: React.FC = () => {
     }
 
     const dependencies = [boxSizing, childWidth, childBorderWidth];
-    useElementOverflowAdjustment(['#box-sizing'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#box-sizing'], () => 0, setBoxTranslateY, dependencies);
 
     return (
         <>

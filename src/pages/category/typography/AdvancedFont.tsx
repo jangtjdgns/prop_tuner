@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus, faPen, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const AdvancedFont: React.FC = () => {
     // 1. font-family
@@ -141,7 +141,7 @@ const AdvancedFont: React.FC = () => {
     }
 
     const dependencies = [fontFamily, fontFeatureSettings, fontKerning, fontVariantCaps, fontVariantLigatures, fontVariantNumeric, fontVariantAlternates];
-    useElementOverflowAdjustment(['#advanced-font'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#advanced-font'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

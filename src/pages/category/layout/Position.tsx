@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Position: React.FC = () => {
     type PositionValue = 'static' | 'relative' | 'absolute' | 'sticky' | 'fixed';
@@ -65,7 +65,7 @@ const Position: React.FC = () => {
     }
 
     const dependencies = [position, top, right, bottom, left, unit];
-    useElementOverflowAdjustment(['#position'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#position'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (

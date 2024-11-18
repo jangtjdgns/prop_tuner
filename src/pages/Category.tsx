@@ -11,28 +11,6 @@ const Category: React.FC = () => {
     const [subCategory, setSubCategory] = useState('AspectRatio');                  // 서브 카테고리 (속성들)
     const navigate = useNavigate();
 
-    // 메인 카테고리에 따라 반환되는 페이지 지정
-    const returnPage = (mainCt: CategoryDataKey, subCt: string) => {
-
-        // location에 mainCateogry부터 없는 경우, (/category 인 경우)
-        if (!mainCt) {
-            setMainCategory('layout');          // 1번 메인 카테고리 선택
-            setSubCategory('AspectRatio');      // 1번 메인 카테고리의 1번 서브 카테고리 선택
-            return navigate(`/category/layout/AspectRatio`);
-        }
-
-        // loaction에 subCategory가 없는 경우, (/category/{mainCategory} 인 경우)
-        if (!subCt) {
-            mainCt = mainCt.toLowerCase() as CategoryDataKey;      // 소문자 변환
-            setMainCategory(mainCt);
-            const subCategoryItem = categoryData[mainCt];
-            if (!subCategoryItem) return null;
-            subCt = subCategoryItem[0].value;
-            setSubCategory(subCt);
-            return navigate(`/category/${mainCt}/${subCt}`);
-        }
-    }
-
     // subCategory 리스트 표시
     const showSubCategories = () => {
         const subCategoryItem: CategoryItem[] = categoryData[mainCategory];  // mainCategory에 해당하는 카테고리 배열 선택
@@ -43,9 +21,9 @@ const Category: React.FC = () => {
             <input
                 key={item.id}
                 type="radio"
-                id={`${mainCategory}-${item.id}`}
-                className={`btn ${mainCategory}`}
-                name={mainCategory}
+                id={`category-${mainCategory}`}
+                className={`btn category-${mainCategory}`}
+                name={`category-${mainCategory}`}
                 value={item.value}
                 aria-label={item.label}
                 checked={subCategory === item.value}
@@ -56,7 +34,7 @@ const Category: React.FC = () => {
 
     // 서브 카테고리 버튼 클릭 핸들러
     const radioButtonHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const curMainCategory = event.target.name as CategoryDataKey;
+        const curMainCategory = event.target.name.replace("category-", "") as CategoryDataKey;
         const selectedSubCategory: string = event.target.value;
 
         setMainCategory(curMainCategory);

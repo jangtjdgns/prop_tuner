@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Margin: React.FC = () => {
     const [marginType, setMarginType] = useState(0);                // margin 타입, 0: all, 1: V&H, 2:Individual
@@ -138,7 +138,7 @@ const Margin: React.FC = () => {
     }
 
     const dependencies = [marginType, margin, marginVertical, marginHorizontal, marginTop, marginRight, marginBottom, marginLeft];
-    useElementOverflowAdjustment(['#border-line'], setBoxTranslateX, setBoxTranslateY, dependencies, { widthPadding: 100, heightPadding: 150 });
+    useOverflowHandler(['#border-line'], setBoxTranslateX, setBoxTranslateY, dependencies, { widthPadding: 100, heightPadding: 150 });
 
     return (
         <>

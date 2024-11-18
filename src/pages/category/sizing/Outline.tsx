@@ -5,7 +5,7 @@ import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { hexToRgba } from '../../../utils/colorUtils';
-import { useElementOverflowAdjustment } from '../../../hooks/useElementOverflowAdjustment ';
+import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Outline: React.FC = () => {
     const [outlineWidth, setOutlineWidth] = useState(50);
@@ -60,7 +60,7 @@ const Outline: React.FC = () => {
     }
 
     const dependencies = [outlineWidth, outlineStyle, outlineColor, outlineOpacity, outlineOffset];
-    useElementOverflowAdjustment(['#outline'], () => 0, setBoxTranslateY, dependencies);
+    useOverflowHandler(['#outline'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
