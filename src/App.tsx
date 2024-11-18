@@ -56,6 +56,7 @@ import Gradient from './pages/category/design/Gradient';
 import ClipPath from './pages/category/design/ClipPath';
 // category-transform
 import Transform from './pages/category/transform/Transform';
+import Transform3D from './pages/category/transform/Transform3D';
 
 const App = () => {
     return (
@@ -124,6 +125,7 @@ const App = () => {
                         <Route path='transform'>
                             <Route index element={<Transform />} />
                             <Route path='Transform' element={<Transform />} />
+                            <Route path='Transform3D' element={<Transform3D />} />
                         </Route>
                     </Route>
                 </Routes>

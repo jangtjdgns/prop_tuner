@@ -265,7 +265,7 @@ const Transform: React.FC = () => {
                         {/* 단위 */}
                         {getUnitWrap()}
 
-                        <div className="divider font-bold text-lg">Values</div>
+                        {transform !== 'none' ? (<div className="divider font-bold text-lg">Values</div>) : null}
                         <div className='grid grid-cols-2 gap-2 items-center text-center'>
                             {getPropsOptionWrap()}
                         </div>

@@ -100,7 +100,7 @@ export const categoryData: CategoryData = {
     ],
     transform: [
         { id: 'transform', value: 'Transform', label: 'Transform' },                                // 요소에 변환을 적용 (rotate, translate, scale, skew 등)
-        { id: '3dTransform', value: '3DTransform', label: '3D Transform' },                         // 3D 변환 속성 (rotate3d, translateZ 등)
+        { id: 'transform3D', value: 'Transform3D', label: 'Transform 3D' },                         // 3D 변환 속성 (rotate3d, translateZ 등)
         { id: 'transformOrigin', value: 'TransformOrigin', label: 'Transform Origin' },             // 변환의 기준점(origin)을 설정
         { id: 'perspective', value: 'Perspective', label: 'Perspective' },                          // 3D 변환 시 원근감을 설정
         { id: 'perspectiveOrigin', value: 'PerspectiveOrigin', label: 'Perspective Origin' },       // 원근감 기준점 설정
