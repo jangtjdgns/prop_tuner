@@ -1,4 +1,4 @@
-// 기본 레이아웃 형식(복사용 tsx 파일).tsx
+// Transform3D.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -197,7 +197,7 @@ const Transform3D: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Transform</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Transform 3D</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
@@ -248,13 +248,19 @@ const Transform3D: React.FC = () => {
                     }}
                 >
                     {/* x축 기준선, red */}
-                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[1px] border border-red-500 text-right'>x</div>
+                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[1px] border border-red-500 text-right font-bold'>
+                        <div className='relative right-2'>x</div>
+                    </div>
                     {/* y축 기준선, blue */}
-                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[400px] border border-blue-500'>y</div>
+                    <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[400px] border border-blue-500 font-bold'>
+                        <div className='relative left-2'>y</div>
+                    </div>
                     {/* z축 기준선, black */}
-                    <div className="absolute top-1/2 left-1/2 w-[1px] h-[400px] border border-black"
+                    <div className="absolute top-1/2 left-1/2 w-[1px] h-[400px] border border-black font-bold"
                         style={{ transform: "translate(-50%, -50%) rotateX(-90deg)" }}
-                    >z</div>
+                    >
+                        <div className='relative left-2'>z</div>
+                    </div>
                 </div>
             </div>
         </>

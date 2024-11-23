@@ -1,4 +1,4 @@
-// 기본 레이아웃 형식(복사용 tsx 파일).tsx
+// Transform.tsx
 import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'

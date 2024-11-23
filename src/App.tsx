@@ -57,6 +57,7 @@ import ClipPath from './pages/category/design/ClipPath';
 // category-transform
 import Transform from './pages/category/transform/Transform';
 import Transform3D from './pages/category/transform/Transform3D';
+import TransformOrigin from './pages/category/transform/TransformOrigin';
 
 const App = () => {
     return (
@@ -126,6 +127,7 @@ const App = () => {
                             <Route index element={<Transform />} />
                             <Route path='Transform' element={<Transform />} />
                             <Route path='Transform3D' element={<Transform3D />} />
+                            <Route path='TransformOrigin' element={<TransformOrigin />} />
                         </Route>
                     </Route>
                 </Routes>
