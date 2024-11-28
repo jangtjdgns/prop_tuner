@@ -1,25 +1,24 @@
-// Perspective.tsx
+// PerspectiveOrigin.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 
-const Perspective: React.FC = () => {
-    const [perspective, setPerspective] = useState(500);
+const PerspectiveOrigin: React.FC = () => {
+    const [originX, setOriginX] = useState(50);
+    const [originY, setOriginY] = useState(50);
+
     const [rotate3d, setRotate3d] = useState<{ position: string, elements: string, value: number }[]>([
         { position: 'x', elements: 'X Rotate', value: 0 },
         { position: 'y', elements: 'Y Rotate', value: 0 },
         { position: 'z', elements: 'Z Rotate', value: 0 },
     ]);
 
-
-    // perspective 업데이트
-    const updatePerspective = (inputValue: string) => {
-        let value = isNaN(Number(inputValue)) ? 500 : Number(inputValue);
-        setPerspective(value);
+    // perspective-origin 업데이트
+    const updateOrigin = (pos: string, inputValue: number) => {
+        pos === 'x' ? setOriginX(inputValue) : setOriginY(inputValue);
     }
-
     // update rotate3d value
     const updateRotateValues = (position: string, inputValue: string,
         values: { position: string; elements: string; value: number }[],
@@ -37,7 +36,7 @@ const Perspective: React.FC = () => {
 
     return (
         <>
-            <div id='option-wrap' className='absolute top-10 left-6 transition-transform duration-500 z-[1000]'>
+            <div id='option-wrap' className='absolute top-10 left-6 z-[1000]'>
                 <div className='w-72 flex flex-col gap-2 shadow rounded-xl p-2 bg-white border border-gray-200 hover:shadow-2xl hover:border-gray-300 transition-all duration-500'>
                     <label id="option-toggle-btn"
                         className="swap absolute top-2 right-2 btn btn-xs btn-circle"
@@ -49,37 +48,40 @@ const Perspective: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Perspective</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Perspective Origin</div>
+                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Unit: %</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         <div className='text-center p-0.5 text-xs'>
-                            perspective:
+                            perspective-origin:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={perspective}
+                                value={`${originX}% ${originY}%`}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('perspective', perspective, 'px')}
+                                onClick={() => copyCss('perspective-origin', `${originX}% ${originY}%`)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        {/* Perspective */}
-                        <div className="divider font-bold text-lg">Perspective</div>
+                        {/* origin X, Y */}
+                        <div className="divider font-bold text-lg">Origin</div>
                         <div className='grid grid-cols-2 items-center text-center gap-2'>
-                            <div className='font-bold text-sm'>perspective</div>
+                            <div className='font-bold text-sm'>Origin X</div>
                             <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none'
-                                value={perspective}
+                                value={originX}
                                 style={{ MozAppearance: 'textfield' }}
-                                onChange={(e) => updatePerspective(e.target.value)}
+                                onChange={(e) => updateOrigin('x', Number(e.target.value))}
                             />
-                            <input type="range" min={300} max="800" className="col-start-1 col-end-3 range range-xs" step="100"
-                                value={perspective}
-                                onChange={(e) => updatePerspective(e.target.value)}
+                            <div className='font-bold text-sm'>Origin Y</div>
+                            <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none'
+                                value={originY}
+                                style={{ MozAppearance: 'textfield' }}
+                                onChange={(e) => updateOrigin('y', Number(e.target.value))}
                             />
                         </div>
 
@@ -109,7 +111,8 @@ const Perspective: React.FC = () => {
             <div id="view" className='relative w-full h-full flex items-center justify-center transition-perspective duration-500'
                 style={{
                     transformStyle: 'preserve-3d',
-                    perspective,
+                    perspective: '500px',
+                    perspectiveOrigin: `${originX}% ${originY}%`
                 }}
             >
                 {/* 각 면의 x,y,z 순서 중요함 */}
@@ -244,4 +247,4 @@ const Perspective: React.FC = () => {
     );
 }
 
-export default Perspective;
+export default PerspectiveOrigin;

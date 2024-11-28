@@ -59,6 +59,7 @@ import Transform from './pages/category/transform/Transform';
 import Transform3D from './pages/category/transform/Transform3D';
 import TransformOrigin from './pages/category/transform/TransformOrigin';
 import Perspective from './pages/category/transform/Perspective';
+import PerspectiveOrigin from './pages/category/transform/PerspectiveOrigin';
 
 const App = () => {
     return (
@@ -130,6 +131,7 @@ const App = () => {
                             <Route path='Transform3D' element={<Transform3D />} />
                             <Route path='TransformOrigin' element={<TransformOrigin />} />
                             <Route path='Perspective' element={<Perspective />} />
+                            <Route path='PerspectiveOrigin' element={<PerspectiveOrigin />} />
                         </Route>
                     </Route>
                 </Routes>
