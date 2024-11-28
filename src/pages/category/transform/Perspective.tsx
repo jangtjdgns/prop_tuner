@@ -6,7 +6,7 @@ import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 
 const Perspective: React.FC = () => {
-    const [perspective, setPerspective] = useState(1500);
+    const [perspective, setPerspective] = useState(500);
     const [rotate3d, setRotate3d] = useState<{ position: string, elements: string, value: number }[]>([
         { position: 'x', elements: 'X Rotate', value: 0 },
         { position: 'y', elements: 'Y Rotate', value: 0 },
@@ -16,7 +16,7 @@ const Perspective: React.FC = () => {
 
     // perspective 업데이트
     const updatePerspective = (inputValue: string) => {
-        let value = isNaN(Number(inputValue)) ? 1500 : Number(inputValue);
+        let value = isNaN(Number(inputValue)) ? 500 : Number(inputValue);
         setPerspective(value);
     }
 
@@ -77,7 +77,7 @@ const Perspective: React.FC = () => {
                                 style={{ MozAppearance: 'textfield' }}
                                 onChange={(e) => updatePerspective(e.target.value)}
                             />
-                            <input type="range" min={500} max="3000" className="col-start-1 col-end-3 range range-xs" step="100"
+                            <input type="range" min={300} max="800" className="col-start-1 col-end-3 range range-xs" step="100"
                                 value={perspective}
                                 onChange={(e) => updatePerspective(e.target.value)}
                             />
@@ -106,16 +106,15 @@ const Perspective: React.FC = () => {
             </div>
 
             {/* view 파트 */}
-            <div id="view" className='relative w-full h-full flex items-center justify-center'
+            <div id="view" className='relative w-full h-full flex items-center justify-center transition-perspective duration-500'
                 style={{
                     transformStyle: 'preserve-3d',
                     perspective,
-                    transform: 'perspective(500px)'
                 }}
             >
                 {/* 각 면의 x,y,z 순서 중요함 */}
                 {/* 앞면 */}
-                <div id='front' className='absolute w-[200px] h-[200px] bg-red-500 bg-opacity-80 border-2 border-black'
+                <div id='front' className='absolute w-[200px] h-[200px] bg-red-500 bg-opacity-80 border-2 border-black transition-transform duration-500'
                     style={{
                         transform: `
                             rotate3d(1, 0, 0, ${rotate3d[0].value}deg)
@@ -129,7 +128,7 @@ const Perspective: React.FC = () => {
                 </div>
 
                 {/* 뒷면 */}
-                <div id='back' className='absolute w-[200px] h-[200px] bg-orange-500 bg-opacity-80 border-2 border-black'
+                <div id='back' className='absolute w-[200px] h-[200px] bg-orange-500 bg-opacity-80 border-2 border-black transition-transform duration-500'
                     style={{
                         transform: `
                             rotate3d(1, 0, 0, ${rotate3d[0].value}deg)
@@ -143,7 +142,7 @@ const Perspective: React.FC = () => {
                 </div>
 
                 {/* 우측면 */}
-                <div id='right' className='absolute w-[200px] h-[200px] bg-yellow-500 bg-opacity-80 border-2 border-black'
+                <div id='right' className='absolute w-[200px] h-[200px] bg-yellow-500 bg-opacity-80 border-2 border-black transition-transform duration-500'
                     style={{
                         transform: `
                             rotate3d(1, 0, 0, ${rotate3d[0].value}deg)
@@ -157,7 +156,7 @@ const Perspective: React.FC = () => {
                 </div>
 
                 {/* 좌측면 */}
-                <div id='left' className='absolute w-[200px] h-[200px] bg-green-500 bg-opacity-80 border-2 border-black'
+                <div id='left' className='absolute w-[200px] h-[200px] bg-green-500 bg-opacity-80 border-2 border-black transition-transform duration-500'
                     style={{
                         transform: `
                             rotate3d(1, 0, 0, ${rotate3d[0].value}deg)
@@ -171,7 +170,7 @@ const Perspective: React.FC = () => {
                 </div>
 
                 {/* 윗면 */}
-                <div id='top' className='absolute w-[200px] h-[200px] bg-blue-500 bg-opacity-80 border-2 border-black'
+                <div id='top' className='absolute w-[200px] h-[200px] bg-blue-500 bg-opacity-80 border-2 border-black transition-transform duration-500'
                     style={{
                         transform: `
                             rotate3d(1, 0, 0, ${rotate3d[0].value + 90}deg)
@@ -185,7 +184,7 @@ const Perspective: React.FC = () => {
                 </div>
 
                 {/* 아랫면 */}
-                <div id='bottom' className='absolute w-[200px] h-[200px] bg-indigo-500 bg-opacity-80 border-2 border-black'
+                <div id='bottom' className='absolute w-[200px] h-[200px] bg-indigo-500 bg-opacity-80 border-2 border-black transition-transform duration-500'
                     style={{
                         transform: `
                             rotate3d(1, 0, 0, ${rotate3d[0].value + 90}deg)
@@ -199,7 +198,7 @@ const Perspective: React.FC = () => {
                 </div>
 
                 {/* x축 기준선, red */}
-                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[1px] border border-red-500 text-right font-bold'
+                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[1px] border border-red-500 text-right font-bold transition-transform duration-500'
                     style={{
                         transformOrigin: '0 0 0',
                         transform: `
@@ -213,7 +212,7 @@ const Perspective: React.FC = () => {
                     <div className='relative right-2 text-red-500'>x</div>
                 </div>
                 {/* y축 기준선, blue */}
-                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[400px] border border-green-500 font-bold'
+                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[400px] border border-green-500 font-bold transition-transform duration-500'
                     style={{
                         transformOrigin: '0 0 0',
                         transform: `
@@ -227,7 +226,7 @@ const Perspective: React.FC = () => {
                     <div className='relative left-2 text-green-500'>y</div>
                 </div>
                 {/* z축 기준선, black */}
-                <div className="absolute top-1/2 left-1/2 w-[1px] h-[400px] border border-blue-500 font-bold"
+                <div className="absolute top-1/2 left-1/2 w-[1px] h-[400px] border border-blue-500 font-bold transition-transform duration-500"
                     style={{
                         transformOrigin: '0 0 0',
                         transform: `
