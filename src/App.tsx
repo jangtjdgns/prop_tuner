@@ -58,6 +58,7 @@ import ClipPath from './pages/category/design/ClipPath';
 import Transform from './pages/category/transform/Transform';
 import Transform3D from './pages/category/transform/Transform3D';
 import TransformOrigin from './pages/category/transform/TransformOrigin';
+import Perspective from './pages/category/transform/Perspective';
 
 const App = () => {
     return (
@@ -128,6 +129,7 @@ const App = () => {
                             <Route path='Transform' element={<Transform />} />
                             <Route path='Transform3D' element={<Transform3D />} />
                             <Route path='TransformOrigin' element={<TransformOrigin />} />
+                            <Route path='Perspective' element={<Perspective />} />
                         </Route>
                     </Route>
                 </Routes>

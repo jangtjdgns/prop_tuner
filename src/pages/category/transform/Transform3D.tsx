@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-// import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
-// transform에서 사용하기 어려움
 
 const Transform3D: React.FC = () => {
     // transform이 제대로 적용되기 위해서는 순서가 중요함, (일단 matrix3d는 제외)

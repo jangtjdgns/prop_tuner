@@ -4,8 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-// import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
-// transform에서 사용하기 어려움
 
 const Transform: React.FC = () => {
     const transformValues = ["none", "translate", "scale", "skew", "matrix", "rotate"];
