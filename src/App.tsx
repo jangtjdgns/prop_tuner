@@ -64,6 +64,7 @@ import PerspectiveOrigin from './pages/category/transform/PerspectiveOrigin';
 import BackfaceVisibility from './pages/category/transform/BackfaceVisibility';
 // category-flexbox
 import FlexDirection from './pages/category/flexbox/FlexDirection';
+import FlexWrap from './pages/category/flexbox/FlexWrap';
 
 const App = () => {
     return (
@@ -142,6 +143,7 @@ const App = () => {
                         <Route path='flexbox'>
                             <Route index element={<FlexDirection />} />
                             <Route path='FlexDirection' element={<FlexDirection />} />
+                            <Route path='FlexWrap' element={<FlexWrap />} />
                         </Route>
                     </Route>
                 </Routes>
