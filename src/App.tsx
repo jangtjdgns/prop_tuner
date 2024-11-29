@@ -66,6 +66,7 @@ import BackfaceVisibility from './pages/category/transform/BackfaceVisibility';
 import FlexDirection from './pages/category/flexbox/FlexDirection';
 import FlexWrap from './pages/category/flexbox/FlexWrap';
 import FlexFlow from './pages/category/flexbox/FlexFlow';
+import JustifyContent from './pages/category/flexbox/JustifyContent';
 
 const App = () => {
     return (
@@ -146,6 +147,7 @@ const App = () => {
                             <Route path='FlexDirection' element={<FlexDirection />} />
                             <Route path='FlexWrap' element={<FlexWrap />} />
                             <Route path='FlexFlow' element={<FlexFlow />} />
+                            <Route path='JustifyContent' element={<JustifyContent />} />
                         </Route>
                     </Route>
                 </Routes>
