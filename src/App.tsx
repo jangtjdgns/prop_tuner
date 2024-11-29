@@ -65,6 +65,7 @@ import BackfaceVisibility from './pages/category/transform/BackfaceVisibility';
 // category-flexbox
 import FlexDirection from './pages/category/flexbox/FlexDirection';
 import FlexWrap from './pages/category/flexbox/FlexWrap';
+import FlexFlow from './pages/category/flexbox/FlexFlow';
 
 const App = () => {
     return (
@@ -144,6 +145,7 @@ const App = () => {
                             <Route index element={<FlexDirection />} />
                             <Route path='FlexDirection' element={<FlexDirection />} />
                             <Route path='FlexWrap' element={<FlexWrap />} />
+                            <Route path='FlexFlow' element={<FlexFlow />} />
                         </Route>
                     </Route>
                 </Routes>
