@@ -143,7 +143,7 @@ const ListStyle: React.FC = () => {
                         >
                             <div className='text-center p-0.5 text-xs'>
                                 list-style-image:
-                                <input type="text" className='input input-xs mx-1 border-gray-200 w-32 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                                <input type="text" className='input input-xs mx-1 border-gray-200 w-28 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                     value={listStyleImage === 'url' ? `url("${customImage}")` : listStyleImage}
                                     readOnly
                                 />

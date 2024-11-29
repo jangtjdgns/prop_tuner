@@ -124,7 +124,6 @@ export const categoryData: CategoryData = {
         { id: 'gridRow', value: 'GridRow', label: 'Grid Row' }                                       // 아이템이 차지할 행 범위
     ],
     // table
-    // transform
 };
 
 export type CategoryMeta = {
@@ -164,6 +163,11 @@ export const categoryMetaData: CategoryMeta[] = [
         title: "Transform",
         pagePath: `/category/transform`,
         property: categoryData.transform.map(item => item.label),
+    },
+    {
+        title: "FlexBox",
+        pagePath: `/category/flexbox`,
+        property: categoryData.flexbox.map(item => item.label),
     },
     // { title: "Interactivity", pagePath: `/category/Interactivity` },
     // { title: "Filters", pagePath: `/category/Filters` },

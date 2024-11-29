@@ -24,6 +24,7 @@ const BackfaceVisibility: React.FC = () => {
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Backface Visibility</div>
+                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Hover over the element</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}

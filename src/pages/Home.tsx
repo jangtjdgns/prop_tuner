@@ -46,7 +46,7 @@ const Home = () => {
                         <div className="mt-14 absolute z-10 top-0 left-0 w-full font-mono">
                             {/* 검색어가 있으면서 결과가 있는경우 렌더링 함 */}
                             {searchTerm && filteredCategories.length > 0 ? (
-                                <div className="bg-gray-100 border rounded shadow-lg overflow-x-auto px-3 pb-4 bg-opacity-90">
+                                <div id='search-list' className="bg-gray-100 border rounded max-h-[450px] overflow-y-scroll shadow-lg overflow-x-auto px-3 pb-4 bg-opacity-90">
                                     {filteredCategories.map((category) => (
                                         <div key={category.title} className=' pt-3'>
                                             <h3 className="font-bold text-2xl">{category.title}</h3>
