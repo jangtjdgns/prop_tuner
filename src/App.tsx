@@ -59,6 +59,7 @@ import Transform from './pages/category/transform/Transform';
 import Transform3D from './pages/category/transform/Transform3D';
 import TransformOrigin from './pages/category/transform/TransformOrigin';
 import Perspective from './pages/category/transform/Perspective';
+import TransformStyle from './pages/category/transform/TransformStyle';
 import PerspectiveOrigin from './pages/category/transform/PerspectiveOrigin';
 import BackfaceVisibility from './pages/category/transform/BackfaceVisibility';
 
@@ -132,6 +133,7 @@ const App = () => {
                             <Route path='Transform3D' element={<Transform3D />} />
                             <Route path='TransformOrigin' element={<TransformOrigin />} />
                             <Route path='Perspective' element={<Perspective />} />
+                            <Route path='TransformStyle' element={<TransformStyle />} />
                             <Route path='PerspectiveOrigin' element={<PerspectiveOrigin />} />
                             <Route path='BackfaceVisibility' element={<BackfaceVisibility />} />
                         </Route>

@@ -18,29 +18,6 @@ interface CategoryData {
 // 카테고리 데이터
 export const categoryData: CategoryData = {
     // Layout 하위 컴포넌트 정보
-    /**
-     * Aspect Ratio                     o
-     * Container                        x
-     * Columns                          o
-     * Break After                      o
-     * Break Before                     o
-     * Break Inside                     o
-     * Box Decoration Break             x
-     * Box Sizing                       o
-     * Display                          o
-     * Float                            o
-     * Clear                            o
-     * Isolation                        x
-     * Object Fit                       o
-     * Object Position                  o
-     * Overflow                         o
-     * Overscroll Behavior              x
-     * Position                         o
-     * Top / Right / Bottom / Left      o
-     * visibility                       o
-     * Z-index                          o
-     * 
-     */
     layout: [
         { id: 'aspectRatio', value: 'AspectRatio', label: 'Aspect Ratio' },                 // 요소의 종횡비
         { id: 'columns', value: 'Columns', label: 'Columns' },                              // 다중 열 레이아웃의 열 수
@@ -54,6 +31,9 @@ export const categoryData: CategoryData = {
         { id: 'position', value: 'Position', label: 'Position' },                           // 요소 위치 지정, (top, right, bottom, left 포함)
         { id: 'visibility', value: 'Visibility', label: 'Visibility' },                     // 요소 가시성
         { id: 'zIndex', value: 'ZIndex', label: 'Z Index' },                                // 위치가 지정된 요소의 쌓이는 순서 지정
+        //      Box Decoration Break             x
+        //      Isolation                        x
+        //      Overscroll Behavior              x
     ],
     sizing: [
         { id: 'width', value: 'Width', label: 'Width' },                                    // 너비
@@ -102,19 +82,15 @@ export const categoryData: CategoryData = {
         { id: 'transform', value: 'Transform', label: 'Transform' },                                // 요소에 변환을 적용 (rotate, translate, scale, skew 등)
         { id: 'transform3D', value: 'Transform3D', label: 'Transform 3D' },                         // 3D 변환 속성 (rotate3d, translateZ 등)
         { id: 'transformOrigin', value: 'TransformOrigin', label: 'Transform Origin' },             // 변환의 기준점(origin)을 설정
-        { id: 'perspective', value: 'Perspective', label: 'Perspective' },                          // 3D 변환 시 원근감을 설정
-        { id: 'perspectiveOrigin', value: 'PerspectiveOrigin', label: 'Perspective Origin' },       // 원근감 기준점 설정
-        { id: 'backfaceVisibility', value: 'BackfaceVisibility', label: 'Backface Visibility' },    // 3D 변환 시 요소 뒷면의 가시성 설정
-        // { id: 'skew', value: 'Skew', label: 'Skew' },                                               // 요소를 X, Y 축 기준으로 기울이기
-        // { id: 'rotate', value: 'Rotate', label: 'Rotate' },                                         // 요소를 지정된 축 기준으로 회전
-        // { id: 'translate', value: 'Translate', label: 'Translate' },                                // 요소를 X, Y (또는 Z) 축 기준으로 이동
-        // { id: 'scale', value: 'Scale', label: 'Scale' },                                            // 요소의 크기 조정
-        // { id: 'matrix', value: 'Matrix', label: 'Matrix' },                                         // 2D 또는 3D 변환을 행렬(matrix)로 지정
-        // perspective, perspective-origin    // 3D 환경에서의 원근감과 기준점
-        // transform-style                    // 3D 변환에 부모-자식 관계 설정 (flat/preserve-3d)
-        // rotateX, rotateY, rotateZ          // 각 축에 대한 개별 회전
-        // translateX, translateY, translateZ // 각 축에 대한 개별 이동
-        // scaleX, scaleY, scaleZ             // 각 축에 대한 개별 크기 조정
+        { id: 'perspective', value: 'Perspective', label: 'Perspective' },                          // 3D 환경에서 원근감을 설정
+        { id: 'transformStyle', value: 'TransformStyle', label: 'Transform Style' },                // 3D 변환에 부모-자식 관계 설정 (flat/preserve-3d)
+        { id: 'perspectiveOrigin', value: 'PerspectiveOrigin', label: 'Perspective Origin' },       // 3D 환경에서 원근감의 기준점 설정
+        { id: 'backfaceVisibility', value: 'BackfaceVisibility', label: 'Backface Visibility' },    // 3D 요소 뒷면의 가시성 설정 (이면가시성 제어)
+        // skew                       o  // 요소를 X, Y 축 기준으로 기울이기
+        // rotate                     o  // 요소를 지정된 축 기준으로 회전
+        // translate                  o  // 요소를 X, Y (또는 Z) 축 기준으로 이동
+        // scale                      o  // 요소 크기 조정
+        // matrix                     o  // 2D 또는 3D 변환을 행렬(matrix)로 지정
     ],
     flexbox: [
         { id: 'flexDirection', value: 'FlexDirection', label: 'Flex Direction' },           // 플렉스 방향
