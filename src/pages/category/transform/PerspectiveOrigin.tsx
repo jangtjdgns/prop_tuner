@@ -199,49 +199,6 @@ const PerspectiveOrigin: React.FC = () => {
                 >
                     <div className='text-center font-bold text-2xl pb-10' style={{ transform: 'rotateX(180deg)' }}>BOTTOM</div>
                 </div>
-
-                {/* x축 기준선, red */}
-                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[1px] border border-red-500 text-right font-bold'
-                    style={{
-                        transformOrigin: '0 0 0',
-                        transform: `
-                            rotate3d(1, 0, 0, ${rotate3d[0].value}deg)
-                            rotate3d(0, 0, 1, ${rotate3d[2].value}deg)
-                            rotate3d(0, 1, 0, ${-rotate3d[1].value}deg)
-                            translateX(-200px)
-                        `,
-                    }}
-                >
-                    <div className='relative right-2 text-red-500'>x</div>
-                </div>
-                {/* y축 기준선, blue */}
-                <div className='absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1px] h-[400px] border border-green-500 font-bold'
-                    style={{
-                        transformOrigin: '0 0 0',
-                        transform: `
-                            rotate3d(1, 0, 0, ${rotate3d[0].value}deg)
-                            rotate3d(0, 0, 1, ${rotate3d[2].value}deg)
-                            rotate3d(0, 1, 0, ${rotate3d[1].value}deg)
-                            translateY(-200px)
-                    `,
-                    }}
-                >
-                    <div className='relative left-2 text-green-500'>y</div>
-                </div>
-                {/* z축 기준선, black */}
-                <div className="absolute top-1/2 left-1/2 w-[1px] h-[400px] border border-blue-500 font-bold"
-                    style={{
-                        transformOrigin: '0 0 0',
-                        transform: `
-                            rotate3d(1, 0, 0, ${rotate3d[0].value + 90}deg)
-                            rotate3d(0, 1, 0, ${rotate3d[2].value}deg)
-                            rotate3d(0, 0, 1, ${rotate3d[1].value}deg)
-                            translate3d(0, -50%, 0)
-                    `,
-                    }}
-                >
-                    <div className='relative top-[93%] left-2 text-blue-500'>z</div>
-                </div>
             </div>
         </>
     );
