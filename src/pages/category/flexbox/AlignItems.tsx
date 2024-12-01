@@ -1,4 +1,4 @@
-// JustifyContent.tsx
+// AlignItems.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -6,11 +6,9 @@ import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
-const JustifyContent: React.FC = () => {
-    // [start] - 항목들을 축의 시작 부분에 정렬, [end] - 항목들을 축의 끝 부분에 정렬
-    // [flex-start] - 플렉스 항목들을 축의 시작 부분에 정렬, [flex-end] - 플렉스 항목들을 축의 끝 부분에 정렬
-    const [justifyContent, setJustifyContent] = useState('center');
-    const justifyContentValues = ["center", "start", "end", "flex-start", "flex-end", "left", "right", "normal", "space-between", "space-around", "space-evenly", "stretch"];
+const AlignItems: React.FC = () => {
+    const [alignItems, setAlignItems] = useState('normal');
+    const alignItemsValues = ["normal", "stretch", "center", "start", "end", "flex-start", "flex-end", "self-start", "self-end", "baseline", "first baseline", "last baseline"];
 
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
@@ -18,8 +16,8 @@ const JustifyContent: React.FC = () => {
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const dependencies = [justifyContent, flexDirection];
-    useOverflowHandler(['#justify-content'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [alignItems, flexDirection];
+    useOverflowHandler(['#align-items'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -36,37 +34,37 @@ const JustifyContent: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Justify Content</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Align Items</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* 제목 */}
                         <div className='text-center p-0.5 text-xs'>
-                            justify-content:
+                            align-items:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-28 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={justifyContent}
+                                value={alignItems}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('justify-content', justifyContent)}
+                                onClick={() => copyCss('align-items', alignItems)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        {/* justify-content */}
+                        {/* align-items */}
                         <div className='grid grid-cols-3 gap-2'>
-                            {justifyContentValues.map((value, index) => (
+                            {alignItemsValues.map((value, index) => (
                                 <input
                                     key={index}
                                     type='radio'
-                                    name='justifyContent'
+                                    name='alignItems'
                                     className="btn"
                                     aria-label={value}
-                                    checked={justifyContent === value}
-                                    onChange={() => setJustifyContent(value)}
+                                    checked={alignItems === value}
+                                    onChange={() => setAlignItems(value)}
                                 />
                             ))}
                         </div>
@@ -92,10 +90,10 @@ const JustifyContent: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='justify-content' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                <div id='align-items' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{
                         flexDirection,
-                        justifyContent,
+                        alignItems,
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
@@ -112,4 +110,4 @@ const JustifyContent: React.FC = () => {
     );
 }
 
-export default JustifyContent;
+export default AlignItems;
