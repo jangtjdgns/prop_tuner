@@ -1,4 +1,4 @@
-// JustifyContent.tsx
+// AlignContent.tsx
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -7,24 +7,28 @@ import { copyCss } from '../../../utils/clipboardUtils';
 import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
-const JustifyContent: React.FC = () => {
-    // [start] - 항목들을 축의 시작 부분에 정렬, [end] - 항목들을 축의 끝 부분에 정렬
-    // [flex-start] - 플렉스 항목들을 축의 시작 부분에 정렬, [flex-end] - 플렉스 항목들을 축의 끝 부분에 정렬
-    const [justifyContent, setJustifyContent] = useState('normal');
-    const justifyContentValues = ["normal", "stretch", "center", "start", "end", "flex-start", "flex-end", "left", "right", "space-between", "space-around", "space-evenly"];
+const AlignContent: React.FC = () => {
+    const [alignContent, setAlignContent] = useState('normal');
+    const alignContentValues = ["normal", "stretch", "center", "start", "end", "flex-start", "flex-end", "baseline", "first baseline", "last baseline", "space-between", "space-around", "space-evenly"];
+
+    // flex-direction
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
     const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
 
+    type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
+    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
+    const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
+
     // box option
     const [useBoxOption, setUseBoxOption] = useState(false);
     const [boxCount, setBoxCount] = useState(7);
-    const [boxSize, setBoxSize] = useState(40);
+    const [boxSize, setBoxSize] = useState(100);
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const dependencies = [justifyContent, flexDirection, useBoxOption, boxCount, boxSize];
-    useOverflowHandler(['#justify-content'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [alignContent, flexDirection, useBoxOption, boxCount, boxSize];
+    useOverflowHandler(['#align-content'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -41,37 +45,37 @@ const JustifyContent: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Justify Content</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Align Items</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* 제목 */}
                         <div className='text-center p-0.5 text-xs'>
-                            justify-content:
+                            align-content:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-28 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={justifyContent}
+                                value={alignContent}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('justify-content', justifyContent)}
+                                onClick={() => copyCss('align-content', alignContent)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        {/* justify-content */}
+                        {/* align-content */}
                         <div className='grid grid-cols-3 gap-2'>
-                            {justifyContentValues.map((value, index) => (
+                            {alignContentValues.map((value, index) => (
                                 <input
                                     key={index}
                                     type='radio'
-                                    name='justifyContent'
+                                    name='alignContent'
                                     className="btn"
                                     aria-label={value}
-                                    checked={justifyContent === value}
-                                    onChange={() => setJustifyContent(value)}
+                                    checked={alignContent === value}
+                                    onChange={() => setAlignContent(value)}
                                 />
                             ))}
                         </div>
@@ -88,6 +92,22 @@ const JustifyContent: React.FC = () => {
                                     aria-label={value}
                                     checked={flexDirection === value}
                                     onChange={() => setFlexDirection(value as FlexDirectionType)}
+                                />
+                            ))}
+                        </div>
+
+                        {/* flex-wrap */}
+                        <div className="divider font-bold text-lg">Flex Wrap</div>
+                        <div className='grid grid-cols-3 gap-2'>
+                            {flexWrapValues.map((value, index) => (
+                                <input
+                                    key={index}
+                                    type='radio'
+                                    name='flexWrap'
+                                    className="btn"
+                                    aria-label={value}
+                                    checked={flexWrap === value}
+                                    onChange={() => setFlexWrap(value as FlexWrapType)}
                                 />
                             ))}
                         </div>
@@ -119,17 +139,17 @@ const JustifyContent: React.FC = () => {
                                 </>
                             ) : null
                         }
-
                     </div>
                 </div>
             </div>
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='justify-content' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                <div id='align-content' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{
                         flexDirection,
-                        justifyContent,
+                        flexWrap,
+                        alignContent,
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
@@ -140,4 +160,4 @@ const JustifyContent: React.FC = () => {
     );
 }
 
-export default JustifyContent;
+export default AlignContent;

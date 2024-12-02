@@ -7,6 +7,7 @@ export const addBoxes = (
     count: number
     , size: { width: number, height: number }
     , useRainbowBgColor: boolean = true
+    , customStyle: React.CSSProperties = {}             // 별도의 스타일 추가 가능
 ) => {
     let elements = [];
 
@@ -17,6 +18,7 @@ export const addBoxes = (
                     width: size.width,
                     height: size.height,
                     backgroundColor: useRainbowBgColor ? `rgb(${getRainbowColorsUpTo(i)})` : 'black',
+                    ...customStyle,
                 }}
             ></div>
         );

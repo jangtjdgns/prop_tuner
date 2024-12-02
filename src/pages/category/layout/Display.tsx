@@ -139,7 +139,7 @@ const Display: React.FC = () => {
                             <div key={index}
                                 className='children w-[100px] h-[100px] text-center text-xs font-bold'
                                 style={{
-                                    backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.6)`,
+                                    backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]})`,
                                     display: activeTags[index] === 1 ? display : undefined
                                 }}
                             >

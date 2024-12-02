@@ -9,7 +9,7 @@ import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const FlexWrap: React.FC = () => {
     type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
-    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('nowrap');
+    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
     const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
