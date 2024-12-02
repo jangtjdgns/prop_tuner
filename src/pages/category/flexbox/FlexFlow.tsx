@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
+import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const FlexFlow: React.FC = () => {
@@ -17,9 +18,14 @@ const FlexFlow: React.FC = () => {
     const [flexWrap, setFlexWrap] = useState('nowrap');
     const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
 
+    // box option
+    const [useBoxOption, setUseBoxOption] = useState(false);
+    const [boxCount, setBoxCount] = useState(7);
+    const [boxSize, setBoxSize] = useState(100);
+
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const dependencies = [flexDirection, flexWrap];
+    const dependencies = [flexDirection, flexWrap, useBoxOption, boxCount, boxSize];
     useOverflowHandler(['#flex-flow'], () => 0, setBoxTranslateY, dependencies);
 
     return (
@@ -87,6 +93,34 @@ const FlexFlow: React.FC = () => {
                                 />
                             ))}
                         </div>
+
+                        {/* box option */}
+                        <div className='divider flex items-center justify-center font-bold'>
+                            <span>Box Option</span>
+                            <input type="checkbox" className="toggle toggle-info toggle-sm"
+                                onChange={() => setUseBoxOption(!useBoxOption)}
+                            />
+                        </div>
+                        {
+                            useBoxOption ? (
+                                <>
+                                    <div className='grid grid-cols-2 gap-2 items-center'>
+                                        {/* count */}
+                                        <div className='font-bold text-sm text-center'>Count</div>
+                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={2} max={20}
+                                            value={boxCount}
+                                            onChange={(e) => setBoxCount(Math.max(2, Math.min(20, Number(e.target.value))))}
+                                        />
+                                        {/* size */}
+                                        <div className='font-bold text-sm text-center'>Size</div>
+                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={20} max={100}
+                                            value={boxSize}
+                                            onChange={(e) => setBoxSize(Math.max(20, Math.min(100, Number(e.target.value))))}
+                                        />
+                                    </div>
+                                </>
+                            ) : null
+                        }
                     </div>
                 </div>
             </div>
@@ -99,13 +133,7 @@ const FlexFlow: React.FC = () => {
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
-                    <div className='box box-1 w-[100px] h-[100px] bg-red-500'></div>
-                    <div className='box box-2 w-[100px] h-[100px] bg-orange-500'></div>
-                    <div className='box box-3 w-[100px] h-[100px] bg-yellow-500'></div>
-                    <div className='box box-4 w-[100px] h-[100px] bg-green-500'></div>
-                    <div className='box box-5 w-[100px] h-[100px] bg-blue-500'></div>
-                    <div className='box box-6 w-[100px] h-[100px] bg-indigo-500'></div>
-                    <div className='box box-6 w-[100px] h-[100px] bg-purple-500'></div>
+                    {addBoxes(boxCount, { width: boxSize, height: boxSize })}
                 </div>
             </div>
         </>

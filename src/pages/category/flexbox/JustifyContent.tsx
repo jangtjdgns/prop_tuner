@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
+import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const JustifyContent: React.FC = () => {
@@ -16,9 +17,14 @@ const JustifyContent: React.FC = () => {
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
     const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
 
+    // box option
+    const [useBoxOption, setUseBoxOption] = useState(false);
+    const [boxCount, setBoxCount] = useState(7);
+    const [boxSize, setBoxSize] = useState(40);
+
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const dependencies = [justifyContent, flexDirection];
+    const dependencies = [justifyContent, flexDirection, useBoxOption, boxCount, boxSize];
     useOverflowHandler(['#justify-content'], () => 0, setBoxTranslateY, dependencies);
 
 
@@ -86,6 +92,35 @@ const JustifyContent: React.FC = () => {
                                 />
                             ))}
                         </div>
+
+                        {/* box option */}
+                        <div className='divider flex items-center justify-center font-bold'>
+                            <span>Box Option</span>
+                            <input type="checkbox" className="toggle toggle-info toggle-sm"
+                                onChange={() => setUseBoxOption(!useBoxOption)}
+                            />
+                        </div>
+                        {
+                            useBoxOption ? (
+                                <>
+                                    <div className='grid grid-cols-2 gap-2 items-center'>
+                                        {/* count */}
+                                        <div className='font-bold text-sm text-center'>Count</div>
+                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={2} max={20}
+                                            value={boxCount}
+                                            onChange={(e) => setBoxCount(Math.max(2, Math.min(20, Number(e.target.value))))}
+                                        />
+                                        {/* size */}
+                                        <div className='font-bold text-sm text-center'>Size</div>
+                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={20} max={100}
+                                            value={boxSize}
+                                            onChange={(e) => setBoxSize(Math.max(20, Math.min(100, Number(e.target.value))))}
+                                        />
+                                    </div>
+                                </>
+                            ) : null
+                        }
+
                     </div>
                 </div>
             </div>
@@ -99,13 +134,7 @@ const JustifyContent: React.FC = () => {
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
-                    <div className='box box-1 w-[40px] h-[40px] bg-red-500'></div>
-                    <div className='box box-2 w-[40px] h-[40px] bg-orange-500'></div>
-                    <div className='box box-3 w-[40px] h-[40px] bg-yellow-500'></div>
-                    <div className='box box-4 w-[40px] h-[40px] bg-green-500'></div>
-                    <div className='box box-5 w-[40px] h-[40px] bg-blue-500'></div>
-                    <div className='box box-6 w-[40px] h-[40px] bg-indigo-500'></div>
-                    <div className='box box-6 w-[40px] h-[40px] bg-purple-500'></div>
+                    {addBoxes(boxCount, { width: boxSize, height: boxSize })}
                 </div>
             </div>
         </>

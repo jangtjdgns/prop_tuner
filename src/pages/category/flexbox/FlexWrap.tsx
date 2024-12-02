@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
+import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const FlexWrap: React.FC = () => {
@@ -76,13 +77,7 @@ const FlexWrap: React.FC = () => {
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
-                    <div className='box box-1 w-[100px] h-[100px] bg-red-500'></div>
-                    <div className='box box-2 w-[100px] h-[100px] bg-orange-500'></div>
-                    <div className='box box-3 w-[100px] h-[100px] bg-yellow-500'></div>
-                    <div className='box box-4 w-[100px] h-[100px] bg-green-500'></div>
-                    <div className='box box-5 w-[100px] h-[100px] bg-blue-500'></div>
-                    <div className='box box-6 w-[100px] h-[100px] bg-indigo-500'></div>
-                    <div className='box box-6 w-[100px] h-[100px] bg-purple-500'></div>
+                    {addBoxes(7, { width: 100, height: 100 })}
                 </div>
             </div>
         </>

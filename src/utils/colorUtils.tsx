@@ -2,19 +2,31 @@
 
 // 색상 -> rgb 값
 export const colorsRGB: { [key: string]: string } = {
-  red: '255, 0, 0',
-  orange: '255, 165, 0',
-  yellow: '255, 255, 0',
-  green: '0, 128, 0',
-  blue: '0, 0, 255',
-  purple: '128, 0, 128',
-  pink: '255, 192, 203',
-  brown: '165, 42, 42',
+  red: '239, 68, 68',
+  orange: '255, 97, 16',
+  yellow: '255, 204, 0',
+  green: '34, 197, 94',
+  blue: '37, 99, 235',
+  indigo: '75, 58, 146',
+  purple: '139, 92, 246',
+  pink: '252, 141, 172',
+  brown: '151, 54, 53',
   black: '0, 0, 0',
   white: '255, 255, 255',
-  gray: '128, 128, 128',
+  gray: '113, 113, 122',
   // + 가능
 };
+
+
+// 무지개 색상 반환 (index)
+// red, orange, yellow, green, blue, indigo, purple
+export const getRainbowColorsUpTo = (index: number) => {
+  const rainbowColor = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'purple'];
+  return colorsRGB[rainbowColor[index % 7]];
+}
+
+
+
 
 // 색상 hex -> rgb 변환, HexTo... 함수에 모두 사용됨
 function hexToRgbComponents(hex: string) {

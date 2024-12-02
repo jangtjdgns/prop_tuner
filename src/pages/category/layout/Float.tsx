@@ -197,7 +197,7 @@ const Float: React.FC = () => {
                             <div className={`children w-[100px] h-[100px] text-center text-xs font-bold`}
                                 key={index}
                                 style={{
-                                    backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]}, 0.6)`,
+                                    backgroundColor: `rgb(${colorsRGB[color.toLowerCase()]})`,
                                     float: floatTags[index] === 1 ? float : 'none',
                                     clear: clearTags[index] === 1 ? clear : 'none'
                                 }}
