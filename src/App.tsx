@@ -67,8 +67,9 @@ import FlexDirection from './pages/category/flexbox/FlexDirection';
 import FlexWrap from './pages/category/flexbox/FlexWrap';
 import FlexFlow from './pages/category/flexbox/FlexFlow';
 import JustifyContent from './pages/category/flexbox/JustifyContent';
-import AlignItems from './pages/category/flexbox/AlignItems';
 import AlignContent from './pages/category/flexbox/AlignContent';
+import AlignItems from './pages/category/flexbox/AlignItems';
+import AlignSelf from './pages/category/flexbox/AlignSelf';
 
 const App = () => {
     return (
@@ -150,8 +151,9 @@ const App = () => {
                             <Route path='FlexWrap' element={<FlexWrap />} />
                             <Route path='FlexFlow' element={<FlexFlow />} />
                             <Route path='JustifyContent' element={<JustifyContent />} />
-                            <Route path='AlignItems' element={<AlignItems />} />
                             <Route path='AlignContent' element={<AlignContent />} />
+                            <Route path='AlignItems' element={<AlignItems />} />
+                            <Route path='AlignSelf' element={<AlignSelf />} />
                         </Route>
                     </Route>
                 </Routes>

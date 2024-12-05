@@ -93,17 +93,17 @@ export const categoryData: CategoryData = {
         // matrix                     o  // 2D 또는 3D 변환을 행렬(matrix)로 지정
     ],
     flexbox: [
-        { id: 'flexDirection', value: 'FlexDirection', label: 'Flex Direction' },           // 플렉스 방향
-        { id: 'flexWrap', value: 'FlexWrap', label: 'Flex Wrap' },                          // 플렉스 줄바꿈
-        { id: 'flexFlow', value: 'FlexFlow', label: 'Flex Flow' },                          // 플렉스 방향과 줄바꿈 단축 속성
-        { id: 'justifyContent', value: 'JustifyContent', label: 'Justify Content' },        // 주축 정렬
-        { id: 'alignItems', value: 'AlignItems', label: 'Align Items' },                    // 교차 축 정렬
-        { id: 'alignContent', value: 'AlignContent', label: 'Align Content' },              // 여러 행의 정렬
-        { id: 'alignSelf', value: 'AlignSelf', label: 'Align Self' },                       // 개별 아이템 정렬
-        { id: 'order', value: 'Order', label: 'Order' },                                    // 아이템 순서
-        { id: 'flexGrow', value: 'FlexGrow', label: 'Flex Grow' },                          // 남는 공간 차지 비율
-        { id: 'flexShrink', value: 'FlexShrink', label: 'Flex Shrink' },                    // 공간 부족 시 축소 비율
-        { id: 'flexBasis', value: 'FlexBasis', label: 'Flex Basis' }                        // 기본 크기
+        { id: 'flexDirection', value: 'FlexDirection', label: 'Flex Direction' },           // 플렉스 방향 설정 (row, column 등)
+        { id: 'flexWrap', value: 'FlexWrap', label: 'Flex Wrap' },                          // 플렉스 아이템 줄바꿈 여부 설정
+        { id: 'flexFlow', value: 'FlexFlow', label: 'Flex Flow' },                          // flexDirection과 flexWrap을 결합한 단축 속성
+        { id: 'justifyContent', value: 'JustifyContent', label: 'Justify Content' },        // 주축 기준 아이템 정렬 (가로 방향 기본)
+        { id: 'alignContent', value: 'AlignContent', label: 'Align Content' },              // 여러 행 간의 정렬
+        { id: 'alignItems', value: 'AlignItems', label: 'Align Items' },                    // 모든 아이템의 교차축 정렬
+        { id: 'alignSelf', value: 'AlignSelf', label: 'Align Self' },                       // 개별 아이템의 교차축 정렬
+        { id: 'order', value: 'Order', label: 'Order' },                                    // 플렉스 아이템의 렌더링 순서
+        { id: 'flexGrow', value: 'FlexGrow', label: 'Flex Grow' },                          // 플렉스 아이템의 추가 공간 차지 비율
+        { id: 'flexShrink', value: 'FlexShrink', label: 'Flex Shrink' },                    // 플렉스 아이템의 축소 비율 (공간 부족 시)
+        { id: 'flexBasis', value: 'FlexBasis', label: 'Flex Basis' }                        // 플렉스 아이템의 기본 크기 설정
     ],
     grid: [
         { id: 'gridTemplateColumns', value: 'GridTemplateColumns', label: 'Grid Template Columns' }, // 열 정의
