@@ -4,11 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
+import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Visibility: React.FC = () => {
     const [visibility, setVisibility] = useState<'visible' | 'hidden'>('visible');
-    const [activeTags, setActiveTags] = useState([0, 0, 0, 1, 0, 0, 0]);
+    const [checkedBoxes, setCheckedBoxes] = useState([0, 0, 0, 1, 0, 0, 0]);
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // visibility 업데이트
@@ -16,21 +17,14 @@ const Visibility: React.FC = () => {
         setVisibility(value);
     }
 
-    // activeTags 업데이트, 태그 활성화
+    // checkedBoxes 업데이트, 태그 활성화
     const updateActiveTags = (index: number) => {
-        const updatedTags = [...activeTags];
-        updatedTags[index] = activeTags[index] === 1 ? 0 : 1;
-        setActiveTags(updatedTags);
+        const updatedTags = [...checkedBoxes];
+        updatedTags[index] = Number(!Boolean(checkedBoxes[index]));
+        setCheckedBoxes(updatedTags);
     };
 
-    // activeTags 활성화 체크
-    const checekdActiveTag = (index: number) => {
-        let value = visibility
-        activeTags[index] === 1 ? value = visibility : value = 'visible'
-        return value;
-    }
-
-    useOverflowHandler(['#visibility'], () => 0, setBoxTranslateY, [visibility, activeTags]);
+    useOverflowHandler(['#visibility'], () => 0, setBoxTranslateY, [visibility, checkedBoxes]);
 
     return (
         <>
@@ -94,7 +88,7 @@ const Visibility: React.FC = () => {
                         {/* 속성을 적용할 태그 선택 */}
                         <div className='divider font-bold text-lg'>Select Tag</div>
                         <div className="flex grid grid-cols-7 gap-2">
-                            {activeTags.map((tagState, index) => (
+                            {checkedBoxes.map((tagState, index) => (
                                 <input type="checkbox"
                                     key={index}
                                     className='btn btn-sm'
@@ -128,16 +122,17 @@ const Visibility: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='visibility' className='w-[500px] h-[700px] transition-transform duration-300'
+                <div id='visibility' className='w-[500px] h-[700px] bg-blue-50 shadow transition-transform duration-300'
                     style={{ transform: `translateY(${boxTranslateY}px)` }}
                 >
-                    <div className='w-full h-[100px] bg-red-500' style={{ visibility: checekdActiveTag(0) }}></div>
-                    <div className='w-full h-[100px] bg-orange-500' style={{ visibility: checekdActiveTag(1) }}></div>
-                    <div className='w-full h-[100px] bg-yellow-500' style={{ visibility: checekdActiveTag(2) }}></div>
-                    <div className='w-full h-[100px] bg-green-500' style={{ visibility: checekdActiveTag(3) }}></div>
-                    <div className='w-full h-[100px] bg-blue-500' style={{ visibility: checekdActiveTag(4) }}></div>
-                    <div className='w-full h-[100px] bg-indigo-500' style={{ visibility: checekdActiveTag(5) }}></div>
-                    <div className='w-full h-[100px] bg-purple-500' style={{ visibility: checekdActiveTag(6) }}></div>
+                    {
+                        addBoxes(7, { width: 500, height: 100 }, ''
+                            , Array.from({ length: 7 }, (_, index) => ({
+                                visibility: Boolean(checkedBoxes[index]) ? visibility : 'visible'
+                            }))
+                            , true
+                        )
+                    }
                 </div>
             </div>
         </>

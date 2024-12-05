@@ -161,7 +161,7 @@ const Order: React.FC = () => {
                     {
                         addBoxes(
                             boxCount
-                            , { width: boxSize, height: boxSize }
+                            , { width: boxSize, height: boxSize }, ''
                             , Array.from({ length: boxCount }, (_, index) => ({
                                 order: `${orderBoxes[index]}`
                             }))

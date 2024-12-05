@@ -80,11 +80,11 @@ const ObjectPosition: React.FC = () => {
                         {/* objectPosition */}
                         <div className='text-center p-0.5 text-xs'>
                             object-position:
-                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-14 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={objectPositionX}
                                 readOnly
                             />
-                            <input type="text" className='input input-xs border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                            <input type="text" className='input input-xs border-gray-200 w-14 rounded focus:outline-none focus:border-gray-200 text-center px-2'
                                 value={objectPositionY}
                                 readOnly
                             />

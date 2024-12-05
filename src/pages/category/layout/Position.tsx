@@ -102,22 +102,8 @@ const Position: React.FC = () => {
                             </button>
                         </div>
 
-                        {/* unit */}
-                        <div className="divider font-bold text-base">Unit</div>
-                        <div className='grid grid-cols-2 gap-2'>
-                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='px' value='px'
-                                checked={unit === 'px'}
-                                onChange={() => updateUnit('px')}
-                            />
-                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='%' value='%'
-                                checked={unit === '%'}
-                                onChange={() => updateUnit('%')}
-                            />
-                        </div>
-
                         {/* position 값 */}
-                        <div className="divider font-bold text-lg">Values</div>
-                        <div className='grid grid-cols-2 gap-2'>
+                        <div className='grid grid-cols-3 gap-2'>
                             {positionValues.map((value, index) => (
                                 <input
                                     key={index}
@@ -157,6 +143,19 @@ const Position: React.FC = () => {
                             <input type='text' className="btn btn-sm border-2 focus:border-gray-400 focus:outline-none"
                                 value={right}
                                 onChange={(event) => updateElementPosition('right', event)}
+                            />
+                        </div>
+
+                        {/* unit */}
+                        <div className="divider font-bold text-base">Unit</div>
+                        <div className='grid grid-cols-2 gap-2'>
+                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='px' value='px'
+                                checked={unit === 'px'}
+                                onChange={() => updateUnit('px')}
+                            />
+                            <input type="radio" name='unit' className='btn btn-sm border-2' aria-label='%' value='%'
+                                checked={unit === '%'}
+                                onChange={() => updateUnit('%')}
                             />
                         </div>
                     </div>

@@ -4,32 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { handleOptionToggle } from '../../../utils/handleOptionToggle';
 import { copyCss } from '../../../utils/clipboardUtils';
-import { colorsRGB } from '../../../utils/colorUtils';
+import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
 const Display: React.FC = () => {
     const [display, setDisplay] = useState('block');
     const [activeTags, setActiveTags] = useState([1, 1, 1, 1, 1]);                  // 현재 선택된 태그, 1 on, 0 off
-    const childTagsColor: string[] = ['red', 'orange', 'yellow', 'green', 'blue']   // 자식 태그들 색상
+
     const [boxTranslateY, setBoxTranslateY] = useState(0);
-    const displayValues: string[] = [
-        'block'
-        , 'inline-block'
-        , 'inline'
-        , 'flex'
-        , 'inline-flex'
-        , 'table'
-        , 'inline-table'
-        , 'table-caption'
-        , 'table-cell'
-        , 'table-column'
-        , 'table-row'
-        , 'flow-root'
-        , 'grid'
-        , 'inline-grid'
-        , 'content'
-        , 'list-item'
-        , 'none'
+    const displayValues: string[] = ['none', 'block', 'inline-block', 'inline', 'flex', 'inline-flex', 'table', 'inline-table'
+        , 'table-caption', 'table-cell', 'table-column', 'table-row', 'flow-root', 'grid', 'inline-grid', 'content', 'list-item'
     ];
 
     const updateDisplay = (value: string) => {
@@ -79,13 +63,13 @@ const Display: React.FC = () => {
                         </div>
 
                         {/* 속성을 적용할 태그 선택 */}
-                        <div className='divider font-bold text-lg'>Select Tag</div>
+                        <div className='divider font-bold text-lg'>Check Box</div>
                         <div className="flex grid grid-cols-5 gap-2">
                             {activeTags.map((tagState, index) => (
                                 <input
                                     type="checkbox"
                                     key={index}
-                                    className='btn'
+                                    className='btn btn-sm'
                                     aria-label={`${index + 1}`}
                                     checked={tagState === 1}
                                     onChange={() => updateActiveTags(index)}
@@ -94,8 +78,8 @@ const Display: React.FC = () => {
                         </div>
 
                         {/* display values */}
-                        <div className='divider font-bold text-lg'>Values</div>
-                        <div className='grid grid-cols-2 gap-2'>
+                        <div className='divider font-bold text-lg'>Display</div>
+                        <div className='grid grid-cols-3 gap-2'>
                             {/* display values 태그 생성 */}
                             {displayValues.map(value => (
                                 <input
@@ -134,18 +118,14 @@ const Display: React.FC = () => {
                                 ? { 'display': 'table' } : {})
                         }}
                     >
-                        {/* 자식 태그 생성 */}
-                        {childTagsColor.map((color, index) => (
-                            <div key={index}
-                                className='children w-[100px] h-[100px] text-center text-xs font-bold'
-                                style={{
-                                    backgroundColor: `rgba(${colorsRGB[color.toLowerCase()]})`,
-                                    display: activeTags[index] === 1 ? display : undefined
-                                }}
-                            >
-                                CHILDREN {index + 1}
-                            </div>
-                        ))}
+                        {
+                            addBoxes(5, { width: 100, height: 100 }, ''
+                                , Array.from({ length: 5 }, (_, index) => ({
+                                    display: Boolean(activeTags[index]) ? display : undefined
+                                }))
+                                , true
+                            )
+                        }
                     </div>
                 </div>
             </div>
