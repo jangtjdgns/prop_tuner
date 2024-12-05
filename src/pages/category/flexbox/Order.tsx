@@ -12,7 +12,7 @@ const Order: React.FC = () => {
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
     const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
-
+    // flex-wrap
     type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
     const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
     const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
@@ -50,7 +50,7 @@ const Order: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Align Items</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Order</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
@@ -70,7 +70,7 @@ const Order: React.FC = () => {
                             </button>
                         </div>
 
-                        {/* flex-direction */}
+                        {/* flex-flow */}
                         <div className="divider font-bold text-lg">Flex Flow</div>
                         <div className='grid grid-cols-2 gap-2 items-center'>
                             {/* direction */}

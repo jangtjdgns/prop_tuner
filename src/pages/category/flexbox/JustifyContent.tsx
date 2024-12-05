@@ -12,9 +12,15 @@ const JustifyContent: React.FC = () => {
     // [flex-start] - 플렉스 항목들을 축의 시작 부분에 정렬, [flex-end] - 플렉스 항목들을 축의 끝 부분에 정렬
     const [justifyContent, setJustifyContent] = useState('normal');
     const justifyContentValues = ["normal", "stretch", "center", "start", "end", "flex-start", "flex-end", "left", "right", "space-between", "space-around", "space-evenly"];
+
+    // flex-direction
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
     const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
+    // flex-wrap
+    type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
+    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
+    const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
 
     // box option
     const [useBoxOption, setUseBoxOption] = useState(false);
@@ -61,7 +67,37 @@ const JustifyContent: React.FC = () => {
                             </button>
                         </div>
 
+                        {/* flex-flow */}
+                        <div className="divider font-bold text-lg">Flex Flow</div>
+                        <div className='grid grid-cols-2 gap-2 items-center'>
+                            {/* direction */}
+                            <div className='font-bold text-sm text-center'>Direction</div>
+                            <select name="flexDirection" className='select select-bordered select-xs font-bold'
+                                onChange={(e) => setFlexDirection(e.target.value as FlexDirectionType)}
+                            >
+                                {flexDirectionValues.map((value, index) => (
+                                    <option
+                                        key={index}
+                                        selected={index === 0 ? true : false}
+                                    >{value}</option>
+                                ))}
+                            </select>
+                            {/* wrap */}
+                            <div className='font-bold text-sm text-center'>Wrap</div>
+                            <select name="flexWrap" className='select select-bordered select-xs font-bold'
+                                onChange={(e) => setFlexWrap(e.target.value as FlexWrapType)}
+                            >
+                                {flexWrapValues.map((value, index) => (
+                                    <option
+                                        key={index}
+                                        selected={index === 1 ? true : false}
+                                    >{value}</option>
+                                ))}
+                            </select>
+                        </div>
+
                         {/* justify-content */}
+                        <div className="divider font-bold text-lg">Justify Content</div>
                         <div className='grid grid-cols-3 gap-2'>
                             {justifyContentValues.map((value, index) => (
                                 <input
@@ -72,22 +108,6 @@ const JustifyContent: React.FC = () => {
                                     aria-label={value}
                                     checked={justifyContent === value}
                                     onChange={() => setJustifyContent(value)}
-                                />
-                            ))}
-                        </div>
-
-                        {/* flex-direction */}
-                        <div className="divider font-bold text-lg">Flex Direction</div>
-                        <div className='grid grid-cols-2 gap-2'>
-                            {flexDirectionValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='flexDirection'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={flexDirection === value}
-                                    onChange={() => setFlexDirection(value as FlexDirectionType)}
                                 />
                             ))}
                         </div>
@@ -128,7 +148,7 @@ const JustifyContent: React.FC = () => {
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
                 <div id='justify-content' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{
-                        flexDirection,
+                        flexFlow: `${flexDirection} ${flexWrap}`,
                         justifyContent,
                         transform: `translateY(${boxTranslateY}px)`
                     }}

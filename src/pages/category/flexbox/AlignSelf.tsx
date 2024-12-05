@@ -15,7 +15,7 @@ const AlignSelf: React.FC = () => {
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
     const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
-
+    // flex-wrap
     type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
     const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
     const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
@@ -71,7 +71,36 @@ const AlignSelf: React.FC = () => {
                             </button>
                         </div>
 
-                        {/* align-self */}
+                        {/* flex-flow */}
+                        <div className="divider font-bold text-lg">Flex Flow</div>
+                        <div className='grid grid-cols-2 gap-2 items-center'>
+                            {/* direction */}
+                            <div className='font-bold text-sm text-center'>Direction</div>
+                            <select name="flexDirection" className='select select-bordered select-xs font-bold'
+                                onChange={(e) => setFlexDirection(e.target.value as FlexDirectionType)}
+                            >
+                                {flexDirectionValues.map((value, index) => (
+                                    <option
+                                        key={index}
+                                        selected={index === 0 ? true : false}
+                                    >{value}</option>
+                                ))}
+                            </select>
+                            {/* wrap */}
+                            <div className='font-bold text-sm text-center'>Wrap</div>
+                            <select name="flexWrap" className='select select-bordered select-xs font-bold'
+                                onChange={(e) => setFlexWrap(e.target.value as FlexWrapType)}
+                            >
+                                {flexWrapValues.map((value, index) => (
+                                    <option
+                                        key={index}
+                                        selected={index === 1 ? true : false}
+                                    >{value}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {/* checkbox */}
                         <div className="divider font-bold text-lg">Check Box</div>
                         <div className='grid grid-cols-5 gap-2'>
                             {checkedBoxes.map((value, index) => (
@@ -103,38 +132,6 @@ const AlignSelf: React.FC = () => {
                                     aria-label={value}
                                     checked={alignSelf === value}
                                     onChange={() => setAlignSelf(value)}
-                                />
-                            ))}
-                        </div>
-
-                        {/* flex-direction */}
-                        <div className="divider font-bold text-lg">Flex Direction</div>
-                        <div className='grid grid-cols-2 gap-2'>
-                            {flexDirectionValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='flexDirection'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={flexDirection === value}
-                                    onChange={() => setFlexDirection(value as FlexDirectionType)}
-                                />
-                            ))}
-                        </div>
-
-                        {/* flex-wrap */}
-                        <div className="divider font-bold text-lg">Flex Wrap</div>
-                        <div className='grid grid-cols-3 gap-2'>
-                            {flexWrapValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='flexWrap'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={flexWrap === value}
-                                    onChange={() => setFlexWrap(value as FlexWrapType)}
                                 />
                             ))}
                         </div>
@@ -174,8 +171,7 @@ const AlignSelf: React.FC = () => {
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
                 <div id='align-self' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{
-                        flexDirection,
-                        flexWrap,
+                        flexFlow: `${flexDirection} ${flexWrap}`,
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
