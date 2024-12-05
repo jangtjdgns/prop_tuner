@@ -70,6 +70,7 @@ import JustifyContent from './pages/category/flexbox/JustifyContent';
 import AlignContent from './pages/category/flexbox/AlignContent';
 import AlignItems from './pages/category/flexbox/AlignItems';
 import AlignSelf from './pages/category/flexbox/AlignSelf';
+import Order from './pages/category/flexbox/Order';
 
 const App = () => {
     return (
@@ -154,6 +155,7 @@ const App = () => {
                             <Route path='AlignContent' element={<AlignContent />} />
                             <Route path='AlignItems' element={<AlignItems />} />
                             <Route path='AlignSelf' element={<AlignSelf />} />
+                            <Route path='Order' element={<Order />} />
                         </Route>
                     </Route>
                 </Routes>

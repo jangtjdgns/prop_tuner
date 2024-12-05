@@ -1,4 +1,4 @@
-// AlignSelf.tsx
+// Order.tsx
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -7,10 +7,7 @@ import { copyCss } from '../../../utils/clipboardUtils';
 import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
-const AlignSelf: React.FC = () => {
-    const [alignSelf, setAlignSelf] = useState('normal');
-    const alignSelfValues = ["normal", "center", "start", "end", "self-start", "self-end", "flex-start", "flex-end", "baseline", "first baseline", "last baseline"];
-
+const Order: React.FC = () => {
     // flex-direction
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
@@ -25,16 +22,18 @@ const AlignSelf: React.FC = () => {
     const [boxCount, setBoxCount] = useState(5);
     const [boxSize, setBoxSize] = useState(100);
 
-    // align-self 속성을 적용할 박스
-    const [checkedBoxes, setCheckedBoxes] = useState(Array(boxCount).fill(0));
+    // order 속성을 적용할 박스
+    const [orderBoxes, setOrderBoxes] = useState(Array(boxCount).fill(0));
+    const [lastOrderValue, setLastOrderValue] = useState(0);
+
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // boxCount 값이 변할때마다 초기화
-    useEffect(() => { setCheckedBoxes(Array(boxCount).fill(0)) }, [boxCount]);
+    useEffect(() => { setOrderBoxes(Array(boxCount).fill(0)) }, [boxCount]);
 
-    const dependencies = [alignSelf, flexDirection, useBoxOption, boxCount, boxSize];
-    useOverflowHandler(['#align-self'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [lastOrderValue, flexDirection, useBoxOption, boxCount, boxSize];
+    useOverflowHandler(['#order'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -58,84 +57,65 @@ const AlignSelf: React.FC = () => {
                     <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* 제목 */}
                         <div className='text-center p-0.5 text-xs'>
-                            align-self:
-                            <input type="text" className='input input-xs mx-1 border-gray-200 w-28 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={alignSelf}
+                            order:
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                                value={lastOrderValue}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('align-self', alignSelf)}
+                                onClick={() => copyCss('order', lastOrderValue)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
-                        {/* align-self */}
-                        <div className="divider font-bold text-lg">Check Box</div>
-                        <div className='grid grid-cols-5 gap-2'>
-                            {checkedBoxes.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='checkbox'
-                                    name='checkedBox'
-                                    className="btn btn-sm"
-                                    aria-label={`${index + 1}`}
-                                    checked={checkedBoxes[index] === 1}
-                                    onChange={() => {
-                                        const newBoxes = [...checkedBoxes];
-                                        newBoxes[index] = Number(!Boolean(value));
-                                        setCheckedBoxes(newBoxes);
-                                    }}
-                                />
-                            ))}
-                        </div>
-
-                        {/* align-self */}
-                        <div className="divider font-bold text-lg">Align Self</div>
-                        <div className='grid grid-cols-3 gap-2'>
-                            {alignSelfValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='alignSelf'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={alignSelf === value}
-                                    onChange={() => setAlignSelf(value)}
-                                />
-                            ))}
-                        </div>
-
                         {/* flex-direction */}
-                        <div className="divider font-bold text-lg">Flex Direction</div>
-                        <div className='grid grid-cols-2 gap-2'>
-                            {flexDirectionValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='flexDirection'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={flexDirection === value}
-                                    onChange={() => setFlexDirection(value as FlexDirectionType)}
-                                />
-                            ))}
+                        <div className="divider font-bold text-lg">Flex Flow</div>
+                        <div className='grid grid-cols-2 gap-2 items-center'>
+                            {/* direction */}
+                            <div className='font-bold text-sm text-center'>Direction</div>
+                            <select name="flexDirection" className='select select-bordered select-xs font-bold'
+                                onChange={(e) => setFlexDirection(e.target.value as FlexDirectionType)}
+                            >
+                                {flexDirectionValues.map((value, index) => (
+                                    <option
+                                        key={index}
+                                        selected={index === 0 ? true : false}
+                                    >{value}</option>
+                                ))}
+                            </select>
+                            {/* wrap */}
+                            <div className='font-bold text-sm text-center'>Wrap</div>
+                            <select name="flexWrap" className='select select-bordered select-xs font-bold'
+                                onChange={(e) => setFlexWrap(e.target.value as FlexWrapType)}
+                            >
+                                {flexWrapValues.map((value, index) => (
+                                    <option
+                                        key={index}
+                                        selected={index === 1 ? true : false}
+                                    >{value}</option>
+                                ))}
+                            </select>
                         </div>
 
-                        {/* flex-wrap */}
-                        <div className="divider font-bold text-lg">Flex Wrap</div>
-                        <div className='grid grid-cols-3 gap-2'>
-                            {flexWrapValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='flexWrap'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={flexWrap === value}
-                                    onChange={() => setFlexWrap(value as FlexWrapType)}
-                                />
+                        {/* order */}
+                        <div className="divider font-bold text-lg">Order</div>
+                        <div className='grid grid-cols-4 gap-2 items-center'>
+                            {orderBoxes.map((value, index) => (
+                                <React.Fragment key={index}>
+                                    <div className='font-bold text-sm text-center'>Box {index + 1}</div>
+                                    <input type='number' className="btn btn-sm"
+                                        style={{ MozAppearance: 'textfield' }}
+                                        value={value}
+                                        onChange={(e) => {
+                                            const newBoxes = [...orderBoxes];
+                                            newBoxes[index] = Number(e.target.value);
+                                            setOrderBoxes(newBoxes);
+                                            setLastOrderValue(Number(e.target.value));
+                                        }}
+                                    />
+                                </React.Fragment>
                             ))}
                         </div>
 
@@ -172,10 +152,9 @@ const AlignSelf: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='align-self' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                <div id='order' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{
-                        flexDirection,
-                        flexWrap,
+                        flexFlow: `${flexDirection} ${flexWrap}`,
                         transform: `translateY(${boxTranslateY}px)`
                     }}
                 >
@@ -184,8 +163,9 @@ const AlignSelf: React.FC = () => {
                             boxCount
                             , { width: boxSize, height: boxSize }
                             , Array.from({ length: boxCount }, (_, index) => ({
-                                alignSelf: checkedBoxes[index] ? alignSelf : undefined
+                                order: `${orderBoxes[index]}`
                             }))
+                            , true
                         )
                     }
                 </div>
@@ -194,4 +174,4 @@ const AlignSelf: React.FC = () => {
     );
 }
 
-export default AlignSelf;
+export default Order;
