@@ -72,6 +72,7 @@ import AlignItems from './pages/category/flexbox/AlignItems';
 import AlignSelf from './pages/category/flexbox/AlignSelf';
 import Order from './pages/category/flexbox/Order';
 import FlexGrow from './pages/category/flexbox/FlexGrow';
+import FlexShrink from './pages/category/flexbox/FlexShrink';
 
 const App = () => {
     return (
@@ -158,6 +159,7 @@ const App = () => {
                             <Route path='AlignSelf' element={<AlignSelf />} />
                             <Route path='Order' element={<Order />} />
                             <Route path='FlexGrow' element={<FlexGrow />} />
+                            <Route path='FlexShrink' element={<FlexShrink />} />
                         </Route>
                     </Route>
                 </Routes>
