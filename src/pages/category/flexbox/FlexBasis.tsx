@@ -1,4 +1,4 @@
-// AlignSelf.tsx
+// FlexBasis.tsx
 import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCopy, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -7,34 +7,36 @@ import { copyCss } from '../../../utils/clipboardUtils';
 import { addBoxes } from '../../../utils/commonElements';
 import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 
-const AlignSelf: React.FC = () => {
-    const [alignSelf, setAlignSelf] = useState('normal');
-    const alignSelfValues = ["normal", "center", "start", "end", "self-start", "self-end", "flex-start", "flex-end", "baseline", "first baseline", "last baseline"];
-
+const FlexBasis: React.FC = () => {
     // flex-direction
     type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('row');
     const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
     // flex-wrap
     type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
-    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
+    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('nowrap');
     const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
 
     // box option
     const [useBoxOption, setUseBoxOption] = useState(false);
-    const [boxCount, setBoxCount] = useState(5);
+    const [boxCount, setBoxCount] = useState(4);
     const [boxSize, setBoxSize] = useState(100);
 
-    // align-self 속성을 적용할 박스
-    const [checkedBoxes, setCheckedBoxes] = useState(Array(boxCount).fill(0));
+    // flexBasis 속성을 적용할 박스
+    const [flexBasisBoxes, setFlexBasisBoxes] = useState(Array(boxCount).fill(100));
+    const [lastFlexBasisValue, setLastFlexBasisValue] = useState(100);
+
+    // 단위
+    const [units, setUnits] = useState<'px' | '%'>('px');
+
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
     // boxCount 값이 변할때마다 초기화
-    useEffect(() => { setCheckedBoxes(Array(boxCount).fill(0)) }, [boxCount]);
+    useEffect(() => { setFlexBasisBoxes(Array(boxCount).fill(100)) }, [boxCount]);
 
-    const dependencies = [alignSelf, flexDirection, useBoxOption, boxCount, boxSize];
-    useOverflowHandler(['#align-self'], () => 0, setBoxTranslateY, dependencies);
+    const dependencies = [lastFlexBasisValue, flexDirection, useBoxOption, boxCount, boxSize];
+    useOverflowHandler(['#flex-basis'], () => 0, setBoxTranslateY, dependencies);
 
 
     return (
@@ -51,21 +53,21 @@ const AlignSelf: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Align Items</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Flex Basis</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* 제목 */}
                         <div className='text-center p-0.5 text-xs'>
-                            align-self:
-                            <input type="text" className='input input-xs mx-1 border-gray-200 w-28 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                value={alignSelf}
+                            flex-basis:
+                            <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
+                                value={lastFlexBasisValue}
                                 readOnly
                             />
                             {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('align-self', alignSelf)}
+                                onClick={() => copyCss('flex-basis', lastFlexBasisValue, units)}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
@@ -87,7 +89,7 @@ const AlignSelf: React.FC = () => {
                             {/* wrap */}
                             <div className='font-bold text-sm text-center'>Wrap</div>
                             <select name="flexWrap" className='select select-bordered select-xs font-bold'
-                                defaultValue={flexWrapValues[1]}
+                                defaultValue={flexWrapValues[0]}
                                 onChange={(e) => setFlexWrap(e.target.value as FlexWrapType)}
                             >
                                 {flexWrapValues.map((value, index) => (
@@ -96,39 +98,32 @@ const AlignSelf: React.FC = () => {
                             </select>
                         </div>
 
-                        {/* checkbox */}
-                        <div className="divider font-bold text-lg">Check Box</div>
-                        <div className='grid grid-cols-5 gap-2'>
-                            {checkedBoxes.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='checkbox'
-                                    name='checkedBox'
-                                    className="btn btn-sm"
-                                    aria-label={`${index + 1}`}
-                                    checked={checkedBoxes[index] === 1}
-                                    onChange={() => {
-                                        const newBoxes = [...checkedBoxes];
-                                        newBoxes[index] = Number(!Boolean(value));
-                                        setCheckedBoxes(newBoxes);
-                                    }}
-                                />
-                            ))}
+                        {/* flexBasis */}
+                        <div className="divider font-bold text-lg mb-0">Flex Basis</div>
+                        <div className='text-xs text-right font-bold mb-2'><span className='pr-2'>Unit :</span>
+                            <select name="unit" className='select select-bordered select-xs font-bold h-2 focus:outline-none'
+                                defaultValue='px'
+                                onChange={(e) => setUnits(e.target.value as 'px' | '%')}
+                            >
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                            </select>
                         </div>
-
-                        {/* align-self */}
-                        <div className="divider font-bold text-lg">Align Self</div>
-                        <div className='grid grid-cols-3 gap-2'>
-                            {alignSelfValues.map((value, index) => (
-                                <input
-                                    key={index}
-                                    type='radio'
-                                    name='alignSelf'
-                                    className="btn"
-                                    aria-label={value}
-                                    checked={alignSelf === value}
-                                    onChange={() => setAlignSelf(value)}
-                                />
+                        <div className='grid grid-cols-4 gap-2 items-center'>
+                            {flexBasisBoxes.map((value, index) => (
+                                <React.Fragment key={index}>
+                                    <div className='font-bold text-sm text-center'>Box {index + 1}</div>
+                                    <input type='number' className="btn btn-sm"
+                                        style={{ MozAppearance: 'textfield' }}
+                                        value={value}
+                                        onChange={(e) => {
+                                            const newBoxes = [...flexBasisBoxes];
+                                            newBoxes[index] = Number(e.target.value);
+                                            setFlexBasisBoxes(newBoxes);
+                                            setLastFlexBasisValue(Number(e.target.value));
+                                        }}
+                                    />
+                                </React.Fragment>
                             ))}
                         </div>
 
@@ -151,9 +146,9 @@ const AlignSelf: React.FC = () => {
                                         />
                                         {/* size */}
                                         <div className='font-bold text-sm text-center'>Size</div>
-                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={20} max={100}
+                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={100} max={200}
                                             value={boxSize}
-                                            onChange={(e) => setBoxSize(Math.max(20, Math.min(100, Number(e.target.value))))}
+                                            onChange={(e) => setBoxSize(Math.max(100, Math.min(200, Number(e.target.value))))}
                                         />
                                     </div>
                                 </>
@@ -165,7 +160,7 @@ const AlignSelf: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='align-self' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                <div id='flex-basis' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
                     style={{
                         flexFlow: `${flexDirection} ${flexWrap}`,
                         transform: `translateY(${boxTranslateY}px)`
@@ -174,10 +169,11 @@ const AlignSelf: React.FC = () => {
                     {
                         addBoxes(
                             boxCount
-                            , { width: boxSize, height: boxSize }, ''
+                            , { width: boxSize, height: boxSize }, 'transition-[flex-basis] duration-500'
                             , Array.from({ length: boxCount }, (_, index) => ({
-                                alignSelf: checkedBoxes[index] ? alignSelf : undefined
+                                flexBasis: `${flexBasisBoxes[index]}${units}`,
                             }))
+                            , true
                         )
                     }
                 </div>
@@ -186,4 +182,4 @@ const AlignSelf: React.FC = () => {
     );
 }
 
-export default AlignSelf;
+export default FlexBasis;

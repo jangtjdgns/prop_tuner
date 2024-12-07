@@ -73,25 +73,21 @@ const JustifyContent: React.FC = () => {
                             {/* direction */}
                             <div className='font-bold text-sm text-center'>Direction</div>
                             <select name="flexDirection" className='select select-bordered select-xs font-bold'
+                                defaultValue={flexDirectionValues[0]}
                                 onChange={(e) => setFlexDirection(e.target.value as FlexDirectionType)}
                             >
                                 {flexDirectionValues.map((value, index) => (
-                                    <option
-                                        key={index}
-                                        selected={index === 0 ? true : false}
-                                    >{value}</option>
+                                    <option key={index}>{value}</option>
                                 ))}
                             </select>
                             {/* wrap */}
                             <div className='font-bold text-sm text-center'>Wrap</div>
                             <select name="flexWrap" className='select select-bordered select-xs font-bold'
+                                defaultValue={flexWrapValues[1]}
                                 onChange={(e) => setFlexWrap(e.target.value as FlexWrapType)}
                             >
                                 {flexWrapValues.map((value, index) => (
-                                    <option
-                                        key={index}
-                                        selected={index === 1 ? true : false}
-                                    >{value}</option>
+                                    <option key={index}>{value}</option>
                                 ))}
                             </select>
                         </div>
