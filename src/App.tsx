@@ -77,6 +77,7 @@ import FlexBasis from './pages/category/flexbox/FlexBasis';
 import PlaceContent from './pages/category/flexbox/PlaceContent';
 import RowGap from './pages/category/flexbox/RowGap';
 import ColumnGap from './pages/category/flexbox/ColumnGap';
+import Gap from './pages/category/flexbox/Gap';
 
 const App = () => {
     return (
@@ -168,6 +169,7 @@ const App = () => {
                             <Route path='PlaceContent' element={<PlaceContent />} />
                             <Route path='RowGap' element={<RowGap />} />
                             <Route path='ColumnGap' element={<ColumnGap />} />
+                            <Route path='Gap' element={<Gap />} />
                         </Route>
                     </Route>
                 </Routes>

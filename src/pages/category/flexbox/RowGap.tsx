@@ -12,24 +12,14 @@ const RowGap: React.FC = () => {
     // 단위
     const [units, setUnits] = useState<'px' | '%'>('px');
 
-    // flex-direction
-    type FlexDirectionType = 'row' | 'row-reverse' | 'column' | 'column-reverse';
-    const [flexDirection, setFlexDirection] = useState<FlexDirectionType>('column');
-    const flexDirectionValues = ['row', 'row-reverse', 'column', 'column-reverse'];
-
-    // flex-wrap
-    type FlexWrapType = 'nowrap' | 'wrap' | 'wrap-reverse';
-    const [flexWrap, setFlexWrap] = useState<FlexWrapType>('wrap');
-    const flexWrapValues = ['nowrap', 'wrap', 'wrap-reverse'];
-
     // box option
     const [useBoxOption, setUseBoxOption] = useState(false);
-    const [boxCount, setBoxCount] = useState(7);
+    const [boxCount, setBoxCount] = useState(10);
     const [boxSize, setBoxSize] = useState(100);
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    const dependencies = [rowGap, flexDirection, useBoxOption, boxCount, boxSize];
+    const dependencies = [rowGap, useBoxOption, boxCount, boxSize];
     useOverflowHandler(['#row-gap'], () => 0, setBoxTranslateY, dependencies);
 
 
@@ -48,6 +38,7 @@ const RowGap: React.FC = () => {
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
                         <div className='text-center pt-2 font-bold text-lg'>Row Gap</div>
+                        <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> flex-direction: row</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}
@@ -67,34 +58,8 @@ const RowGap: React.FC = () => {
                             </button>
                         </div>
 
-                        {/* flex-flow */}
-                        <div className="divider font-bold text-lg">Flex Flow</div>
-                        <div className='grid grid-cols-2 gap-2 items-center'>
-                            {/* direction */}
-                            <div className='font-bold text-sm text-center'>Direction</div>
-                            <select name="flexDirection" className='select select-bordered select-xs font-bold'
-                                defaultValue={flexDirectionValues[2]}
-                                onChange={(e) => setFlexDirection(e.target.value as FlexDirectionType)}
-                            >
-                                {flexDirectionValues.map((value, index) => (
-                                    <option key={index}>{value}</option>
-                                ))}
-                            </select>
-                            {/* wrap */}
-                            <div className='font-bold text-sm text-center'>Wrap</div>
-                            <select name="flexWrap" className='select select-bordered select-xs font-bold'
-                                defaultValue={flexWrapValues[1]}
-                                onChange={(e) => setFlexWrap(e.target.value as FlexWrapType)}
-                            >
-                                {flexWrapValues.map((value, index) => (
-                                    <option key={index}>{value}</option>
-                                ))}
-                            </select>
-                        </div>
-
                         {/* row-gap */}
-                        <div className="divider font-bold text-lg">Row Gap</div>
-                        <div className='grid grid-cols-[3fr_1fr] gap-2'>
+                        <div className='grid grid-cols-[3fr_1fr] gap-2 mt-2'>
                             <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={0} max={200}
                                 value={rowGap}
                                 onChange={(e) => setRowGap(Math.max(0, Math.min(200, Number(e.target.value))))}
@@ -142,9 +107,10 @@ const RowGap: React.FC = () => {
 
             {/* view 파트 */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='row-gap' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                <div id='row-gap' className='flex w-[500px] h-[500px] bg-blue-50 shadow transition-[row-gap] transition-transform duration-300'
                     style={{
-                        flexFlow: `${flexDirection} ${flexWrap}`,
+                        flexFlow: 'row wrap',
+                        alignContent: 'start',
                         rowGap: `${rowGap}${units}`,
                         transform: `translateY(${boxTranslateY}px)`
                     }}
