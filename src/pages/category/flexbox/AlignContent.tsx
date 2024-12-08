@@ -46,7 +46,7 @@ const AlignContent: React.FC = () => {
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>Align Items</div>
+                        <div className='text-center pt-2 font-bold text-lg'>Align Content</div>
                     </div>
 
                     {/* 옵션 내용 하단 */}

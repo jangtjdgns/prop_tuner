@@ -74,6 +74,7 @@ import Order from './pages/category/flexbox/Order';
 import FlexGrow from './pages/category/flexbox/FlexGrow';
 import FlexShrink from './pages/category/flexbox/FlexShrink';
 import FlexBasis from './pages/category/flexbox/FlexBasis';
+import PlaceContent from './pages/category/flexbox/PlaceContent';
 
 const App = () => {
     return (
@@ -162,6 +163,7 @@ const App = () => {
                             <Route path='FlexGrow' element={<FlexGrow />} />
                             <Route path='FlexShrink' element={<FlexShrink />} />
                             <Route path='FlexBasis' element={<FlexBasis />} />
+                            <Route path='PlaceContent' element={<PlaceContent />} />
                         </Route>
                     </Route>
                 </Routes>
