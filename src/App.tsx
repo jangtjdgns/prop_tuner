@@ -75,6 +75,7 @@ import FlexGrow from './pages/category/flexbox/FlexGrow';
 import FlexShrink from './pages/category/flexbox/FlexShrink';
 import FlexBasis from './pages/category/flexbox/FlexBasis';
 import PlaceContent from './pages/category/flexbox/PlaceContent';
+import RowGap from './pages/category/flexbox/RowGap';
 
 const App = () => {
     return (
@@ -164,6 +165,7 @@ const App = () => {
                             <Route path='FlexShrink' element={<FlexShrink />} />
                             <Route path='FlexBasis' element={<FlexBasis />} />
                             <Route path='PlaceContent' element={<PlaceContent />} />
+                            <Route path='RowGap' element={<RowGap />} />
                         </Route>
                     </Route>
                 </Routes>
