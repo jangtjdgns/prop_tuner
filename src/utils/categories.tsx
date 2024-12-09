@@ -132,7 +132,7 @@ export const categoryData: CategoryData = {
 
 export type CategoryMeta = {
     title: string,
-    pagePath: string,
+    path: string,
     property: string[]
 
 }
@@ -140,45 +140,50 @@ export type CategoryMeta = {
 export const categoryMetaData: CategoryMeta[] = [
     {
         title: "select",
-        pagePath: "/",
+        path: "/",
         property: [],
     },
     {
         title: "Layout",
-        pagePath: "/category/layout",
+        path: "/category/layout",
         property: categoryData.layout.map(item => item.label),
     },
     {
         title: "Sizing",
-        pagePath: "/category/sizing",
+        path: "/category/sizing",
         property: categoryData.sizing.map(item => item.label),
     },
     {
         title: "Typography",
-        pagePath: `/category/typography`,
+        path: `/category/typography`,
         property: categoryData.typography.map(item => item.label),
     },
     {
         title: "Design",
-        pagePath: `/category/design`,
+        path: `/category/design`,
         property: categoryData.design.map(item => item.label),
     },
     {
         title: "Transform",
-        pagePath: `/category/transform`,
+        path: `/category/transform`,
         property: categoryData.transform.map(item => item.label),
     },
     {
         title: "FlexBox",
-        pagePath: `/category/flexbox`,
+        path: `/category/flexbox`,
         property: categoryData.flexbox.map(item => item.label),
     },
-    // { title: "Interactivity", pagePath: `/category/Interactivity` },
-    // { title: "Filters", pagePath: `/category/Filters` },
-    // { title: "Backgrounds", pagePath: `/category/Backgrounds` },
-    // { title: "SVG", pagePath: `/category/SVG` },
-    // { title: "Accessibility", pagePath: `/category/Accessibility` },
-    // { title: "Transitions", pagePath: `/category/Transitions` },
-    // { title: "Animation", pagePath: `/category/Animation` },
-    // { title: "Tables", pagePath: `/category/Tables` },
+    {
+        title: "Grid",
+        path: `/category/grid`,
+        property: categoryData.grid.map(item => item.label),
+    },
+    // { title: "Interactivity", path: `/category/Interactivity` },
+    // { title: "Filters", path: `/category/Filters` },
+    // { title: "Backgrounds", path: `/category/Backgrounds` },
+    // { title: "SVG", path: `/category/SVG` },
+    // { title: "Accessibility", path: `/category/Accessibility` },
+    // { title: "Transitions", path: `/category/Transitions` },
+    // { title: "Animation", path: `/category/Animation` },
+    // { title: "Tables", path: `/category/Tables` },
 ]

@@ -78,6 +78,8 @@ import PlaceContent from './pages/category/flexbox/PlaceContent';
 import RowGap from './pages/category/flexbox/RowGap';
 import ColumnGap from './pages/category/flexbox/ColumnGap';
 import Gap from './pages/category/flexbox/Gap';
+// category-grid
+import GridTemplateColumns from './pages/category/grid/GridTemplateColumns';
 
 const App = () => {
     return (
@@ -170,6 +172,10 @@ const App = () => {
                             <Route path='RowGap' element={<RowGap />} />
                             <Route path='ColumnGap' element={<ColumnGap />} />
                             <Route path='Gap' element={<Gap />} />
+                        </Route>
+                        <Route path="grid">
+                            <Route index element={<GridTemplateColumns />} />
+                            <Route path='GridTemplateColumns' element={<GridTemplateColumns />} />
                         </Route>
                     </Route>
                 </Routes>

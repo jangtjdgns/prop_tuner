@@ -11,8 +11,8 @@ const Header = () => {
     const navigate = useNavigate();
 
     // 카테고리 페이지 이동
-    const navigateToCategory = (pagePath: string) => {
-        navigate(pagePath);
+    const navigateToCategory = (path: string) => {
+        navigate(path);
     };
 
     // 현재 페이지에 따라서 카테고리 list 제목 변경
@@ -32,18 +32,18 @@ const Header = () => {
                 <div className="flex-none z-[10001]">
                     {/* aside side bar */}
                     <div className="drawer">
-                        <input id="my-drawer" type="checkbox" className="drawer-toggle" />
+                        <input id="aside-mene" type="checkbox" className="drawer-toggle" />
                         <div className="drawer-content">
-                            <label htmlFor="my-drawer" className="btn btn-square btn-ghost drawer-button">
+                            <label htmlFor="aside-mene" className="btn btn-square btn-ghost drawer-button">
                                 <FontAwesomeIcon icon={faBars} size="lg" />
                             </label>
                         </div>
                         <div className="drawer-side">
-                            <label htmlFor="my-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+                            <label htmlFor="aside-mene" aria-label="close sidebar" className="drawer-overlay"></label>
                             <ul className="menu bg-base-200 text-base-content min-h-full w-80 p-4">
                                 <li className='w-full font-bold text-2xl'>
                                     <button className='block text-center'
-                                        onClick={() => navigateToCategory(categoryMetaData[0].pagePath)}
+                                        onClick={() => navigateToCategory(categoryMetaData[0].path)}
                                     >
                                         Prop_Tuner
                                     </button>
@@ -61,7 +61,7 @@ const Header = () => {
                                                         {category.property.map((item, itemIndex) => (
                                                             <li key={itemIndex}>
                                                                 <button
-                                                                    onClick={() => navigateToCategory(category.pagePath + '/' + item.replace(' ', ''))}
+                                                                    onClick={() => navigateToCategory(category.path + '/' + item.replace(' ', ''))}
                                                                 >
                                                                     {item}
                                                                 </button>
@@ -84,7 +84,7 @@ const Header = () => {
                 </div>
                 <div className="flex-1">
                     <button id="site-title" className="btn btn-ghost text-xl"
-                        onClick={() => navigateToCategory(categoryMetaData[0].pagePath)}>
+                        onClick={() => navigateToCategory(categoryMetaData[0].path)}>
                         Prop_Tuner
                     </button>
                 </div>
@@ -100,7 +100,10 @@ const Header = () => {
                                             <li className='css-category-list' key={idx}>
                                                 <button
                                                     className="btn btn-sm h-full px-10 btn-square btn-ghost"
-                                                    onClick={() => navigateToCategory(item.pagePath + '/' + item.property[0].replace(' ', ''))}
+                                                    onClick={() => {
+                                                        const subPath = item.property[0].split(' ').join('');       // 띄어쓰기 제거
+                                                        navigateToCategory(item.path + '/' + subPath);
+                                                    }}
                                                 >
                                                     {item.title}
                                                 </button>
