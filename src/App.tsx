@@ -79,7 +79,7 @@ import RowGap from './pages/category/flexbox/RowGap';
 import ColumnGap from './pages/category/flexbox/ColumnGap';
 import Gap from './pages/category/flexbox/Gap';
 // category-grid
-import GridTemplateColumns from './pages/category/grid/GridTemplateColumns';
+import GridTemplateRows from './pages/category/grid/GridTemplateRows';
 
 const App = () => {
     return (
@@ -174,8 +174,8 @@ const App = () => {
                             <Route path='Gap' element={<Gap />} />
                         </Route>
                         <Route path="grid">
-                            <Route index element={<GridTemplateColumns />} />
-                            <Route path='GridTemplateColumns' element={<GridTemplateColumns />} />
+                            <Route index element={<GridTemplateRows />} />
+                            <Route path='GridTemplateRows' element={<GridTemplateRows />} />
                         </Route>
                     </Route>
                 </Routes>

@@ -55,7 +55,8 @@ const Home = () => {
                                                     .filter(property => property.toLowerCase().includes(searchTerm.toLowerCase()))
                                                     .map((property) => (
                                                         <li key={property} className='mx-0.5 inline'>
-                                                            <button className='badge border-gray-400 shadow-outline hover:badge-neutral' onClick={() => navigate(`/category/${category.title}/${property.replace(' ', '')}`)}>
+                                                            <button className='badge border-gray-400 shadow-outline hover:badge-neutral'
+                                                                onClick={() => navigate(`/category/${category.title}/${property.split(' ').join('')}`)}>
                                                                 {property}
                                                             </button>
                                                         </li>

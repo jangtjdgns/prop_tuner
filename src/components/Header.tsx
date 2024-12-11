@@ -61,7 +61,7 @@ const Header = () => {
                                                         {category.property.map((item, itemIndex) => (
                                                             <li key={itemIndex}>
                                                                 <button
-                                                                    onClick={() => navigateToCategory(category.path + '/' + item.replace(' ', ''))}
+                                                                    onClick={() => navigateToCategory(category.path + '/' + item.split(' ').join(''))}
                                                                 >
                                                                     {item}
                                                                 </button>

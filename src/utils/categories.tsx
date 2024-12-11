@@ -110,22 +110,22 @@ export const categoryData: CategoryData = {
         { id: 'gap', value: 'Gap', label: 'Gap' },                                          // 행과 열 간격을 동시에 설정하는 단축 속성
     ],
     grid: [
-        { id: 'gridTemplateColumns', value: 'GridTemplateColumns', label: 'Grid Template Columns' }, // 열 정의
         { id: 'gridTemplateRows', value: 'GridTemplateRows', label: 'Grid Template Rows' },          // 행 정의
-        { id: 'gridColumnGap', value: 'GridColumnGap', label: 'Grid Column Gap' },                   // 열 간격
+        { id: 'gridTemplateColumns', value: 'GridTemplateColumns', label: 'Grid Template Columns' }, // 열 정의
         { id: 'gridRowGap', value: 'GridRowGap', label: 'Grid Row Gap' },                            // 행 간격
+        { id: 'gridColumnGap', value: 'GridColumnGap', label: 'Grid Column Gap' },                   // 열 간격
         { id: 'gridGap', value: 'GridGap', label: 'Grid Gap' },                                      // 열과 행 간의 간격
         { id: 'gridTemplateAreas', value: 'GridTemplateAreas', label: 'Grid Template Areas' },       // 그리드 영역 정의
         { id: 'gridArea', value: 'GridArea', label: 'Grid Area' },                                   // 아이템 위치 정의
-        { id: 'gridAutoColumns', value: 'GridAutoColumns', label: 'Grid Auto Columns' },             // 자동 생성 열 크기
         { id: 'gridAutoRows', value: 'GridAutoRows', label: 'Grid Auto Rows' },                      // 자동 생성 행 크기
+        { id: 'gridAutoColumns', value: 'GridAutoColumns', label: 'Grid Auto Columns' },             // 자동 생성 열 크기
         { id: 'gridAutoFlow', value: 'GridAutoFlow', label: 'Grid Auto Flow' },                      // 배치 순서
         { id: 'justifyItems', value: 'JustifyItems', label: 'Justify Items' },                       // 그리드 셀 수평 정렬
         { id: 'alignItems', value: 'AlignItems', label: 'Align Items' },                             // 그리드 셀 수직 정렬
         { id: 'justifyContent', value: 'JustifyContent', label: 'Justify Content' },                 // 컨테이너 내 수평 정렬
         { id: 'alignContent', value: 'AlignContent', label: 'Align Content' },                       // 컨테이너 내 수직 정렬
+        { id: 'gridRow', value: 'GridRow', label: 'Grid Row' },                                      // 아이템이 차지할 행 범위
         { id: 'gridColumn', value: 'GridColumn', label: 'Grid Column' },                             // 아이템이 차지할 열 범위
-        { id: 'gridRow', value: 'GridRow', label: 'Grid Row' }                                       // 아이템이 차지할 행 범위
     ],
     // table
 };
