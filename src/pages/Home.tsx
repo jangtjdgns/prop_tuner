@@ -1,9 +1,10 @@
 // src/pages/Home.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { categoryMetaData } from '../utils/categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
 
 const Home = () => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 함수 가져오기
@@ -14,10 +15,34 @@ const Home = () => {
         category.property.some(property => property.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
+    const sectionDefaultStyle = {
+        opacity: 0,
+        transform: 'translateX(100%)',
+        transition: 'transform 0.6s ease, opacity 0.6s ease',
+    }
+
+    const sectionVisbleStyle = {
+        opacity: 1,
+        transform: 'translateX(0)',
+        transition: 'transform 0.6s ease, opacity 0.6s ease',
+    }
+
+    const elementRef = useIntersectionObserver(
+        ['observer-item'],
+        sectionDefaultStyle,
+        sectionVisbleStyle,
+        {
+            root: null,
+            rootMargin: '-20% 0px',
+            threshold: 0,
+        }
+    );
+
+
     return (
         <>
-            {/* h-[calc(100vh-20rem)] min-h-[586px] */}
-            <div id="banner" className='relative w-full min-w-[1024px]'>
+            {/* 1 */}
+            <section id="banner" className='relative w-full min-w-[1024px]'>
                 {/* 배너 배경 */}
                 <div
                     className='w-full min-w-[1024px] h-[500px]' // width 및 height 설정
@@ -112,12 +137,16 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            {/* <div>
-                <h1>Home Page</h1>
-                <button className='btn' onClick={() => navigate('/board')}>Go to Board</button>
-            </div> */}
+            {/* 2 */}
+            <section id='community' className='h-[60vh] py-10 flex items-center justify-center overflow-hidden'>
+                <div className='observer-item w-1/2 h-full border-2'
+                    style={sectionDefaultStyle}
+                    ref={elementRef}
+                >
+                </div>
+            </section>
         </>
     );
 }

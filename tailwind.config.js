@@ -2,6 +2,7 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    './node_modules/daisyui/**/*.{js,ts}', // DaisyUI 추가
   ],
   theme: {
     extend: {},
