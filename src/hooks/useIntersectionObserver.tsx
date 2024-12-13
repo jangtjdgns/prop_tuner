@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
 
-export const useIntersectionObserver = (
-    entries: string[],                                  // 기능을 적용할 요소의 클래스명 배열
-    defaultStyles: React.CSSProperties,                 // 기본 스타일 객체
-    visibleStyles: React.CSSProperties,                 // 화면에 보일 때 적용할 스타일 객체
-    options: IntersectionObserverInit | null = null     // IntersectionObserver 옵션
+// single
+export const useObserver = (
+    defaultStyles: React.CSSProperties,         // 기본 스타일 객체
+    visibleStyles: React.CSSProperties,         // 화면에 보일 때 적용할 스타일 객체
+    options: IntersectionObserverInit           // IntersectionObserver 옵션
 ) => {
-    const elementRef = useRef(null);
+    const ref = useRef(null);
 
     useEffect(() => {
         const defaultOptions: IntersectionObserverInit = {
@@ -18,10 +18,46 @@ export const useIntersectionObserver = (
         const observerOptions = options || defaultOptions;
 
         const observer = new IntersectionObserver(
+            ([entry]) => {
+                const target = entry.target as HTMLElement
+                if (entry.isIntersecting) {
+                    Object.assign(target.style, visibleStyles);
+                } else {
+                    Object.assign(target.style, defaultStyles);
+                }
+            },
+            options
+        );
+
+        if (ref.current) {
+            observer.observe(ref.current);
+        }
+
+        return () => {
+            if (ref.current) {
+                observer.unobserve(ref.current);
+            }
+        };
+    }, [defaultStyles, visibleStyles, options]);
+
+    return ref;
+};
+
+
+// Multi
+// ref={(el) => el && refs.current.push(el)}
+export const useObservers = (
+    defaultStyles: React.CSSProperties,
+    visibleStyles: React.CSSProperties,
+    options: IntersectionObserverInit
+) => {
+    const refs = useRef<HTMLElement[]>([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
-                    const target = entry.target as HTMLElement; // target을 HTMLElement로 타입 단언
-
+                    const target = entry.target as HTMLElement
                     if (entry.isIntersecting) {
                         Object.assign(target.style, visibleStyles);
                     } else {
@@ -29,20 +65,15 @@ export const useIntersectionObserver = (
                     }
                 });
             },
-            observerOptions
+            options
         );
 
-        const currentElement = elementRef.current;
-        if (currentElement) {
-            observer.observe(currentElement);
-        }
+        refs.current.forEach((ref) => observer.observe(ref));
 
         return () => {
-            if (currentElement) {
-                observer.unobserve(currentElement);
-            }
+            refs.current.forEach((ref) => observer.unobserve(ref));
         };
-    }, [entries, defaultStyles, visibleStyles, options]);
+    }, [defaultStyles, visibleStyles, options]);
 
-    return elementRef;
+    return refs;
 };

@@ -63,10 +63,11 @@ export const categoryData: CategoryData = {
         { id: 'textOverflow', value: 'TextOverflow', label: 'Text Overflow' },              // 텍스트 오버플로우
         { id: 'direction', value: 'Direction', label: 'Direction' },                        // 텍스트 방향
         { id: 'writingMode', value: 'WritingMode', label: 'Writing Mode' },                 // 텍스트 쓰기 방향 설정 (세로 쓰기 등)
+        // textOrientation:  텍스트 문자 방향을 설정 (수직 텍스트에만 영향) writing-mode와 같이 사용됨
         { id: 'hyphens', value: 'Hyphens', label: 'Hyphens' },                              // 단어를 자동으로 하이픈으로 구분하는 속성
         { id: 'listStyle', value: 'ListStyle', label: 'List Style' },                       // 목록 스타일
+        // textTransform: 텍스트 변환 설정 (대문자, 소문자 등)              ++ 추가예정
         // textUnderlineOffset: 텍스트 밑줄의 오프셋 설정 (밑줄의 위치 조정)
-        // textTransform: 텍스트 변환 설정 (대문자, 소문자 등)
         // vertical-align: 수직 정렬 설정 (주로 테이블 셀에서 사용)
     ],
     design: [

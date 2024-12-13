@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { categoryMetaData } from '../utils/categories';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import { useIntersectionObserver } from '../hooks/useIntersectionObserver';
+import { useObserver } from '../hooks/useIntersectionObserver';
 
 const Home = () => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 네비게이션 함수 가져오기
@@ -15,25 +15,41 @@ const Home = () => {
         category.property.some(property => property.toLowerCase().includes(searchTerm.toLowerCase()))
     );
 
-    const sectionDefaultStyle = {
-        opacity: 0,
-        transform: 'translateX(100%)',
-        transition: 'transform 0.6s ease, opacity 0.6s ease',
-    }
+    // 서브 제목 옵저버 스타일
+    const comTitleObsStyles = (opacity: number, direction: string, duration: number) => ({
+        opacity: opacity,
+        transform: `translateX(${direction})`,
+        transition: `transform ${duration}s ease, opacity ${duration}s ease`,
+    });
 
-    const sectionVisbleStyle = {
-        opacity: 1,
-        transform: 'translateX(0)',
-        transition: 'transform 0.6s ease, opacity 0.6s ease',
-    }
+    const comTitleStyleDef = comTitleObsStyles(0, '-50%', .6);
+    const comTitleStyleVis = comTitleObsStyles(1, '0%', .6);
 
-    const elementRef = useIntersectionObserver(
-        ['observer-item'],
-        sectionDefaultStyle,
-        sectionVisbleStyle,
+    const comTitleRef = useObserver(
+        comTitleStyleDef,
+        comTitleStyleVis,
         {
             root: null,
-            rootMargin: '-20% 0px',
+            rootMargin: '-30% 0px',
+            threshold: 0,
+        }
+    );
+
+    const comDivObserverStyles = (opacity: number, scale: number, duration: number) => ({
+        opacity: opacity,
+        transform: `scale(${scale})`,
+        transition: `transform ${duration}s ease-out, opacity ${duration}s ease`,
+    });
+
+    const comDivStyleDef = comDivObserverStyles(0, .95, .3);
+    const comDivStyleVis = comDivObserverStyles(1, 1, .3);
+
+    const comDivRef = useObserver(
+        comDivStyleDef,
+        comDivStyleVis,
+        {
+            root: null,
+            rootMargin: '-30% 0px',
             threshold: 0,
         }
     );
@@ -140,11 +156,37 @@ const Home = () => {
             </section>
 
             {/* 2 */}
-            <section id='community' className='h-[60vh] py-10 flex items-center justify-center overflow-hidden'>
-                <div className='observer-item w-1/2 h-full border-2'
-                    style={sectionDefaultStyle}
-                    ref={elementRef}
-                >
+            <section id='community' className='min-w-[1024px] h-[60vh] py-10 overflow-hidden'
+                style={{ backgroundImage: 'linear-gradient(to left, #e0eafc, #cfdef3)' }}
+            >
+                <div className='w-[1024px] h-full flex flex-row-reverse gap-6 mx-auto'>
+                    {/* sub-title */}
+                    <div id='observer-item-1' className='font-bold text-3xl flex items-start ml-2 h-full'
+                        style={{
+                            ...comTitleStyleDef
+                        }}
+                        ref={comTitleRef}
+                    >
+                        <div className='flex flex-col'>
+                            <div className='flex gap-2'>
+                                {/* icon */}
+                                <div className='w-[38px] h-[38px]'>
+                                    <img src="https://img.icons8.com/?size=100&id=qyAVxHyDhL04&format=png&color=000000" alt="" />
+                                </div>
+                                {/* sub-title */}
+                                <div className='uppercase border-b'>Community</div>
+                            </div>
+                            <div className="h-[.5px] w-[150%] mt-2 mb-1 bg-blue-300"></div>
+                            {/* caption */}
+                            <div className='text-sm'>커뮤니티입니다.</div>
+                        </div>
+                    </div>
+                    {/* div */}
+                    <div id='observer-item-2' className='w-full h-full bg-white shadow-xl border rounded-lg'
+                        style={comDivStyleDef}
+                        ref={comDivRef}
+                    >
+                    </div>
                 </div>
             </section>
         </>
