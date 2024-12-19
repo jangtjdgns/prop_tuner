@@ -10,21 +10,23 @@ import { useOverflowHandler } from '../../../hooks/useOverflowHandler';
 const GridTemplateRows: React.FC = () => {// box option
     const [useBoxOption, setUseBoxOption] = useState(false);
     const [boxCount, setBoxCount] = useState(2);
-    const [boxSize, setBoxSize] = useState(100);
 
     // gridTemplateRows
-    const [gridTemplateRows, setGridTemplateRows] = useState('none');
-    const rowValues = ['none', 'auto', 'track-list', 'minmax', 'fit-content', 'repeat', 'subgrid'];
+    const [gridTemplateRows, setGridTemplateRows] = useState('auto');
+    const rowValues = ['auto', 'minmax', 'fit-content', 'repeat'];
 
-    // track-list values
-    const [trackListValues, setTrackListValues] = useState(Array(boxCount).fill(0));
     // minmax
     const [min, setMin] = useState(100);
     const [max, setMax] = useState(1);
     const [minUnit, setMinUnit] = useState('px');
     const [maxUnit, setMaxUnit] = useState('fr');
+    const [isRepeatActive, setisRepeatActive] = useState(false);        // repeat와 같이 사용, boxCount에 맞게 설정정
     // fit-content
-    const [fitContent, setFitContent] = useState(50);
+    const [fitContent, setFitContent] = useState(50);       // length
+    // repeat
+    const [repeat, setRepeat] = useState(2);                // repeat 횟수
+    const [repeatLen, setRepeatLen] = useState(100);        // length
+    const [repeatFr, setRepeatFr] = useState(1);
 
     // units
     const [units, setUnits] = useState('px');
@@ -32,9 +34,133 @@ const GridTemplateRows: React.FC = () => {// box option
 
     const [boxTranslateY, setBoxTranslateY] = useState(0);
 
-    useEffect(() => { setTrackListValues(Array(boxCount).fill(0)) }, [boxCount]);
 
-    const dependencies = [gridTemplateRows, useBoxOption, boxCount, boxSize];
+    // grid-template-row 옵션 컨텐츠 가져오기
+    const getGridTemplateRowsContent = () => {
+        switch (gridTemplateRows) {
+            case 'minmax':
+                return (
+                    <>
+                        <div className="divider font-bold text-lg">Min Max</div>
+                        <div className='text-xs text-right font-bold mb-2 flex items-center'>
+                            <span className='pr-2'>Active Repeat</span>
+                            <input type="checkbox" className='checkbox checkbox-xs'
+                                checked={isRepeatActive}
+                                onChange={() => setisRepeatActive(!isRepeatActive)}
+                            />
+                        </div>
+                        <div className='grid grid-cols-3 gap-2 items-center'>
+                            {/* min */}
+                            <div className='font-bold text-sm text-center'>Min</div>
+                            <input type='number' className="btn btn-sm"
+                                style={{ MozAppearance: 'textfield' }}
+                                value={min}
+                                onChange={(e) => setMin(Number(e.target.value))}
+                            />
+                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
+                                defaultValue={minUnit}
+                                onChange={(e) => setMinUnit(e.target.value)}
+                            >
+                                {unitValues.slice(0, -1).map((value, index) => (
+                                    <option key={index} value={value}>{value}</option>
+                                ))}
+                            </select>
+                            {/* max */}
+                            <div className='font-bold text-sm text-center'>Max</div>
+                            <input type='number' className="btn btn-sm"
+                                style={{ MozAppearance: 'textfield' }}
+                                value={max}
+                                onChange={(e) => setMax(Number(e.target.value))}
+                            />
+                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
+                                defaultValue={maxUnit}
+                                onChange={(e) => setMaxUnit(e.target.value)}
+                            >
+                                {unitValues.map((value, index) => (
+                                    <option key={index} value={value}>{value}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </>
+                )
+            case 'fit-content':
+                return (
+                    <>
+                        <div className="divider font-bold text-lg">Fit Content</div>
+                        <div className='grid grid-cols-3 gap-2 mt-2 items-center'>
+                            {/* length */}
+                            <div className='font-bold text-sm text-center'>Length</div>
+                            <input type='number' className="col-end-3 btn btn-sm"
+                                style={{ MozAppearance: 'textfield' }}
+                                value={fitContent}
+                                onChange={(e) => setFitContent(Number(e.target.value))}
+                            />
+                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
+                                defaultValue='%'
+                                onChange={(e) => setUnits(e.target.value as 'px' | '%')}
+                            >
+                                <option value="px">px</option>
+                                <option value="%">%</option>
+                            </select>
+                        </div>
+                    </>
+                )
+            case 'repeat':
+                return (
+                    <>
+                        <div className="divider font-bold text-lg">Repeat</div>
+                        <div className='grid grid-cols-3 gap-2 items-center'>
+                            {/* repeat */}
+                            <div className='col-start-1 col-end-2 font-bold text-sm text-center'>Repeat</div>
+                            <input type='number' className="col-start-2 col-end-4 btn btn-sm"
+                                style={{ MozAppearance: 'textfield' }}
+                                value={repeat}
+                                onChange={(e) => setRepeat(Number(e.target.value))}
+                            />
+                            {/* length */}
+                            <div className='font-bold text-sm text-center'>Length</div>
+                            <input type='number' className="btn btn-sm"
+                                style={{ MozAppearance: 'textfield' }}
+                                value={gridTemplateRows === 'repeat' && units !== 'fr' ? repeatLen : repeatFr}
+                                onChange={(e) => {
+                                    gridTemplateRows === 'repeat' && units !== 'fr'
+                                        ? setRepeatLen(Number(e.target.value))
+                                        : setRepeatFr(Number(e.target.value));
+                                }}
+                            />
+                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
+                                defaultValue={units}
+                                onChange={(e) => setUnits(e.target.value)}
+                            >
+                                {unitValues.map((value, index) => (
+                                    <option key={index} value={value}>{value}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </>
+                )
+            default: return null;
+        }
+    }
+
+    // grid-template-row 속성 값 가져오기
+    const getGridTemplateRowsValue = () => {
+        let value: string = '';
+        switch (gridTemplateRows) {
+            case 'auto': return 'auto';
+            case 'minmax':
+                const minmax = `minmax(${min}${minUnit}, ${max}${maxUnit})`;
+                isRepeatActive ? value = `repeat(${boxCount}, ${minmax})` : value = minmax;
+                break;
+            case 'fit-content': value = `fit-content(${fitContent}${units})`; break;
+            case 'repeat': value = `repeat(${repeat}, ${repeatLen}${units})`; break;
+        }
+        return value;
+    }
+
+    // useEffect(() => { setTrackListValues(Array(boxCount).fill(0)) }, [boxCount]);
+
+    const dependencies = [gridTemplateRows, useBoxOption, boxCount];
     useOverflowHandler(['#grid-template-rows'], () => 0, setBoxTranslateY, dependencies);
 
 
@@ -52,36 +178,34 @@ const GridTemplateRows: React.FC = () => {// box option
 
                     {/* 옵션 내용 상단 */}
                     <div className='flex flex-col gap-2'>
-                        <div className='text-center pt-2 font-bold text-lg'>제목</div>
-                        {/* 아래 태그는 표시할 내용이 있는 경우 사용 */}
-                        {/* <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> Basis: object-fit: none;</div> */}
+                        <div className='text-center pt-2 font-bold text-lg'>Grid Template Rows</div>
+                        {/* <div className='px-4 text-xs text-right font-bold'><span className='text-red-700'>*</span> abcd</div> */}
                     </div>
 
                     {/* 옵션 내용 하단 */}
                     <div id='option-wrap-bottom' className='flex flex-col gap-2 max-h-[360px] overflow-y-scroll px-2'>
                         {/* 제목 */}
                         <div className='text-center p-0.5 text-xs'>
-                            속성:
+                            grid-template-rows:
                             <input type="text" className='input input-xs mx-1 border-gray-200 w-16 rounded focus:outline-none focus:border-gray-200 text-center px-2'
-                                // value={속성값}
+                                value={getGridTemplateRowsValue()}
                                 readOnly
                             />
-                            {/* 속성 복사 */}
                             <button className='copy-css-btn btn btn-square btn-ghost btn-xs ml-2 flip-horizontal-bottom'
-                                onClick={() => copyCss('속성', '값')}
+                                onClick={() => copyCss('grid-template-rows', getGridTemplateRowsValue())}
                             >
                                 <FontAwesomeIcon icon={faCopy} />
                             </button>
                         </div>
 
                         {/* <div className="divider font-bold text-lg">서브 제목</div> */}
-                        <div className='grid grid-cols-4 gap-2'>
+                        <div className='grid grid-cols-2 gap-2'>
                             {rowValues.map((value, index) => (
                                 <input
                                     key={index}
                                     type='radio'
                                     name='gridTemplateRows'
-                                    className="btn"
+                                    className='btn'
                                     aria-label={value}
                                     value={value}
                                     checked={gridTemplateRows === value}
@@ -90,102 +214,10 @@ const GridTemplateRows: React.FC = () => {// box option
                             ))}
                         </div>
 
-                        {/* gridTemplateRows = 'track-list' */}
-                        {
-                            gridTemplateRows === 'track-list' ?
-                                (
-                                    <>
-                                        <div className="divider font-bold text-lg">Track List</div>
-                                        <div className='grid grid-cols-4 gap-2 items-center'>
-                                            {trackListValues.map((value, index) => (
-                                                <React.Fragment key={index}>
-                                                    <div className='font-bold text-sm text-center'>List {index + 1}</div>
-                                                    <input type='number' className="btn btn-sm"
-                                                        style={{ MozAppearance: 'textfield' }}
-                                                        value={value}
-                                                        onChange={(e) => {
-                                                            const newArr = [...trackListValues];
-                                                            newArr[index] = Number(e.target.value);
-                                                            setTrackListValues(newArr);
-                                                        }}
-                                                    />
-                                                </React.Fragment>
-                                            ))}
-                                        </div>
-                                    </>
-                                ) : null
-                        }
-
-                        {/* gridTemplateRows = 'minmax' */}
-                        {
-                            gridTemplateRows === 'minmax' ?
-                                (
-                                    <>
-                                        <div className="divider font-bold text-lg">Min Max</div>
-                                        <div className='grid grid-cols-3 gap-2 items-center'>
-                                            {/* min */}
-                                            <div className='font-bold text-sm text-center'>Min</div>
-                                            <input type='number' className="btn btn-sm"
-                                                style={{ MozAppearance: 'textfield' }}
-                                                value={min}
-                                                onChange={(e) => setMin(Number(e.target.value))}
-                                            />
-                                            {/* 단위 */}
-                                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
-                                                defaultValue={minUnit}
-                                                onChange={(e) => setMinUnit(e.target.value)}
-                                            >
-                                                {unitValues.slice(0, -1).map((value, index) => (
-                                                    <option key={index} value={value}>{value}</option>
-                                                ))}
-                                            </select>
-                                            {/* max */}
-                                            <div className='font-bold text-sm text-center'>Max</div>
-                                            <input type='number' className="btn btn-sm"
-                                                style={{ MozAppearance: 'textfield' }}
-                                                value={max}
-                                                onChange={(e) => setMax(Number(e.target.value))}
-                                            />
-                                            {/* 단위 */}
-                                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
-                                                defaultValue={maxUnit}
-                                                onChange={(e) => setMaxUnit(e.target.value)}
-                                            >
-                                                {unitValues.map((value, index) => (
-                                                    <option key={index} value={value}>{value}</option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    </>
-                                ) : null
-                        }
-
-                        {/* gridTemplateRows = 'fit-content' */}
-                        {
-                            gridTemplateRows === 'fit-content' ?
-                                (
-                                    <>
-                                        <div className="divider font-bold text-lg">Fit Content</div>
-                                        <div className='grid grid-cols-[3fr_1fr] gap-2 mt-2'>
-                                            <input type='number' className="btn btn-sm"
-                                                style={{ MozAppearance: 'textfield' }}
-                                                value={fitContent}
-                                                onChange={(e) => setMax(Number(e.target.value))}
-                                            />
-                                            {/* 단위 */}
-                                            <select name="unit" className='select select-bordered select-sm font-bold h-2 focus:outline-none'
-                                                defaultValue='px'
-                                                onChange={(e) => setUnits(e.target.value as 'px' | '%')}
-                                            >
-                                                <option value="px">px</option>
-                                                <option value="%">%</option>
-                                            </select>
-                                        </div>
-                                    </>
-                                )
-                                : null
-                        }
-
+                        {/* getGridTemplateRowsContent */}
+                        <div>
+                            {getGridTemplateRowsContent()}
+                        </div>
 
                         {/* box option */}
                         <div className='divider flex items-center justify-center font-bold'>
@@ -204,12 +236,6 @@ const GridTemplateRows: React.FC = () => {// box option
                                             value={boxCount}
                                             onChange={(e) => setBoxCount(Math.max(2, Math.min(20, Number(e.target.value))))}
                                         />
-                                        {/* size */}
-                                        <div className='font-bold text-sm text-center'>Size</div>
-                                        <input type='number' className='btn btn-sm border-2 focus:border-gray-400 focus:outline-none' min={20} max={100}
-                                            value={boxSize}
-                                            onChange={(e) => setBoxSize(Math.max(20, Math.min(100, Number(e.target.value))))}
-                                        />
                                     </div>
                                 </>
                             ) : null
@@ -219,16 +245,14 @@ const GridTemplateRows: React.FC = () => {// box option
             </div >
 
             {/* view 파트 */}
-            {/* transition-transform duration-500 */}
-            {/* transform: `translateY(${boxTranslateY}px)` */}
             <div id="view" className='w-full h-full flex items-center justify-center overflow-scroll'>
-                <div id='grid-template-rows' className='grid w-[500px] h-[500px] bg-blue-50 shadow transition-transform duration-300'
+                <div id='grid-template-rows' className='w-[500px] h-[500px] grid bg-blue-50 shadow transition-transform duration-500 overflow-scroll'
                     style={{
-                        gridTemplateRows,
-                        transform: `translateY(${boxTranslateY}px)`
+                        gridTemplateRows: getGridTemplateRowsValue(),
+                        transform: `translateY(${boxTranslateY}px)`,
                     }}
                 >
-                    {addBoxes(boxCount, { width: boxSize, height: boxSize })}
+                    {addBoxes(boxCount, { width: '100px', height: '100%' })}
                 </div>
             </div>
         </>

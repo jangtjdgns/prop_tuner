@@ -14,7 +14,7 @@ import { getRainbowColorsUpTo } from "./colorUtils";
  */
 export const addBoxes = (
     count: number
-    , size: { width: number, height: number }
+    , size: { width: number | string, height: number | string }
     // , useRainbowBgColor: boolean = true
     , customClassName: string = ''
     , customStyles: React.CSSProperties[] = []
